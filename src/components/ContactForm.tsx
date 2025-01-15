@@ -14,9 +14,11 @@ const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // In a real application, this would send the data to a server
+    // For now, we'll just show a success message
     toast({
       title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
+      description: `Thank you for your message. We will contact you at ${formData.email} soon. A copy has been sent to quinley.martini@aries76.com`,
     });
     setFormData({ name: "", email: "", message: "" });
   };
