@@ -18,7 +18,7 @@ const ContactForm = () => {
     // For now, we'll just show a success message
     toast({
       title: "Message sent!",
-      description: `Thank you for your message. We will contact you at ${formData.email} soon. A copy has been sent to quinley.martini@aries76.com`,
+      description: `Thank you for your message. We will contact you at ${formData.email} soon.`,
     });
     setFormData({ name: "", email: "", message: "" });
   };
