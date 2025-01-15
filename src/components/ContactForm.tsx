@@ -53,7 +53,7 @@ const ContactForm = () => {
       </div>
       <Button
         type="submit"
-        className="w-full bg-aires-navy hover:bg-aires-blue transition-colors"
+        className="w-full bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-300 text-white"
       >
         Send Message
       </Button>

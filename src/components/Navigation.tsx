@@ -20,7 +20,7 @@ const Navigation = () => {
             <img
               src="/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png"
               alt="AIRES Logo"
-              className="h-8"
+              className="h-12" // Increased logo size
             />
           </div>
           
@@ -29,7 +29,7 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-aires-navy hover:text-aires-blue transition-colors"
+                className="bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all duration-300"
               >
                 {item.name}
               </a>
@@ -41,7 +41,7 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2"
+              className="inline-flex items-center justify-center p-2 bg-gradient-to-r from-aires-navy to-aires-blue hover:from-aires-blue hover:to-aires-emerald text-white"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -57,7 +57,7 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 text-aires-navy hover:text-aires-blue transition-colors"
+                className="block px-3 py-2 bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all duration-300"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
