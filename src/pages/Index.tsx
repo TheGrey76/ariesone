@@ -29,7 +29,7 @@ const Index = () => {
       {/* About Section */}
       <section id="about" className="py-20 px-4 bg-white/50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-lightBlue to-aires-blue bg-clip-text text-transparent mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
             Who We Are
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
