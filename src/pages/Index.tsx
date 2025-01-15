@@ -73,7 +73,7 @@ const Index = () => {
       {/* Services Section */}
       <section id="services" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
             Our Services
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -102,7 +102,7 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 bg-gradient-to-br from-aires-navy/5 to-aires-emerald/5">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
             Get in Touch
           </h2>
           <ContactForm />
