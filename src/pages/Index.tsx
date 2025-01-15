@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ContactForm from "@/components/ContactForm";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart2, Shield, Zap } from "lucide-react";
+import { ArrowRight, Shield, Zap, BarChart2 } from "lucide-react";
 
 const Index = () => {
   return (
@@ -34,21 +34,33 @@ const Index = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6 rounded-lg bg-white shadow-lg">
-              <Shield className="w-16 h-16 text-aires-emerald mb-4" />
+              <div className="bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald p-0.5 rounded-full w-16 h-16 mx-auto mb-4">
+                <div className="bg-white rounded-full p-3 h-full">
+                  <Shield className="w-full h-full text-aires-emerald" />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">Trust</h3>
               <p className="text-aires-gray">
                 Building lasting relationships through transparency and reliability.
               </p>
             </div>
             <div className="p-6 rounded-lg bg-white shadow-lg">
-              <Zap className="w-16 h-16 text-aires-emerald mb-4" />
+              <div className="bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald p-0.5 rounded-full w-16 h-16 mx-auto mb-4">
+                <div className="bg-white rounded-full p-3 h-full">
+                  <Zap className="w-full h-full text-aires-emerald" />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">Innovation</h3>
               <p className="text-aires-gray">
                 Pioneering new solutions in financial products and services.
               </p>
             </div>
             <div className="p-6 rounded-lg bg-white shadow-lg">
-              <BarChart2 className="w-16 h-16 text-aires-emerald mb-4" />
+              <div className="bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald p-0.5 rounded-full w-16 h-16 mx-auto mb-4">
+                <div className="bg-white rounded-full p-3 h-full">
+                  <BarChart2 className="w-full h-full text-aires-emerald" />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">Data-Driven</h3>
               <p className="text-aires-gray">
                 Making informed decisions backed by comprehensive analysis.
