@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Target, LineChart } from "lucide-react";
 import { useInView } from "react-intersection-observer";
@@ -196,6 +197,7 @@ const Index = () => {
         </div>
       </section>
 
+      <Footer />
       <ScrollToTop />
     </div>
   );

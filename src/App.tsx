@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Sponsorship from "./pages/Sponsorship";
 import Advisory from "./pages/Advisory";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/sponsorship" element={<Sponsorship />} />
           <Route path="/advisory" element={<Advisory />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
