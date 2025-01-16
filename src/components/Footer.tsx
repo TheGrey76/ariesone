@@ -17,10 +17,10 @@ const Footer = () => {
             <Button
               variant="outline"
               size="sm"
-              className="bg-[#0A66C2] hover:bg-[#004182] text-white border-none mr-6 transition-all duration-300 hover:scale-105"
+              className="bg-[#0A66C2] hover:bg-[#004182] text-white border-none mr-6 transition-all duration-300 hover:scale-105 px-6 py-2"
               onClick={handleLinkedInClick}
             >
-              <Linkedin className="w-4 h-4 mr-2" />
+              <Linkedin className="w-5 h-5 mr-2 stroke-[1.5]" />
               Follow us
             </Button>
             <div className="flex space-x-6">
