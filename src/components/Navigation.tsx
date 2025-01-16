@@ -24,7 +24,6 @@ const Navigation = () => {
             </span>
           </div>
 
-          {/* Mobile menu button */}
           <Button
             variant="ghost"
             size="icon"
@@ -34,7 +33,6 @@ const Navigation = () => {
             {isOpen ? <X /> : <Menu />}
           </Button>
 
-          {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a
               href="#about"
@@ -49,6 +47,12 @@ const Navigation = () => {
               Services
             </a>
             <a
+              href="#team"
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
+            >
+              Team
+            </a>
+            <a
               href="#contact"
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
             >
@@ -57,7 +61,6 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {isMobile && isOpen && (
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
@@ -74,6 +77,13 @@ const Navigation = () => {
                 onClick={toggleMenu}
               >
                 Services
+              </a>
+              <a
+                href="#team"
+                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
+                onClick={toggleMenu}
+              >
+                Team
               </a>
               <a
                 href="#contact"
