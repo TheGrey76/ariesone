@@ -163,42 +163,81 @@ const Index = () => {
             Our Services
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Sponsorship",
-                description: "We work with leading financial issuers to structure and launch innovative investment products.",
-                onClick: () => navigate('/sponsorship')
-              },
-              {
-                title: "Advisory",
-                description: "Strategic advisory services for portfolio optimization and market opportunities.",
-                onClick: () => navigate('/advisory')
-              }
-            ].map((service, index) => (
-              <div 
-                key={service.title}
-                className="p-8 rounded-lg bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                style={{ 
-                  transitionDelay: `${index * 100}ms`,
-                  opacity: servicesInView ? 1 : 0,
-                  transform: servicesInView ? "translateY(0)" : "translateY(20px)"
-                }}
+            <div 
+              className="p-8 rounded-lg bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            >
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+                Sponsorship
+              </h3>
+              <p className="text-aires-gray mb-6">
+                We collaborate with leading financial issuers to design and launch innovative investment products. Our comprehensive approach includes:
+              </p>
+              <ul className="space-y-4 mb-6">
+                <li className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-aires-navy to-aires-emerald flex items-center justify-center mt-1">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <span className="ml-3 text-aires-gray">Product structuring and development</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-aires-navy to-aires-emerald flex items-center justify-center mt-1">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <span className="ml-3 text-aires-gray">Regulatory compliance guidance</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-aires-navy to-aires-emerald flex items-center justify-center mt-1">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <span className="ml-3 text-aires-gray">Market entry strategy</span>
+                </li>
+              </ul>
+              <Button 
+                variant="outline" 
+                className="hover:text-aires-blue transition-all duration-300 hover:scale-105"
+                onClick={() => navigate('/sponsorship')}
               >
-                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
-                  {service.title}
-                </h3>
-                <p className="text-aires-gray mb-4">
-                  {service.description}
-                </p>
-                <Button 
-                  variant="outline" 
-                  className="hover:text-aires-blue transition-all duration-300 hover:scale-105"
-                  onClick={service.onClick}
-                >
-                  Learn More <ArrowRight className="ml-2" />
-                </Button>
-              </div>
-            ))}
+                Learn More <ArrowRight className="ml-2" />
+              </Button>
+            </div>
+
+            <div 
+              className="p-8 rounded-lg bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            >
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+                Advisory
+              </h3>
+              <p className="text-aires-gray mb-6">
+                Strategic advisory services focused on portfolio optimization and market opportunities, specializing in:
+              </p>
+              <ul className="space-y-4 mb-6">
+                <li className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-aires-navy to-aires-emerald flex items-center justify-center mt-1">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <span className="ml-3 text-aires-gray">Private equity and venture capital fund advisory</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-aires-navy to-aires-emerald flex items-center justify-center mt-1">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <span className="ml-3 text-aires-gray">Portfolio performance optimization</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-aires-navy to-aires-emerald flex items-center justify-center mt-1">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <span className="ml-3 text-aires-gray">Market opportunity analysis</span>
+                </li>
+              </ul>
+              <Button 
+                variant="outline" 
+                className="hover:text-aires-blue transition-all duration-300 hover:scale-105"
+                onClick={() => navigate('/advisory')}
+              >
+                Learn More <ArrowRight className="ml-2" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>
