@@ -3,12 +3,14 @@ import Navigation from "@/components/Navigation";
 import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
 import SponsorshipModal from "@/components/SponsorshipModal";
+import AdvisoryModal from "@/components/AdvisoryModal";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Target, LineChart } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const Index = () => {
   const [sponsorshipModalOpen, setSponsorshipModalOpen] = useState(false);
+  const [advisoryModalOpen, setAdvisoryModalOpen] = useState(false);
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1 });
   const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.1 });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1 });
@@ -25,7 +27,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section with Parallax */}
       <section 
         ref={heroRef}
         className={`min-h-screen flex items-center justify-center px-4 relative transition-opacity duration-700 ${
@@ -52,7 +53,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
       <section 
         id="about" 
         ref={aboutRef}
@@ -128,11 +128,13 @@ const Index = () => {
             {[
               {
                 title: "Sponsorship",
-                description: "We work with leading financial issuers to structure and launch innovative investment products."
+                description: "We work with leading financial issuers to structure and launch innovative investment products.",
+                onClick: () => setSponsorshipModalOpen(true)
               },
               {
                 title: "Advisory",
-                description: "Strategic advisory services for portfolio optimization and market opportunities."
+                description: "Strategic advisory services for portfolio optimization and market opportunities.",
+                onClick: () => setAdvisoryModalOpen(true)
               }
             ].map((service, index) => (
               <div 
@@ -153,11 +155,7 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   className="hover:text-aires-blue transition-all duration-300 hover:scale-105"
-                  onClick={() => {
-                    if (service.title === "Sponsorship") {
-                      setSponsorshipModalOpen(true);
-                    }
-                  }}
+                  onClick={service.onClick}
                 >
                   Learn More <ArrowRight className="ml-2" />
                 </Button>
@@ -167,7 +165,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section 
         id="contact" 
         ref={contactRef}
@@ -206,6 +203,11 @@ const Index = () => {
       <SponsorshipModal 
         open={sponsorshipModalOpen} 
         onOpenChange={setSponsorshipModalOpen}
+      />
+      
+      <AdvisoryModal 
+        open={advisoryModalOpen} 
+        onOpenChange={setAdvisoryModalOpen}
       />
     </div>
   );
