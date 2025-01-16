@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
-import SponsorshipModal from "@/components/SponsorshipModal";
-import AdvisoryModal from "@/components/AdvisoryModal";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Target, LineChart } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const Index = () => {
-  const [sponsorshipModalOpen, setSponsorshipModalOpen] = useState(false);
-  const [advisoryModalOpen, setAdvisoryModalOpen] = useState(false);
+  const navigate = useNavigate();
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1 });
   const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.1 });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1 });
@@ -129,12 +127,12 @@ const Index = () => {
               {
                 title: "Sponsorship",
                 description: "We work with leading financial issuers to structure and launch innovative investment products.",
-                onClick: () => setSponsorshipModalOpen(true)
+                onClick: () => navigate('/sponsorship')
               },
               {
                 title: "Advisory",
                 description: "Strategic advisory services for portfolio optimization and market opportunities.",
-                onClick: () => setAdvisoryModalOpen(true)
+                onClick: () => navigate('/advisory')
               }
             ].map((service, index) => (
               <div 
@@ -199,16 +197,6 @@ const Index = () => {
       </section>
 
       <ScrollToTop />
-
-      <SponsorshipModal 
-        open={sponsorshipModalOpen} 
-        onOpenChange={setSponsorshipModalOpen}
-      />
-      
-      <AdvisoryModal 
-        open={advisoryModalOpen} 
-        onOpenChange={setAdvisoryModalOpen}
-      />
     </div>
   );
 };
