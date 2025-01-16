@@ -113,7 +113,21 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
             Get in Touch
           </h2>
-          <ContactForm />
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-white/80 backdrop-blur-sm shadow-lg rounded-lg p-8">
+              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+                Our Office
+              </h3>
+              <address className="not-italic text-aires-gray space-y-2">
+                <p className="font-bold">Aries76 Ltd</p>
+                <p>27, Old Gloucester Street</p>
+                <p>LONDON WC1N 3AX</p>
+                <p>UNITED KINGDOM</p>
+                <p className="mt-4">Company Registration number: 15324504</p>
+              </address>
+            </div>
+            <ContactForm />
+          </div>
         </div>
       </section>
     </div>
