@@ -4,7 +4,6 @@ import Navigation from "@/components/Navigation";
 import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
 import Footer from "@/components/Footer";
-import TeamSection from "@/components/TeamSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Target, LineChart } from "lucide-react";
 import { useInView } from "react-intersection-observer";
@@ -162,15 +161,6 @@ const Index = () => {
             ))}
           </div>
         </div>
-      </section>
-
-      <section 
-        id="team" 
-        className={`py-20 px-4 relative transition-all duration-700 transform ${
-          servicesInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-        }`}
-      >
-        <TeamSection />
       </section>
 
       <section 
