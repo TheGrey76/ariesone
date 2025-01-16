@@ -16,7 +16,7 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 relative">
+      <section className="pt-32 pb-48 px-4 relative">
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
         <div className="max-w-7xl mx-auto text-center relative">
@@ -37,7 +37,7 @@ const Index = () => {
       </section>
       
       {/* About Section */}
-      <section id="about" className="py-20 px-4 relative">
+      <section id="about" className="py-32 px-4 relative">
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
         <div className="absolute inset-0 bg-white/50" />
         <div className="max-w-7xl mx-auto relative">
