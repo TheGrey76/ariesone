@@ -5,8 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ArrowRight, Brain, Target, LineChart } from "lucide-react";
+import { Brain, Target, LineChart, ArrowRight } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const Index = () => {
@@ -124,15 +123,9 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-4 text-center">
             Who I Am
           </h2>
-          <div className="flex items-center gap-4 mb-8">
-            <h3 className="text-xl md:text-2xl font-heading font-medium text-left pl-4 border-l-4 border-gradient-to-b from-aires-emerald to-aires-blue animate-fade-up bg-gradient-to-r from-aires-emerald to-aires-blue bg-clip-text text-transparent">
-              Edoardo Grigione
-            </h3>
-            <Avatar className="h-16 w-16 border-2 border-aires-emerald/20">
-              <AvatarImage src="/lovable-uploads/62d441d4-ddb6-4d86-ba66-8838c44afaa1.png" alt="Edoardo Grigione" />
-              <AvatarFallback>EG</AvatarFallback>
-            </Avatar>
-          </div>
+          <h3 className="text-xl md:text-2xl font-heading font-medium text-left pl-4 border-l-4 border-gradient-to-b from-aires-emerald to-aires-blue animate-fade-up bg-gradient-to-r from-aires-emerald to-aires-blue bg-clip-text text-transparent mb-8">
+            Edoardo Grigione
+          </h3>
           <div className="prose prose-lg max-w-none space-y-6 text-aires-gray">
             <p>
               In my current role as a partner, my focus has solidified around capital raising, where I play a critical part in driving the financial architecture of VC and PE deals. My efforts are concentrated on securing strategic funding that aligns with our investment philosophy and enhances the long-term value of our portfolio companies.
@@ -251,4 +244,3 @@ const Index = () => {
 };
 
 export default Index;
-
