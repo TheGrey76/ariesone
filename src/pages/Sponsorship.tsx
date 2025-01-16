@@ -16,9 +16,14 @@ const Sponsorship = () => {
           >
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
-          <a href="/" className="text-xl font-heading font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
-            AIRES
-          </a>
+          <div className="flex flex-col items-start">
+            <a href="/" className="text-xl font-heading font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
+              AIRES
+            </a>
+            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+              Data Driven Decision
+            </span>
+          </div>
         </div>
 
         <h1 className="text-4xl font-heading font-bold text-aires-navy mb-8">
