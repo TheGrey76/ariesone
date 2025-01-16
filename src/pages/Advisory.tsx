@@ -8,13 +8,18 @@ const Advisory = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 py-20">
       <div className="max-w-7xl mx-auto px-4">
-        <Button
-          variant="ghost"
-          className="mb-8 hover:bg-transparent hover:text-aires-blue"
-          onClick={() => navigate(-1)}
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back
-        </Button>
+        <div className="flex justify-between items-start mb-8">
+          <Button
+            variant="ghost"
+            className="hover:bg-transparent hover:text-aires-blue"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back
+          </Button>
+          <a href="/" className="text-xl font-heading font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
+            AIRES
+          </a>
+        </div>
 
         <h1 className="text-4xl font-heading font-bold text-aires-navy mb-8">
           Advisory
