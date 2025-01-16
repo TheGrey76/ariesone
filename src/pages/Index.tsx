@@ -123,7 +123,7 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-4 text-center">
             Who I Am
           </h2>
-          <h3 className="text-xl md:text-2xl font-heading font-medium text-left mb-8 pl-4 border-l-4 border-gradient-to-b from-aires-emerald to-aires-blue animate-fade-up bg-gradient-to-r from-aires-emerald to-aires-blue bg-clip-text text-transparent w-fit mx-auto">
+          <h3 className="text-xl md:text-2xl font-heading font-medium text-left mb-8 pl-4 border-l-4 border-gradient-to-b from-aires-emerald to-aires-blue animate-fade-up bg-gradient-to-r from-aires-emerald to-aires-blue bg-clip-text text-transparent w-fit">
             Edoardo Grigione
           </h3>
           <div className="prose prose-lg max-w-none space-y-6 text-aires-gray">
