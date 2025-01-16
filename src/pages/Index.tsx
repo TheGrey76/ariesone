@@ -120,9 +120,12 @@ const Index = () => {
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
         <div className="absolute inset-0 bg-white/50" />
         <div className="max-w-4xl mx-auto relative">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-4 text-center">
             Who I Am
           </h2>
+          <h3 className="text-2xl md:text-3xl font-heading font-medium text-aires-blue mb-8 text-center animate-fade-up">
+            Edoardo Grigione
+          </h3>
           <div className="prose prose-lg max-w-none space-y-6 text-aires-gray">
             <p>
               In my current role as a partner, my focus has solidified around capital raising, where I play a critical part in driving the financial architecture of VC and PE deals. My efforts are concentrated on securing strategic funding that aligns with our investment philosophy and enhances the long-term value of our portfolio companies.
