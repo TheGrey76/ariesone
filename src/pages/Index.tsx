@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Target, LineChart } from "lucide-react";
 
 const Index = () => {
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -22,6 +29,7 @@ const Index = () => {
           <Button
             size="lg"
             className="bg-aires-navy hover:bg-aires-blue transition-colors animate-fade-up"
+            onClick={scrollToAbout}
           >
             Learn More <ArrowRight className="ml-2" />
           </Button>
