@@ -12,6 +12,7 @@ const Index = () => {
   const navigate = useNavigate();
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1 });
   const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.1 });
+  const { ref: whoIAmRef, inView: whoIAmInView } = useInView({ threshold: 0.1 });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1 });
   const { ref: contactRef, inView: contactInView } = useInView({ threshold: 0.1 });
 
@@ -105,6 +106,42 @@ const Index = () => {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section 
+        id="who-i-am" 
+        ref={whoIAmRef}
+        className={`py-20 px-4 relative transition-all duration-700 transform ${
+          whoIAmInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        }`}
+      >
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
+        <div className="absolute inset-0 bg-white/50" />
+        <div className="max-w-4xl mx-auto relative">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-8 text-center">
+            Who I Am
+          </h2>
+          <div className="prose prose-lg max-w-none space-y-6 text-aires-gray">
+            <p>
+              In my current role as a partner, my focus has solidified around capital raising, where I play a critical part in driving the financial architecture of VC and PE deals. My efforts are concentrated on securing strategic funding that aligns with our investment philosophy and enhances the long-term value of our portfolio companies.
+            </p>
+            <p>
+              The analytical skills I've honed over the years have become essential tools in this process, enabling me to assess and mitigate financial risks effectively. My ability to identify optimal investment opportunities and structure deals that balance risk and reward is central to my contribution to our firm's success.
+            </p>
+            <p>
+              I am passionate about tackling challenges in Investor Relations and fundraising. Throughout my career, I've approached complex problems head-on, consistently delivering results that exceed expectations. By fostering strong partnerships and setting clear goals, I've driven successful projects that create real, lasting value.
+            </p>
+            <p>
+              My journey has taken me across continents, working in international business to help companies grow in new markets and build solid relationships with investors. This experience has deepened my understanding of cultural differences and how to effectively expand operations across borders.
+            </p>
+            <p>
+              Beyond technical expertise, I believe in the power of sophisticated relationships that combine human insight with a data-driven approach. By leveraging both intuitive human connections and rigorous data analysis, I create holistic strategies that drive impactful outcomes.
+            </p>
+            <p>
+              I thrive in dynamic environments, combining strategic thinking with a hands-on approach to bring ideas to life. My drive is to help businesses grow, innovate, and create meaningful value for all stakeholders.
+            </p>
           </div>
         </div>
       </section>
