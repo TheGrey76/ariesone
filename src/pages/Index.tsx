@@ -27,7 +27,7 @@ const Index = () => {
           </Button>
         </div>
       </section>
-
+      
       {/* About Section */}
       <section id="about" className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
@@ -113,7 +113,7 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
             Get in Touch
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-12 mb-12">
             <div className="bg-white/80 backdrop-blur-sm shadow-lg rounded-lg p-8">
               <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
                 Our Office
@@ -126,7 +126,9 @@ const Index = () => {
                 <p className="mt-2 text-xs">Company Registration number: 15324504</p>
               </address>
             </div>
-            <ContactForm />
+            <div className="w-full max-w-xl mx-auto">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </section>
