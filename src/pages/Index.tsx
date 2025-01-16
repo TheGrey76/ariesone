@@ -222,8 +222,8 @@ const Index = () => {
                 Our Office
               </h3>
               <address className="not-italic text-sm text-aires-navy space-y-1">
-                <p className="font-semibold">Aries Data Ltd</p>
-                <p className="text-xs text-aires-gray italic mb-4">A company owned by Aries76 Ltd Holding</p>
+                <p className="font-semibold">AIRES</p>
+                <p className="text-xs text-aires-gray italic mb-4">A brand owned by Aries76 Ltd Holding</p>
                 <p>27, Old Gloucester Street</p>
                 <p>LONDON WC1N 3AX</p>
                 <p>UNITED KINGDOM</p>
