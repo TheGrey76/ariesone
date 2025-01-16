@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
+import SponsorshipModal from "@/components/SponsorshipModal";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Target, LineChart } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const Index = () => {
+  const [sponsorshipModalOpen, setSponsorshipModalOpen] = useState(false);
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1 });
   const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.1 });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1 });
@@ -151,6 +153,11 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   className="hover:text-aires-blue transition-all duration-300 hover:scale-105"
+                  onClick={() => {
+                    if (service.title === "Sponsorship") {
+                      setSponsorshipModalOpen(true);
+                    }
+                  }}
                 >
                   Learn More <ArrowRight className="ml-2" />
                 </Button>
@@ -195,6 +202,11 @@ const Index = () => {
       </section>
 
       <ScrollToTop />
+
+      <SponsorshipModal 
+        open={sponsorshipModalOpen} 
+        onOpenChange={setSponsorshipModalOpen}
+      />
     </div>
   );
 };
