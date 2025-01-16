@@ -13,12 +13,9 @@ const Index = () => {
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
         <div className="max-w-7xl mx-auto text-center relative">
-          <h1 className="text-5xl md:text-7xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent mb-2 animate-fade-up">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent mb-6 animate-fade-up">
             Empowering Data-Driven Financial Solutions
           </h1>
-          <p className="text-2xl font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent mb-6 animate-fade-up">
-            Data Driven Decision
-          </p>
           <p className="text-lg md:text-xl bg-gradient-to-r from-aires-gray to-aires-navy bg-clip-text text-transparent mb-8 max-w-2xl mx-auto animate-fade-up">
             Strategic advisory and sponsorship for innovative financial instruments.
           </p>
