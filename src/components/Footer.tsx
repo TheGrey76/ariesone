@@ -3,7 +3,7 @@ import { Linkedin } from "lucide-react";
 
 const Footer = () => {
   const handleLinkedInClick = () => {
-    window.open("https://www.linkedin.com/company/aires76/", "_blank");
+    window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank");
   };
 
   return (
