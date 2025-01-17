@@ -394,7 +394,14 @@ const Products = () => {
                           <div className="space-y-2">
                             <div className="flex justify-between items-start">
                               <h4 className="font-medium text-aires-navy">{fund.name}</h4>
-                              <span className="text-sm font-mono text-aires-blue">{fund.ticker}</span>
+                              <a 
+                                href={getGoogleFinanceUrl(fund.ticker)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-mono text-aires-blue hover:underline"
+                              >
+                                {fund.ticker}
+                              </a>
                             </div>
                             <p className="text-sm text-gray-600">{fund.exchange}</p>
                             <p className="text-sm text-gray-700">{fund.focus}</p>
