@@ -8,6 +8,7 @@ import Sponsorship from "./pages/Sponsorship";
 import Advisory from "./pages/Advisory";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
+import Products from "./pages/Products";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/advisory" element={<Advisory />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/products" element={<Products />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
