@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell } from "recharts";
 
 const portfolioData = [
   {
@@ -62,6 +62,16 @@ const Products = () => {
     0
   ).toFixed(2);
 
+  const chartConfig = {
+    portfolio: {
+      label: "Portfolio",
+      theme: {
+        light: "#2563EB",
+        dark: "#3B82F6"
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 p-8">
       <div className="max-w-7xl mx-auto space-y-8">
@@ -76,7 +86,7 @@ const Products = () => {
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
+                <ChartContainer config={chartConfig}>
                   <PieChart>
                     <Pie
                       data={portfolioData}
@@ -95,7 +105,7 @@ const Products = () => {
                     </Pie>
                     <ChartTooltip content={<ChartTooltipContent />} />
                   </PieChart>
-                </ResponsiveContainer>
+                </ChartContainer>
               </div>
             </CardContent>
           </Card>
