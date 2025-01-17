@@ -209,6 +209,10 @@ const Products = () => {
     generatePDF('portfolio-content', 'AIRES-Portfolio-Holdings.pdf');
   };
 
+  const getGoogleFinanceUrl = (ticker: string) => {
+    return `https://www.google.com/finance/quote/${ticker}`;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 p-8">
       <div className="max-w-7xl mx-auto space-y-8">
@@ -310,7 +314,16 @@ const Products = () => {
                     <TableRow key={item.ticker}>
                       <TableCell>{item.category}</TableCell>
                       <TableCell>{item.etf}</TableCell>
-                      <TableCell>{item.ticker}</TableCell>
+                      <TableCell>
+                        <a 
+                          href={getGoogleFinanceUrl(item.ticker)} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-aires-blue hover:underline"
+                        >
+                          {item.ticker}
+                        </a>
+                      </TableCell>
                       <TableCell className="text-right">{item.weight}</TableCell>
                       <TableCell className="text-right">{item.annualYield}</TableCell>
                       <TableCell className="text-right">
