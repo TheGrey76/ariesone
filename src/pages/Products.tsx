@@ -210,23 +210,25 @@ const Products = () => {
   };
 
   const getGoogleFinanceUrl = (ticker: string) => {
-    // Handle different exchange formats
-    if (ticker.includes('.L')) {
-      return `https://www.google.com/finance/quote/${ticker.replace('.L', '')}:LON`;
-    } else if (ticker.includes('.PA')) {
-      return `https://www.google.com/finance/quote/${ticker.replace('.PA', '')}:EPA`;
-    } else if (ticker.includes('.SW')) {
-      return `https://www.google.com/finance/quote/${ticker.replace('.SW', '')}:SWX`;
-    } else if (ticker.includes('.AX')) {
-      return `https://www.google.com/finance/quote/${ticker.replace('.AX', '')}:ASX`;
-    } else if (ticker.includes('.HK')) {
-      return `https://www.google.com/finance/quote/${ticker.replace('.HK', '')}:HKG`;
+    // Remove any whitespace from ticker
+    const cleanTicker = ticker.trim();
+    
+    if (cleanTicker.includes('.L')) {
+      return `https://www.google.com/finance/quote/${cleanTicker.replace('.L', '')}:LON`;
+    } else if (cleanTicker.includes('.PA')) {
+      return `https://www.google.com/finance/quote/${cleanTicker.replace('.PA', '')}:EPA`;
+    } else if (cleanTicker.includes('.SW')) {
+      return `https://www.google.com/finance/quote/${cleanTicker.replace('.SW', '')}:SWX`;
+    } else if (cleanTicker.includes('.AX')) {
+      return `https://www.google.com/finance/quote/${cleanTicker.replace('.AX', '')}:ASX`;
+    } else if (cleanTicker.includes('.HK')) {
+      return `https://www.google.com/finance/quote/${cleanTicker.replace('.HK', '')}:HKG`;
     } else {
       // For US exchanges (NYSE, NASDAQ, AMEX)
-      const exchange = ticker.startsWith('JAAA') ? 'AMEX' :
-                      ticker.includes('CG') || ticker.includes('TPG') ? 'NASDAQ' : 
+      const exchange = cleanTicker === 'JAAA' ? 'AMEX' :
+                      cleanTicker.includes('CG') || cleanTicker.includes('TPG') ? 'NASDAQ' : 
                       'NYSE';
-      return `https://www.google.com/finance/quote/${ticker}:${exchange}`;
+      return `https://www.google.com/finance/quote/${cleanTicker}:${exchange}`;
     }
   };
 
