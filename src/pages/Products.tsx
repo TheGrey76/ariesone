@@ -58,60 +58,60 @@ const portfolioData = [
 
 const peFundsData = [
   {
-    region: "Europa",
+    region: "Europe",
     funds: [
       {
         name: "3i Group",
         ticker: "III.L",
         exchange: "London Stock Exchange (LSE)",
-        focus: "Buyouts, infrastrutture"
+        focus: "Buyouts and infrastructure investments"
       },
       {
         name: "Eurazeo",
         ticker: "RF.PA",
         exchange: "Euronext Paris",
-        focus: "Mid-market private equity, private debt"
+        focus: "Mid-market private equity and private debt"
       },
       {
         name: "Partners Group",
         ticker: "PGHN.SW",
         exchange: "Swiss Exchange",
-        focus: "Global private equity, infrastrutture, immobili"
+        focus: "Global private equity, infrastructure, real estate"
       },
       {
         name: "Intermediate Capital Group",
         ticker: "ICP.L",
         exchange: "London Stock Exchange (LSE)",
-        focus: "Private debt e equity"
+        focus: "Private debt and equity investments"
       },
       {
         name: "NB Private Equity Partners",
         ticker: "NBPE.L",
         exchange: "London Stock Exchange (LSE)",
-        focus: "Portafoglio diversificato globale"
+        focus: "Diversified global portfolio"
       },
       {
         name: "HgCapital Trust",
         ticker: "HGT.L",
         exchange: "London Stock Exchange (LSE)",
-        focus: "Software e servizi aziendali"
+        focus: "Software and business services"
       }
     ]
   },
   {
-    region: "Stati Uniti",
+    region: "United States",
     funds: [
       {
         name: "Blackstone",
         ticker: "BX",
         exchange: "New York Stock Exchange (NYSE)",
-        focus: "Buyout, immobili, infrastrutture, credito"
+        focus: "Buyout, real estate, infrastructure, credit"
       },
       {
         name: "KKR & Co.",
         ticker: "KKR",
         exchange: "New York Stock Exchange (NYSE)",
-        focus: "Private equity, infrastrutture, credito"
+        focus: "Private equity, infrastructure, credit"
       },
       {
         name: "Carlyle Group",
@@ -123,30 +123,30 @@ const peFundsData = [
         name: "Apollo Global Management",
         ticker: "APO",
         exchange: "New York Stock Exchange (NYSE)",
-        focus: "Private equity, credito alternativo"
+        focus: "Private equity, alternative credit"
       },
       {
         name: "TPG Inc.",
         ticker: "TPG",
         exchange: "Nasdaq",
-        focus: "Private equity, venture capital, immobili"
+        focus: "Private equity, venture capital, real estate"
       }
     ]
   },
   {
-    region: "Asia-Pacifico",
+    region: "Asia-Pacific",
     funds: [
       {
         name: "Macquarie Group",
         ticker: "MQG.AX",
         exchange: "Australian Securities Exchange (ASX)",
-        focus: "Private equity, infrastrutture, investimenti alternativi"
+        focus: "Private equity, infrastructure, alternative investments"
       },
       {
         name: "CITIC Capital",
         ticker: "0267.HK",
         exchange: "Hong Kong Stock Exchange",
-        focus: "Private equity, venture capital, immobiliare"
+        focus: "Private equity, venture capital, real estate"
       }
     ]
   }
