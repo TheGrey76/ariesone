@@ -5,7 +5,6 @@ import { PieChart, Pie, Cell } from "recharts";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
-import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect } from "react";
 
@@ -89,71 +88,6 @@ const Products = () => {
       }
     };
   }, []);
-
-  // Query for fetching closing prices
-  const { data: prices, isLoading } = useQuery({
-    queryKey: ['etf-prices'],
-    queryFn: async () => {
-      const quotes = await Promise.all(
-        portfolioData.map(async (item) => {
-          try {
-            const response = await fetch(
-              `https://query1.finance.yahoo.com/v8/finance/chart/${item.ticker}?range=1d&interval=1d`,
-              {
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                }
-              }
-            );
-            
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            const quote = data.chart.result[0];
-            const previousClose = quote.indicators.quote[0].close[quote.indicators.quote[0].close.length - 1];
-            const previousDay = quote.timestamp[quote.timestamp.length - 1];
-            const dayBefore = quote.timestamp[quote.timestamp.length - 2];
-            const twoDayPrice = quote.indicators.quote[0].close[quote.indicators.quote[0].close.length - 2];
-            const priceChange = ((previousClose - twoDayPrice) / twoDayPrice) * 100;
-            
-            return {
-              ticker: item.ticker,
-              price: previousClose,
-              change: priceChange
-            };
-          } catch (error) {
-            console.error(`Error fetching price for ${item.ticker}:`, error);
-            toast({
-              title: "Error fetching prices",
-              description: `Unable to fetch price for ${item.ticker}. Using fallback values.`,
-              variant: "destructive"
-            });
-            return {
-              ticker: item.ticker,
-              price: 0,
-              change: 0
-            };
-          }
-        })
-      );
-      return quotes;
-    },
-    refetchInterval: 300000, // Refetch every 5 minutes
-    meta: {
-      onSettled: (data, error) => {
-        if (error) {
-          toast({
-            title: "Error fetching prices",
-            description: "Unable to fetch prices. Using fallback values.",
-            variant: "destructive"
-          });
-        }
-      }
-    }
-  });
 
   const totalAnnualYield = portfolioData.reduce(
     (acc, item) => acc + (item.weight / 100) * item.annualYield,
@@ -270,51 +204,24 @@ const Products = () => {
                     <TableHead>Category</TableHead>
                     <TableHead>Selected ETF</TableHead>
                     <TableHead>Ticker</TableHead>
-                    <TableHead className="text-right">Price ($)</TableHead>
-                    <TableHead className="text-right">24h Change (%)</TableHead>
                     <TableHead className="text-right">Weight (%)</TableHead>
                     <TableHead className="text-right">Annual Yield (%)</TableHead>
                     <TableHead className="text-right">Monthly Yield (%)</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {portfolioData.map((item) => {
-                    const priceData = prices?.find(p => p.ticker === item.ticker);
-                    return (
-                      <TableRow key={item.ticker}>
-                        <TableCell>{item.category}</TableCell>
-                        <TableCell>{item.etf}</TableCell>
-                        <TableCell>{item.ticker}</TableCell>
-                        <TableCell className="text-right">
-                          {isLoading ? (
-                            <span className="animate-pulse">Loading...</span>
-                          ) : (
-                            priceData?.price?.toFixed(2) || "N/A"
-                          )}
-                        </TableCell>
-                        <TableCell className={`text-right ${
-                          priceData?.change && priceData.change > 0 
-                            ? 'text-green-600' 
-                            : priceData?.change && priceData.change < 0 
-                            ? 'text-red-600' 
-                            : ''
-                        }`}>
-                          {isLoading ? (
-                            <span className="animate-pulse">Loading...</span>
-                          ) : (
-                            priceData?.change 
-                              ? `${priceData.change.toFixed(2)}%` 
-                              : "N/A"
-                          )}
-                        </TableCell>
-                        <TableCell className="text-right">{item.weight}</TableCell>
-                        <TableCell className="text-right">{item.annualYield}</TableCell>
-                        <TableCell className="text-right">
-                          {item.monthlyYield}
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
+                  {portfolioData.map((item) => (
+                    <TableRow key={item.ticker}>
+                      <TableCell>{item.category}</TableCell>
+                      <TableCell>{item.etf}</TableCell>
+                      <TableCell>{item.ticker}</TableCell>
+                      <TableCell className="text-right">{item.weight}</TableCell>
+                      <TableCell className="text-right">{item.annualYield}</TableCell>
+                      <TableCell className="text-right">
+                        {item.monthlyYield}
+                      </TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </CardContent>
