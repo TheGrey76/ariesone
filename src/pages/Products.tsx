@@ -56,6 +56,102 @@ const portfolioData = [
   }
 ];
 
+const peFundsData = [
+  {
+    region: "Europa",
+    funds: [
+      {
+        name: "3i Group",
+        ticker: "III.L",
+        exchange: "London Stock Exchange (LSE)",
+        focus: "Buyouts, infrastrutture"
+      },
+      {
+        name: "Eurazeo",
+        ticker: "RF.PA",
+        exchange: "Euronext Paris",
+        focus: "Mid-market private equity, private debt"
+      },
+      {
+        name: "Partners Group",
+        ticker: "PGHN.SW",
+        exchange: "Swiss Exchange",
+        focus: "Global private equity, infrastrutture, immobili"
+      },
+      {
+        name: "Intermediate Capital Group",
+        ticker: "ICP.L",
+        exchange: "London Stock Exchange (LSE)",
+        focus: "Private debt e equity"
+      },
+      {
+        name: "NB Private Equity Partners",
+        ticker: "NBPE.L",
+        exchange: "London Stock Exchange (LSE)",
+        focus: "Portafoglio diversificato globale"
+      },
+      {
+        name: "HgCapital Trust",
+        ticker: "HGT.L",
+        exchange: "London Stock Exchange (LSE)",
+        focus: "Software e servizi aziendali"
+      }
+    ]
+  },
+  {
+    region: "Stati Uniti",
+    funds: [
+      {
+        name: "Blackstone",
+        ticker: "BX",
+        exchange: "New York Stock Exchange (NYSE)",
+        focus: "Buyout, immobili, infrastrutture, credito"
+      },
+      {
+        name: "KKR & Co.",
+        ticker: "KKR",
+        exchange: "New York Stock Exchange (NYSE)",
+        focus: "Private equity, infrastrutture, credito"
+      },
+      {
+        name: "Carlyle Group",
+        ticker: "CG",
+        exchange: "Nasdaq",
+        focus: "Buyout, private credit, real estate"
+      },
+      {
+        name: "Apollo Global Management",
+        ticker: "APO",
+        exchange: "New York Stock Exchange (NYSE)",
+        focus: "Private equity, credito alternativo"
+      },
+      {
+        name: "TPG Inc.",
+        ticker: "TPG",
+        exchange: "Nasdaq",
+        focus: "Private equity, venture capital, immobili"
+      }
+    ]
+  },
+  {
+    region: "Asia-Pacifico",
+    funds: [
+      {
+        name: "Macquarie Group",
+        ticker: "MQG.AX",
+        exchange: "Australian Securities Exchange (ASX)",
+        focus: "Private equity, infrastrutture, investimenti alternativi"
+      },
+      {
+        name: "CITIC Capital",
+        ticker: "0267.HK",
+        exchange: "Hong Kong Stock Exchange",
+        focus: "Private equity, venture capital, immobiliare"
+      }
+    ]
+  }
+];
+
 const Products = () => {
   const { toast } = useToast();
 
@@ -247,6 +343,38 @@ const Products = () => {
                   </li>
                 ))}
               </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Listed Private Equity Funds</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-8">
+                {peFundsData.map((region) => (
+                  <div key={region.region} className="space-y-4">
+                    <h3 className="text-xl font-semibold text-aires-navy">{region.region}</h3>
+                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                      {region.funds.map((fund) => (
+                        <div
+                          key={fund.ticker}
+                          className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                        >
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-start">
+                              <h4 className="font-medium text-aires-navy">{fund.name}</h4>
+                              <span className="text-sm font-mono text-aires-blue">{fund.ticker}</span>
+                            </div>
+                            <p className="text-sm text-gray-600">{fund.exchange}</p>
+                            <p className="text-sm text-gray-700">{fund.focus}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
