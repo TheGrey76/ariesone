@@ -232,16 +232,18 @@ const Products = () => {
               <CardTitle>Notes</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="list-disc pl-6 space-y-2">
+              <ul className="space-y-4">
                 {portfolioData.map((item) => (
-                  <li key={item.ticker}>
-                    <span className="font-medium">{item.etf} ({item.ticker})</span>: 
-                    {item.category.includes("CLO") 
-                      ? ` Provides exposure to ${item.category}-rated CLOs`
-                      : item.category.includes("Corporate")
-                      ? " Tracks high-yield corporate bonds"
-                      : " Offers exposure to emerging markets bonds"
-                    } with a current yield of approximately {item.annualYield}%.
+                  <li key={item.ticker} className="bg-gray-50 p-4 rounded-lg border border-gray-100 shadow-sm">
+                    <span className="font-medium text-aires-navy">{item.etf} ({item.ticker})</span>: 
+                    <span className="text-gray-700">
+                      {item.category.includes("CLO") 
+                        ? ` Provides exposure to ${item.category}-rated CLOs`
+                        : item.category.includes("Corporate")
+                        ? " Tracks high-yield corporate bonds"
+                        : " Offers exposure to emerging markets bonds"
+                      } with a current yield of approximately {item.annualYield}%.
+                    </span>
                   </li>
                 ))}
               </ul>
