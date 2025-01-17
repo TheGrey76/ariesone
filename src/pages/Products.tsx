@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { useQuery } from "@tanstack/react-query";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 
 const portfolioData = [
   {
@@ -58,6 +59,36 @@ const portfolioData = [
 
 const Products = () => {
   const { toast } = useToast();
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      "symbol": "AMEX:JAAA",
+      "width": "100%",
+      "height": "100%",
+      "locale": "en",
+      "dateRange": "12M",
+      "colorTheme": "light",
+      "trendLineColor": "#37a6ef",
+      "underLineColor": "#E3F2FD",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": ""
+    });
+
+    const container = document.getElementById('tradingview-widget');
+    if (container) {
+      container.appendChild(script);
+    }
+
+    return () => {
+      if (container && script) {
+        container.removeChild(script);
+      }
+    };
+  }, []);
 
   // Query for fetching real-time prices with better error handling
   const { data: prices, isLoading } = useQuery({
@@ -186,26 +217,35 @@ const Products = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle>Portfolio Summary</CardTitle>
+                <CardTitle>Live Chart (JAAA)</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm text-aires-gray">Total Annual Yield</p>
-                    <p className="text-3xl font-bold text-aires-navy">
-                      {totalAnnualYield}%
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-aires-gray">Total Monthly Yield</p>
-                    <p className="text-3xl font-bold text-aires-navy">
-                      {totalMonthlyYield}%
-                    </p>
-                  </div>
-                </div>
+                <div id="tradingview-widget" className="h-[300px] w-full"></div>
               </CardContent>
             </Card>
           </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Portfolio Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-sm text-aires-gray">Total Annual Yield</p>
+                  <p className="text-3xl font-bold text-aires-navy">
+                    {totalAnnualYield}%
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-aires-gray">Total Monthly Yield</p>
+                  <p className="text-3xl font-bold text-aires-navy">
+                    {totalMonthlyYield}%
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           <Card>
             <CardHeader>
