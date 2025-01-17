@@ -5,6 +5,8 @@ import { PieChart, Pie, Cell } from "recharts";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
+import { useQuery } from "@tanstack/react-query";
+import yahooFinance from "yahoo-finance2";
 
 const portfolioData = [
   {
@@ -55,6 +57,34 @@ const portfolioData = [
 ];
 
 const Products = () => {
+  // Query for fetching real-time prices
+  const { data: prices, isLoading } = useQuery({
+    queryKey: ['etf-prices'],
+    queryFn: async () => {
+      const quotes = await Promise.all(
+        portfolioData.map(async (item) => {
+          try {
+            const quote = await yahooFinance.quote(item.ticker);
+            return {
+              ticker: item.ticker,
+              price: quote.regularMarketPrice,
+              change: quote.regularMarketChangePercent
+            };
+          } catch (error) {
+            console.error(`Error fetching price for ${item.ticker}:`, error);
+            return {
+              ticker: item.ticker,
+              price: null,
+              change: null
+            };
+          }
+        })
+      );
+      return quotes;
+    },
+    refetchInterval: 60000 // Refetch every minute
+  });
+
   const totalAnnualYield = portfolioData.reduce(
     (acc, item) => acc + (item.weight / 100) * item.annualYield,
     0
@@ -161,24 +191,51 @@ const Products = () => {
                     <TableHead>Category</TableHead>
                     <TableHead>Selected ETF</TableHead>
                     <TableHead>Ticker</TableHead>
+                    <TableHead className="text-right">Price ($)</TableHead>
+                    <TableHead className="text-right">24h Change (%)</TableHead>
                     <TableHead className="text-right">Weight (%)</TableHead>
                     <TableHead className="text-right">Annual Yield (%)</TableHead>
                     <TableHead className="text-right">Monthly Yield (%)</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {portfolioData.map((item) => (
-                    <TableRow key={item.ticker}>
-                      <TableCell>{item.category}</TableCell>
-                      <TableCell>{item.etf}</TableCell>
-                      <TableCell>{item.ticker}</TableCell>
-                      <TableCell className="text-right">{item.weight}</TableCell>
-                      <TableCell className="text-right">{item.annualYield}</TableCell>
-                      <TableCell className="text-right">
-                        {item.monthlyYield}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {portfolioData.map((item) => {
+                    const priceData = prices?.find(p => p.ticker === item.ticker);
+                    return (
+                      <TableRow key={item.ticker}>
+                        <TableCell>{item.category}</TableCell>
+                        <TableCell>{item.etf}</TableCell>
+                        <TableCell>{item.ticker}</TableCell>
+                        <TableCell className="text-right">
+                          {isLoading ? (
+                            <span className="animate-pulse">Loading...</span>
+                          ) : (
+                            priceData?.price?.toFixed(2) || "N/A"
+                          )}
+                        </TableCell>
+                        <TableCell className={`text-right ${
+                          priceData?.change && priceData.change > 0 
+                            ? 'text-green-600' 
+                            : priceData?.change && priceData.change < 0 
+                            ? 'text-red-600' 
+                            : ''
+                        }`}>
+                          {isLoading ? (
+                            <span className="animate-pulse">Loading...</span>
+                          ) : (
+                            priceData?.change 
+                              ? `${priceData.change.toFixed(2)}%` 
+                              : "N/A"
+                          )}
+                        </TableCell>
+                        <TableCell className="text-right">{item.weight}</TableCell>
+                        <TableCell className="text-right">{item.annualYield}</TableCell>
+                        <TableCell className="text-right">
+                          {item.monthlyYield}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </CardContent>
