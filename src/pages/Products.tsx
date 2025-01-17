@@ -90,16 +90,15 @@ const Products = () => {
     };
   }, []);
 
-  // Query for fetching real-time prices with better error handling
+  // Query for fetching closing prices
   const { data: prices, isLoading } = useQuery({
     queryKey: ['etf-prices'],
     queryFn: async () => {
       const quotes = await Promise.all(
         portfolioData.map(async (item) => {
           try {
-            // Add headers to help with CORS
             const response = await fetch(
-              `https://query1.finance.yahoo.com/v8/finance/chart/${item.ticker}`,
+              `https://query1.finance.yahoo.com/v8/finance/chart/${item.ticker}?range=1d&interval=1d`,
               {
                 headers: {
                   'Accept': 'application/json',
@@ -113,16 +112,25 @@ const Products = () => {
             }
             
             const data = await response.json();
-            const quote = data.chart.result[0].meta;
+            const quote = data.chart.result[0];
+            const previousClose = quote.indicators.quote[0].close[quote.indicators.quote[0].close.length - 1];
+            const previousDay = quote.timestamp[quote.timestamp.length - 1];
+            const dayBefore = quote.timestamp[quote.timestamp.length - 2];
+            const twoDayPrice = quote.indicators.quote[0].close[quote.indicators.quote[0].close.length - 2];
+            const priceChange = ((previousClose - twoDayPrice) / twoDayPrice) * 100;
             
             return {
               ticker: item.ticker,
-              price: quote.regularMarketPrice,
-              change: quote.regularMarketChangePercent
+              price: previousClose,
+              change: priceChange
             };
           } catch (error) {
             console.error(`Error fetching price for ${item.ticker}:`, error);
-            // Return fallback values instead of null
+            toast({
+              title: "Error fetching prices",
+              description: `Unable to fetch price for ${item.ticker}. Using fallback values.`,
+              variant: "destructive"
+            });
             return {
               ticker: item.ticker,
               price: 0,
@@ -133,13 +141,17 @@ const Products = () => {
       );
       return quotes;
     },
-    refetchInterval: 60000, // Refetch every minute
-    onError: () => {
-      toast({
-        title: "Error fetching prices",
-        description: "Unable to fetch real-time prices. Using fallback values.",
-        variant: "destructive"
-      });
+    refetchInterval: 300000, // Refetch every 5 minutes
+    meta: {
+      onSettled: (data, error) => {
+        if (error) {
+          toast({
+            title: "Error fetching prices",
+            description: "Unable to fetch prices. Using fallback values.",
+            variant: "destructive"
+          });
+        }
+      }
     }
   });
 
