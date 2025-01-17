@@ -1,17 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-// Check if environment variables are defined
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
-    "Please define VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables"
-  );
-}
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+import { createContext, useContext } from "react";
 
 type User = {
   id: string;
@@ -28,64 +15,29 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Temporary mock implementation until Supabase is set up
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check active sessions and sets the user
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setUser({
-          id: session.user.id,
-          email: session.user.email,
-        });
-      }
-      setLoading(false);
-    });
-
-    // Listen for changes on auth state
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) {
-        setUser({
-          id: session.user.id,
-          email: session.user.email,
-        });
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const signUp = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-    if (error) throw error;
+  const mockUser: User = {
+    id: "mock-user-id",
+    email: "mock@example.com",
   };
 
-  const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) throw error;
-  };
-
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
-    setUser(null);
+  const mockAuth: AuthContextType = {
+    user: mockUser,
+    loading: false,
+    signIn: async () => {
+      console.log("Mock sign in");
+    },
+    signUp: async () => {
+      console.log("Mock sign up");
+    },
+    signOut: async () => {
+      console.log("Mock sign out");
+    },
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={mockAuth}>
       {children}
     </AuthContext.Provider>
   );
