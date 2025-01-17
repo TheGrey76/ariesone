@@ -210,26 +210,34 @@ const Products = () => {
   };
 
   const getGoogleFinanceUrl = (ticker: string) => {
-    // Remove any whitespace from ticker
+    // Remove any whitespace and ensure clean ticker format
     const cleanTicker = ticker.trim();
+    let formattedTicker = cleanTicker;
+    let exchange = '';
     
     if (cleanTicker.includes('.L')) {
-      return `https://www.google.com/finance/quote/${cleanTicker.replace('.L', '')}:LON`;
+      formattedTicker = cleanTicker.replace('.L', '');
+      exchange = 'LON';
     } else if (cleanTicker.includes('.PA')) {
-      return `https://www.google.com/finance/quote/${cleanTicker.replace('.PA', '')}:EPA`;
+      formattedTicker = cleanTicker.replace('.PA', '');
+      exchange = 'EPA';
     } else if (cleanTicker.includes('.SW')) {
-      return `https://www.google.com/finance/quote/${cleanTicker.replace('.SW', '')}:SWX`;
+      formattedTicker = cleanTicker.replace('.SW', '');
+      exchange = 'SWX';
     } else if (cleanTicker.includes('.AX')) {
-      return `https://www.google.com/finance/quote/${cleanTicker.replace('.AX', '')}:ASX`;
+      formattedTicker = cleanTicker.replace('.AX', '');
+      exchange = 'ASX';
     } else if (cleanTicker.includes('.HK')) {
-      return `https://www.google.com/finance/quote/${cleanTicker.replace('.HK', '')}:HKG`;
+      formattedTicker = cleanTicker.replace('.HK', '');
+      exchange = 'HKG';
     } else {
       // For US exchanges (NYSE, NASDAQ, AMEX)
-      const exchange = cleanTicker === 'JAAA' ? 'AMEX' :
-                      cleanTicker.includes('CG') || cleanTicker.includes('TPG') ? 'NASDAQ' : 
-                      'NYSE';
-      return `https://www.google.com/finance/quote/${cleanTicker}:${exchange}`;
+      exchange = cleanTicker === 'JAAA' ? 'AMEX' :
+                cleanTicker.includes('CG') || cleanTicker.includes('TPG') ? 'NASDAQ' : 
+                'NYSE';
     }
+    
+    return `https://www.google.com/finance/quote/${formattedTicker}:${exchange}`;
   };
 
   return (
