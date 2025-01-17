@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/components/ui/use-toast";
 
 const portfolioData = [
   {
@@ -56,18 +57,33 @@ const portfolioData = [
 ];
 
 const Products = () => {
-  // Query for fetching real-time prices
+  const { toast } = useToast();
+
+  // Query for fetching real-time prices with better error handling
   const { data: prices, isLoading } = useQuery({
     queryKey: ['etf-prices'],
     queryFn: async () => {
       const quotes = await Promise.all(
         portfolioData.map(async (item) => {
           try {
+            // Add headers to help with CORS
             const response = await fetch(
-              `https://query1.finance.yahoo.com/v8/finance/chart/${item.ticker}`
+              `https://query1.finance.yahoo.com/v8/finance/chart/${item.ticker}`,
+              {
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                }
+              }
             );
+            
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
             const data = await response.json();
             const quote = data.chart.result[0].meta;
+            
             return {
               ticker: item.ticker,
               price: quote.regularMarketPrice,
@@ -75,17 +91,25 @@ const Products = () => {
             };
           } catch (error) {
             console.error(`Error fetching price for ${item.ticker}:`, error);
+            // Return fallback values instead of null
             return {
               ticker: item.ticker,
-              price: null,
-              change: null
+              price: 0,
+              change: 0
             };
           }
         })
       );
       return quotes;
     },
-    refetchInterval: 60000 // Refetch every minute
+    refetchInterval: 60000, // Refetch every minute
+    onError: () => {
+      toast({
+        title: "Error fetching prices",
+        description: "Unable to fetch real-time prices. Using fallback values.",
+        variant: "destructive"
+      });
+    }
   });
 
   const totalAnnualYield = portfolioData.reduce(
