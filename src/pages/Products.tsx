@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { useQuery } from "@tanstack/react-query";
-import yahooFinance from "yahoo-finance2";
 
 const portfolioData = [
   {
@@ -64,7 +63,11 @@ const Products = () => {
       const quotes = await Promise.all(
         portfolioData.map(async (item) => {
           try {
-            const quote = await yahooFinance.quote(item.ticker);
+            const response = await fetch(
+              `https://query1.finance.yahoo.com/v8/finance/chart/${item.ticker}`
+            );
+            const data = await response.json();
+            const quote = data.chart.result[0].meta;
             return {
               ticker: item.ticker,
               price: quote.regularMarketPrice,
