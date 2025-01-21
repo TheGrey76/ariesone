@@ -3,10 +3,10 @@ export interface StockData {
   ticker: string;
   name: string;
   sector: string;
-  marketCap: number;
+  market_cap: number;
   price: number;
-  peRatio: number;
-  dividendYield: number;
+  pe_ratio: number;
+  dividend_yield: number;
   beta: number;
   volume: number;
   created_at: string;

@@ -51,12 +51,17 @@ const StockTable = ({ data }: StockTableProps) => {
     return value;
   };
 
+  // Filter out internal database columns
+  const visibleColumns = Object.keys(sortedData[0] || {}).filter(
+    (key) => !["id", "created_at", "updated_at"].includes(key)
+  );
+
   return (
     <div className="rounded-md border">
       <Table>
         <TableHeader>
           <TableRow>
-            {Object.keys(sortedData[0] || {}).map((key) => (
+            {visibleColumns.map((key) => (
               <TableHead
                 key={key}
                 className="cursor-pointer"
@@ -71,11 +76,11 @@ const StockTable = ({ data }: StockTableProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sortedData.map((stock, index) => (
+          {sortedData.map((stock) => (
             <TableRow key={stock.ticker}>
-              {Object.entries(stock).map(([key, value]) => (
+              {visibleColumns.map((key) => (
                 <TableCell key={`${stock.ticker}-${key}`}>
-                  {formatValue(value, key as SortField)}
+                  {formatValue(stock[key as keyof StockData], key as SortField)}
                 </TableCell>
               ))}
             </TableRow>
