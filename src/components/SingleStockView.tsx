@@ -149,7 +149,14 @@ const SingleStockView = ({ stock }: SingleStockViewProps) => {
                 <ExternalLink className="h-4 w-4" />
               </a>
             </CardTitle>
-            <CardDescription>Key metrics for {stock.name}</CardDescription>
+            <CardDescription>
+              <span className="text-2xl font-bold text-aires-navy block mt-2">
+                {stock.ticker}
+              </span>
+              <span className="text-sm text-gray-600">
+                {stock.name}
+              </span>
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <dl className="space-y-2">
