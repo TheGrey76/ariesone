@@ -11,6 +11,7 @@ import Terms from "./pages/Terms";
 import Products from "./pages/Products";
 import Login from "./pages/Login";
 import StockReport from "./pages/StockReport";
+import SingleStockPage from "./pages/SingleStockPage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/products" element={<Products />} />
           <Route path="/stock-report" element={<StockReport />} />
+          <Route path="/stock/:ticker" element={<SingleStockPage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

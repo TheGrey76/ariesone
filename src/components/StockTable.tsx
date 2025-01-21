@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -8,13 +9,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { StockData, SortDirection, SortField } from "@/types/stock";
-import { ArrowUpDown, ExternalLink } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 
 interface StockTableProps {
   data: StockData[];
 }
 
 const StockTable = ({ data }: StockTableProps) => {
+  const navigate = useNavigate();
   const [sortField, setSortField] = useState<SortField>("ticker");
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
@@ -77,22 +79,14 @@ const StockTable = ({ data }: StockTableProps) => {
         </TableHeader>
         <TableBody>
           {sortedData.map((stock) => (
-            <TableRow key={stock.ticker}>
+            <TableRow 
+              key={stock.ticker}
+              className="cursor-pointer hover:bg-gray-50"
+              onClick={() => navigate(`/stock/${stock.ticker}`)}
+            >
               {visibleColumns.map((key) => (
                 <TableCell key={`${stock.ticker}-${key}`}>
-                  {key === "ticker" ? (
-                    <a 
-                      href={`https://www.google.com/finance/quote/${stock.ticker}:NASDAQ`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1"
-                    >
-                      {stock.ticker}
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  ) : (
-                    formatValue(stock[key as keyof StockData], key as SortField)
-                  )}
+                  {formatValue(stock[key as keyof StockData], key as SortField)}
                 </TableCell>
               ))}
             </TableRow>

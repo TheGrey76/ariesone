@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowDown, ArrowUp, TrendingUp, DollarSign, BarChart3, Newspaper, AlertTriangle, TrendingDown, LineChart } from "lucide-react";
+import { ArrowDown, ArrowUp, TrendingUp, DollarSign, BarChart3, Newspaper, AlertTriangle, TrendingDown, LineChart, ExternalLink } from "lucide-react";
 import StockNewsSection from "./StockNewsSection";
 
 interface SingleStockViewProps {
@@ -139,7 +139,15 @@ const SingleStockView = ({ stock }: SingleStockViewProps) => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
-              Overview
+              <a 
+                href={`https://www.google.com/finance/quote/${stock.ticker}:NASDAQ`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 hover:underline inline-flex items-center gap-1"
+              >
+                Overview
+                <ExternalLink className="h-4 w-4" />
+              </a>
             </CardTitle>
             <CardDescription>Key metrics for {stock.name}</CardDescription>
           </CardHeader>
