@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { StockData, SortDirection, SortField } from "@/types/stock";
 import { ArrowUpDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface StockTableProps {
   data: StockData[];
@@ -80,7 +81,16 @@ const StockTable = ({ data }: StockTableProps) => {
             <TableRow key={stock.ticker}>
               {visibleColumns.map((key) => (
                 <TableCell key={`${stock.ticker}-${key}`}>
-                  {formatValue(stock[key as keyof StockData], key as SortField)}
+                  {key === "ticker" ? (
+                    <Link 
+                      to={`/stock/${stock.ticker}`} 
+                      className="text-blue-600 hover:text-blue-800 hover:underline"
+                    >
+                      {stock.ticker}
+                    </Link>
+                  ) : (
+                    formatValue(stock[key as keyof StockData], key as SortField)
+                  )}
                 </TableCell>
               ))}
             </TableRow>

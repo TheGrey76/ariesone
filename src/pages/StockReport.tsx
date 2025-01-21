@@ -45,12 +45,20 @@ const StockReport = () => {
     return matchesSearch && matchesSector;
   });
 
-  // Calculate sector distribution for pie chart
-  const sectorDistribution = sectors.map((sector) => ({
-    name: sector,
-    value: filteredData.filter((stock) => stock.sector === sector)
-      .reduce((acc, stock) => acc + stock.market_cap, 0),
-  }));
+  // Calculate sector distribution for pie chart with percentage of total market cap
+  const totalMarketCap = filteredData.reduce((acc, stock) => acc + stock.market_cap, 0);
+  const sectorDistribution = sectors
+    .map((sector) => {
+      const sectorMarketCap = filteredData
+        .filter((stock) => stock.sector === sector)
+        .reduce((acc, stock) => acc + stock.market_cap, 0);
+      return {
+        name: sector,
+        value: (sectorMarketCap / totalMarketCap) * 100, // Convert to percentage
+      };
+    })
+    .filter(sector => sector.value > 0) // Only show sectors with market cap
+    .sort((a, b) => b.value - a.value); // Sort by percentage descending
 
   const COLORS = [
     "#0088FE",
@@ -111,7 +119,7 @@ const StockReport = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-4">Sector Distribution</h2>
+            <h2 className="text-2xl font-semibold mb-4">Sector Distribution (% of Total Market Cap)</h2>
             <ChartContainer className="h-[300px]" config={{}}>
               <PieChart>
                 <Pie
@@ -121,7 +129,7 @@ const StockReport = () => {
                   cx="50%"
                   cy="50%"
                   outerRadius={100}
-                  label
+                  label={({ name, value }) => `${name}: ${value.toFixed(1)}%`}
                 >
                   {sectorDistribution.map((entry, index) => (
                     <Cell
