@@ -23,8 +23,9 @@ serve(async (req) => {
     }
 
     console.log(`Fetching news for ticker: ${ticker}`)
+    // Updated to include topics parameter and increased limit for more diverse sources
     const response = await fetch(
-      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&sort=RELEVANCE&limit=10&apikey=${apiKey}`
+      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&topics=technology,earnings,ipo,financial_markets&sort=RELEVANCE&limit=20&apikey=${apiKey}`
     )
     
     if (!response.ok) {
@@ -40,6 +41,20 @@ serve(async (req) => {
       if (data.Information) {
         console.log('API Information:', data.Information)
       }
+    }
+
+    // Filter to ensure diverse sources
+    if (data.feed && Array.isArray(data.feed)) {
+      const sourceCounts = new Map()
+      data.feed = data.feed.filter(item => {
+        const source = item.source
+        const currentCount = sourceCounts.get(source) || 0
+        if (currentCount < 3) { // Limit to 3 articles per source
+          sourceCounts.set(source, currentCount + 1)
+          return true
+        }
+        return false
+      })
     }
 
     return new Response(
