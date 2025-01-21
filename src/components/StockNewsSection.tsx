@@ -20,11 +20,17 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
   const { data: newsData, isLoading, error } = useQuery({
     queryKey: ["stockNews", ticker],
     queryFn: async () => {
+      console.log("Fetching news for ticker:", ticker);
       const { data, error } = await supabase.functions.invoke("fetch-stock-news", {
         body: { ticker },
       });
       
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching news:", error);
+        throw error;
+      }
+
+      console.log("News data received:", data);
       return data.feed || [];
     },
   });
@@ -38,7 +44,6 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
 
   const formatPublishedDate = (dateString: string) => {
     try {
-      // First try to parse the ISO date string
       const date = parseISO(dateString);
       return format(date, "MMM d, yyyy 'at' h:mm a");
     } catch (error) {
@@ -61,6 +66,7 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
   }
 
   if (error) {
+    console.error("News section error:", error);
     return (
       <Card>
         <CardHeader>
@@ -69,7 +75,7 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
             Error Loading News
           </CardTitle>
           <CardDescription>
-            Unable to fetch latest news at this time.
+            Unable to fetch latest news at this time. Please try again later.
           </CardDescription>
         </CardHeader>
       </Card>
@@ -87,37 +93,38 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {newsData?.slice(0, 5).map((item: NewsItem, index: number) => (
-            <div
-              key={index}
-              className="border-l-4 border-blue-500 pl-4 hover:bg-gray-50 transition-colors"
-            >
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
+          {newsData && newsData.length > 0 ? (
+            newsData.slice(0, 5).map((item: NewsItem, index: number) => (
+              <div
+                key={index}
+                className="border-l-4 border-blue-500 pl-4 hover:bg-gray-50 transition-colors"
               >
-                <h4 className="font-semibold group-hover:text-blue-600 flex items-center gap-1">
-                  {item.title}
-                  <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h4>
-                <p className="text-sm text-gray-600 mt-1">{item.summary}</p>
-                <div className="flex items-center gap-4 mt-2 text-sm">
-                  <span className="text-gray-500">
-                    {formatPublishedDate(item.time_published)}
-                  </span>
-                  {item.sentiment_score && (
-                    <span className={getSentimentColor(item.sentiment_score)}>
-                      Sentiment: {(item.sentiment_score * 100).toFixed(1)}%
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <h4 className="font-semibold group-hover:text-blue-600 flex items-center gap-1">
+                    {item.title}
+                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </h4>
+                  <p className="text-sm text-gray-600 mt-1">{item.summary}</p>
+                  <div className="flex items-center gap-4 mt-2 text-sm">
+                    <span className="text-gray-500">
+                      {formatPublishedDate(item.time_published)}
                     </span>
-                  )}
-                </div>
-              </a>
-            </div>
-          ))}
-          {(!newsData || newsData.length === 0) && (
-            <p className="text-gray-500 italic">No recent news available.</p>
+                    {item.sentiment_score !== undefined && (
+                      <span className={getSentimentColor(item.sentiment_score)}>
+                        Sentiment: {(item.sentiment_score * 100).toFixed(1)}%
+                      </span>
+                    )}
+                  </div>
+                </a>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-500 italic">No recent news available for {ticker}.</p>
           )}
         </div>
       </CardContent>
