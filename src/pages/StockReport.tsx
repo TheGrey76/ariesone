@@ -23,9 +23,9 @@ import { format } from "date-fns";
 import { Info } from "lucide-react";
 import {
   Tooltip,
-  TooltipContent,
   TooltipProvider,
   TooltipTrigger,
+  TooltipContent,
 } from "@/components/ui/tooltip";
 
 const StockReport = () => {
