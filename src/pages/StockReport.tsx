@@ -49,7 +49,7 @@ const StockReport = () => {
   const sectorDistribution = sectors.map((sector) => ({
     name: sector,
     value: filteredData.filter((stock) => stock.sector === sector)
-      .reduce((acc, stock) => acc + stock.marketCap, 0),
+      .reduce((acc, stock) => acc + stock.market_cap, 0),
   }));
 
   const COLORS = [
@@ -145,13 +145,13 @@ const StockReport = () => {
               <div>
                 <p className="text-sm text-gray-500">Average P/E Ratio</p>
                 <p className="text-2xl font-semibold">
-                  {(filteredData.reduce((acc, stock) => acc + stock.peRatio, 0) / filteredData.length).toFixed(2)}
+                  {(filteredData.reduce((acc, stock) => acc + stock.pe_ratio, 0) / filteredData.length).toFixed(2)}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Average Dividend Yield</p>
                 <p className="text-2xl font-semibold">
-                  {(filteredData.reduce((acc, stock) => acc + stock.dividendYield, 0) / filteredData.length * 100).toFixed(2)}%
+                  {(filteredData.reduce((acc, stock) => acc + stock.dividend_yield, 0) / filteredData.length * 100).toFixed(2)}%
                 </p>
               </div>
               <div>

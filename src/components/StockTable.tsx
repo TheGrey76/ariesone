@@ -42,10 +42,10 @@ const StockTable = ({ data }: StockTableProps) => {
 
   const formatValue = (value: number | string, field: SortField) => {
     if (typeof value === "number") {
-      if (field === "marketCap") return `$${(value / 1e9).toFixed(2)}B`;
+      if (field === "market_cap") return `$${(value / 1e9).toFixed(2)}B`;
       if (field === "price") return `$${value.toFixed(2)}`;
-      if (field === "dividendYield") return `${(value * 100).toFixed(2)}%`;
-      if (field === "peRatio" || field === "beta") return value.toFixed(2);
+      if (field === "dividend_yield") return `${(value * 100).toFixed(2)}%`;
+      if (field === "pe_ratio" || field === "beta") return value.toFixed(2);
       if (field === "volume") return value.toLocaleString();
     }
     return value;
@@ -68,7 +68,7 @@ const StockTable = ({ data }: StockTableProps) => {
                 onClick={() => handleSort(key as SortField)}
               >
                 <div className="flex items-center space-x-1">
-                  <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                  <span>{key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</span>
                   <ArrowUpDown className="h-4 w-4" />
                 </div>
               </TableHead>
