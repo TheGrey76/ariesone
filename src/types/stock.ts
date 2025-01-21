@@ -1,4 +1,5 @@
 export interface StockData {
+  id: string;
   ticker: string;
   name: string;
   sector: string;
@@ -8,6 +9,8 @@ export interface StockData {
   dividendYield: number;
   beta: number;
   volume: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export type SortDirection = 'asc' | 'desc';
