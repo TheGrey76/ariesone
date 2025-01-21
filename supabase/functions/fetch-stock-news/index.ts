@@ -24,7 +24,7 @@ serve(async (req) => {
 
     console.log(`Fetching news for ticker: ${ticker}`)
     const response = await fetch(
-      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&apikey=${apiKey}`
+      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&sort=RELEVANCE&limit=10&apikey=${apiKey}`
     )
     
     if (!response.ok) {
@@ -32,7 +32,15 @@ serve(async (req) => {
     }
     
     const data = await response.json()
-    console.log('News data fetched successfully')
+    console.log('News data received:', data)
+
+    // Check if we have actual news items
+    if (!data.feed || data.feed.length === 0) {
+      console.log('No news items found in response')
+      if (data.Information) {
+        console.log('API Information:', data.Information)
+      }
+    }
 
     return new Response(
       JSON.stringify(data),
