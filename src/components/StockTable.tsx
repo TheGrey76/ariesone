@@ -27,37 +27,6 @@ const StockTable = ({ data }: StockTableProps) => {
     }
   };
 
-  const getGoogleFinanceUrl = (ticker: string) => {
-    const cleanTicker = ticker.trim();
-    let formattedTicker = cleanTicker;
-    let exchange = 'NYSE';  // Default to NYSE
-    
-    // Handle special cases for different exchanges
-    if (cleanTicker.includes('.L')) {
-      formattedTicker = cleanTicker.replace('.L', '');
-      exchange = 'LON';
-    } else if (cleanTicker.includes('.PA')) {
-      formattedTicker = cleanTicker.replace('.PA', '');
-      exchange = 'EPA';
-    } else if (cleanTicker.includes('.SW')) {
-      formattedTicker = cleanTicker.replace('.SW', '');
-      exchange = 'SWX';
-    } else if (cleanTicker.includes('.AX')) {
-      formattedTicker = cleanTicker.replace('.AX', '');
-      exchange = 'ASX';
-    } else if (cleanTicker.includes('.HK')) {
-      formattedTicker = cleanTicker.replace('.HK', '');
-      exchange = 'HKG';
-    } else {
-      // For US markets, determine the exchange
-      exchange = cleanTicker === 'JAAA' ? 'AMEX' :
-                cleanTicker.includes('CG') || cleanTicker.includes('TPG') ? 'NASDAQ' : 
-                'NYSE';
-    }
-    
-    return `https://www.google.com/finance/quote/${formattedTicker}:${exchange}`;
-  };
-
   const sortedData = [...data].sort((a, b) => {
     const aValue = a[sortField];
     const bValue = b[sortField];
@@ -113,7 +82,7 @@ const StockTable = ({ data }: StockTableProps) => {
                 <TableCell key={`${stock.ticker}-${key}`}>
                   {key === "ticker" ? (
                     <a 
-                      href={getGoogleFinanceUrl(stock.ticker)}
+                      href="https://www.google.com/finance/quote/AAPL:NYSE"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1"
