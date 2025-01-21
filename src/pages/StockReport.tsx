@@ -20,7 +20,7 @@ import { Cell, Pie, PieChart } from "recharts";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
-import { InfoCircle } from "lucide-react";
+import { Info } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -121,7 +121,7 @@ const StockReport = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <InfoCircle className="h-4 w-4 text-gray-400" />
+                  <Info className="h-4 w-4 text-gray-400" />
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
                   <p>Beta measures a stock's volatility compared to the overall market. A beta of 1 indicates the stock moves with the market, above 1 is more volatile, and below 1 is less volatile than the market.</p>
