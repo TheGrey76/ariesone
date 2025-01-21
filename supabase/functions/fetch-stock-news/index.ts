@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -8,19 +8,21 @@ const corsHeaders = {
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders })
+    return new Response('ok', { headers: corsHeaders })
   }
 
   try {
     const { ticker } = await req.json()
+    if (!ticker) {
+      throw new Error('No ticker provided')
+    }
+
     const apiKey = Deno.env.get('ALPHA_VANTAGE_API_KEY')
-    
     if (!apiKey) {
       throw new Error('API key not configured')
     }
 
     console.log(`Fetching news for ticker: ${ticker}`)
-    
     const response = await fetch(
       `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&apikey=${apiKey}`
     )
@@ -35,17 +37,22 @@ serve(async (req) => {
     return new Response(
       JSON.stringify(data),
       { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200,
+        headers: { 
+          ...corsHeaders,
+          'Content-Type': 'application/json',
+        },
       },
     )
   } catch (error) {
-    console.error('Error fetching news:', error.message)
+    console.error('Error:', error.message)
     return new Response(
       JSON.stringify({ error: error.message }),
       { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500,
+        status: 400,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'application/json',
+        },
       },
     )
   }
