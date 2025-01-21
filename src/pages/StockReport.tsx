@@ -88,10 +88,40 @@ const StockReport = () => {
     ? format(new Date(stockData[0].updated_at), "MMMM d, yyyy 'at' h:mm a")
     : 'No data available';
 
+  const renderKeyStatistics = () => {
+    const averagePE = (filteredData.reduce((acc, stock) => acc + stock.pe_ratio, 0) / filteredData.length).toFixed(2);
+    const averageDividend = (filteredData.reduce((acc, stock) => acc + stock.dividend_yield, 0) / filteredData.length * 100).toFixed(2);
+    const averageBeta = (filteredData.reduce((acc, stock) => acc + stock.beta, 0) / filteredData.length).toFixed(2);
+
+    return (
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <p className="text-sm text-gray-500">Numero Totale di Aziende</p>
+          <p className="text-2xl font-semibold">{filteredData.length}</p>
+          <p className="text-xs text-gray-400">Numero totale di aziende nel report</p>
+        </div>
+        <div>
+          <p className="text-sm text-gray-500">P/E Ratio Medio</p>
+          <p className="text-2xl font-semibold">{averagePE}</p>
+          <p className="text-xs text-gray-400">Rapporto prezzo/utili medio delle aziende</p>
+        </div>
+        <div>
+          <p className="text-sm text-gray-500">Rendimento Dividendi Medio</p>
+          <p className="text-2xl font-semibold">{averageDividend}%</p>
+          <p className="text-xs text-gray-400">Percentuale media dei dividendi annuali</p>
+        </div>
+        <div>
+          <p className="text-sm text-gray-500">Beta Medio</p>
+          <p className="text-2xl font-semibold">{averageBeta}</p>
+          <p className="text-xs text-gray-400">Misura media della volatilità rispetto al mercato</p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-aires-navy mb-8">Stock Report</h1>
         
@@ -126,7 +156,7 @@ const StockReport = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-4">Sector Distribution (% of Total Market Cap)</h2>
+            <h2 className="text-2xl font-semibold mb-4">Distribuzione per Settore (% della Capitalizzazione Totale)</h2>
             <ChartContainer className="h-[300px]" config={{}}>
               <PieChart>
                 <Pie
@@ -151,39 +181,16 @@ const StockReport = () => {
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-4">Key Statistics</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-gray-500">Total Companies</p>
-                <p className="text-2xl font-semibold">{filteredData.length}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Average P/E Ratio</p>
-                <p className="text-2xl font-semibold">
-                  {(filteredData.reduce((acc, stock) => acc + stock.pe_ratio, 0) / filteredData.length).toFixed(2)}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Average Dividend Yield</p>
-                <p className="text-2xl font-semibold">
-                  {(filteredData.reduce((acc, stock) => acc + stock.dividend_yield, 0) / filteredData.length * 100).toFixed(2)}%
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Average Beta</p>
-                <p className="text-2xl font-semibold">
-                  {(filteredData.reduce((acc, stock) => acc + stock.beta, 0) / filteredData.length).toFixed(2)}
-                </p>
-              </div>
-            </div>
+            <h2 className="text-2xl font-semibold mb-4">Statistiche Chiave</h2>
+            {renderKeyStatistics()}
           </div>
         </div>
 
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">Stock List</h2>
+            <h2 className="text-2xl font-semibold">Lista delle Azioni</h2>
             <p className="text-sm text-gray-600">
-              Last updated: {lastUpdateTime}
+              Ultimo aggiornamento: {lastUpdateTime}
             </p>
           </div>
           <StockTable data={filteredData} />
