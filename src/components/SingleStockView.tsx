@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowDown, ArrowUp, TrendingUp, DollarSign, BarChart3, Newspaper } from "lucide-react";
+import StockNewsSection from "./StockNewsSection";
 
 interface SingleStockViewProps {
   stock: StockData;
@@ -180,6 +181,8 @@ const SingleStockView = ({ stock }: SingleStockViewProps) => {
           </div>
         </CardContent>
       </Card>
+
+      <StockNewsSection ticker={stock.ticker} />
     </div>
   );
 };

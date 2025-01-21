@@ -1,1 +1,4 @@
 project_id = "dvwmyljnssspwfpwocof"
+
+[functions.fetch-stock-news]
+verify_jwt = false
