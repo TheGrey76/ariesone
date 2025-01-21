@@ -23,9 +23,17 @@ serve(async (req) => {
     }
 
     console.log(`Fetching news for ticker: ${ticker}`)
-    // Updated to include topics parameter and increased limit for more diverse sources
+    
+    // Calculate date from 7 days ago
+    const sevenDaysAgo = new Date()
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
+    const timeFrom = sevenDaysAgo.toISOString().split('T')[0]
+    
+    console.log(`Fetching news from: ${timeFrom}`)
+    
+    // Updated to include time_from parameter for last week's news
     const response = await fetch(
-      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&topics=technology,earnings,ipo,financial_markets&sort=RELEVANCE&limit=20&apikey=${apiKey}`
+      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&topics=technology,earnings,ipo,financial_markets&time_from=${timeFrom}&sort=RELEVANCE&limit=20&apikey=${apiKey}`
     )
     
     if (!response.ok) {
