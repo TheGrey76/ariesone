@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Newspaper, ExternalLink, AlertTriangle } from "lucide-react";
 import { format, parseISO } from "date-fns";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 interface StockNewsSectionProps {
   ticker: string;
@@ -34,6 +35,12 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
       }
 
       console.log("News data received:", data);
+      
+      // Check for API limit message
+      if (data.Information?.includes("API rate limit")) {
+        throw new Error("API_LIMIT_REACHED");
+      }
+      
       return data.feed || [];
     },
   });
@@ -74,12 +81,25 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-red-500">
             <AlertTriangle className="h-5 w-5" />
-            Error Loading News
+            Unable to Load News
           </CardTitle>
-          <CardDescription>
-            Unable to fetch latest news at this time. Please try again later.
-          </CardDescription>
         </CardHeader>
+        <CardContent>
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              {error.message === "API_LIMIT_REACHED" ? (
+                <>
+                  The news API has reached its daily request limit. 
+                  Please try again tomorrow or contact support for more information.
+                </>
+              ) : (
+                "Unable to fetch latest news at this time. Please try again later."
+              )}
+            </AlertDescription>
+          </Alert>
+        </CardContent>
       </Card>
     );
   }
@@ -141,7 +161,19 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500 italic">No recent news available for {ticker}.</p>
+            <Alert>
+              <AlertTriangle className="h-4 w-4" />
+              <AlertTitle>No News Available</AlertTitle>
+              <AlertDescription>
+                No recent news articles found for {ticker}. This could be due to:
+                <ul className="list-disc pl-5 mt-2">
+                  <li>Limited market activity for this stock</li>
+                  <li>API service limitations</li>
+                  <li>Temporary service interruption</li>
+                </ul>
+                Please check back later for updates.
+              </AlertDescription>
+            </Alert>
           )}
         </div>
       </CardContent>
