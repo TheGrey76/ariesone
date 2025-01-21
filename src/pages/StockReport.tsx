@@ -96,24 +96,24 @@ const StockReport = () => {
     return (
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <p className="text-sm text-gray-500">Numero Totale di Aziende</p>
+          <p className="text-sm text-gray-500">Total Number of Companies</p>
           <p className="text-2xl font-semibold">{filteredData.length}</p>
-          <p className="text-xs text-gray-400">Numero totale di aziende nel report</p>
+          <p className="text-xs text-gray-400">Total number of companies in the report</p>
         </div>
         <div>
-          <p className="text-sm text-gray-500">P/E Ratio Medio</p>
+          <p className="text-sm text-gray-500">Average P/E Ratio</p>
           <p className="text-2xl font-semibold">{averagePE}</p>
-          <p className="text-xs text-gray-400">Rapporto prezzo/utili medio delle aziende</p>
+          <p className="text-xs text-gray-400">Average price-to-earnings ratio across companies</p>
         </div>
         <div>
-          <p className="text-sm text-gray-500">Rendimento Dividendi Medio</p>
+          <p className="text-sm text-gray-500">Average Dividend Yield</p>
           <p className="text-2xl font-semibold">{averageDividend}%</p>
-          <p className="text-xs text-gray-400">Percentuale media dei dividendi annuali</p>
+          <p className="text-xs text-gray-400">Average annual dividend yield percentage</p>
         </div>
         <div>
-          <p className="text-sm text-gray-500">Beta Medio</p>
+          <p className="text-sm text-gray-500">Average Beta</p>
           <p className="text-2xl font-semibold">{averageBeta}</p>
-          <p className="text-xs text-gray-400">Misura media della volatilità rispetto al mercato</p>
+          <p className="text-xs text-gray-400">Average market volatility measure relative to the index</p>
         </div>
       </div>
     );
@@ -156,7 +156,7 @@ const StockReport = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-4">Distribuzione per Settore (% della Capitalizzazione Totale)</h2>
+            <h2 className="text-2xl font-semibold mb-4">Sector Distribution (% of Total Market Cap)</h2>
             <ChartContainer className="h-[300px]" config={{}}>
               <PieChart>
                 <Pie
@@ -181,16 +181,16 @@ const StockReport = () => {
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-4">Statistiche Chiave</h2>
+            <h2 className="text-2xl font-semibold mb-4">Key Statistics</h2>
             {renderKeyStatistics()}
           </div>
         </div>
 
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">Lista delle Azioni</h2>
+            <h2 className="text-2xl font-semibold">Stock List</h2>
             <p className="text-sm text-gray-600">
-              Ultimo aggiornamento: {lastUpdateTime}
+              Last updated: {lastUpdateTime}
             </p>
           </div>
           <StockTable data={filteredData} />
