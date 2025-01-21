@@ -168,31 +168,53 @@ const Products = () => {
   });
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      "symbol": "AMEX:JAAA",
-      "width": "100%",
-      "height": "100%",
-      "locale": "en",
-      "dateRange": "12M",
-      "colorTheme": "light",
-      "trendLineColor": "#37a6ef",
-      "underLineColor": "#E3F2FD",
-      "isTransparent": false,
-      "autosize": true,
-      "largeChartUrl": ""
-    });
+    // Clean up any existing TradingView widgets
+    const existingScript = document.getElementById('tradingview-widget-script');
+    if (existingScript) {
+      existingScript.remove();
+    }
 
     const container = document.getElementById('tradingview-widget');
     if (container) {
-      container.appendChild(script);
+      // Clear the container
+      container.innerHTML = '';
+      
+      // Create a new div for the widget
+      const widgetDiv = document.createElement('div');
+      widgetDiv.className = 'tradingview-widget-container';
+      container.appendChild(widgetDiv);
+
+      // Create and configure the script
+      const script = document.createElement('script');
+      script.id = 'tradingview-widget-script';
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
+      script.type = 'text/javascript';
+      script.async = true;
+
+      // Configure the widget
+      const config = {
+        "symbol": "AMEX:JAAA",
+        "width": "100%",
+        "height": "100%",
+        "locale": "en",
+        "dateRange": "12M",
+        "colorTheme": "light",
+        "trendLineColor": "#37a6ef",
+        "underLineColor": "#E3F2FD",
+        "isTransparent": false,
+        "autosize": true,
+        "largeChartUrl": ""
+      };
+
+      script.innerHTML = JSON.stringify(config);
+      widgetDiv.appendChild(script);
     }
 
+    // Cleanup function
     return () => {
-      if (container && script) {
-        container.removeChild(script);
+      const script = document.getElementById('tradingview-widget-script');
+      if (script) {
+        script.remove();
       }
     };
   }, []);
