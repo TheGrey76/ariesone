@@ -28,51 +28,68 @@ serve(async (req) => {
 
     const results = await Promise.all(tickers.map(async (ticker) => {
       try {
-        // First fetch basic stock data
-        console.log(`Fetching basic data for ${ticker}`);
-        const response = await fetch(
+        console.log(`Starting to fetch data for ${ticker}`);
+        
+        // First try to get the quote data which contains the name
+        const quoteResponse = await fetch(
+          `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${ticker}?modules=price,summaryDetail`
+        );
+        
+        if (!quoteResponse.ok) {
+          console.error(`Failed to fetch quote data for ${ticker}: ${quoteResponse.statusText}`);
+          throw new Error(`Failed to fetch quote data for ${ticker}`);
+        }
+        
+        const quoteData = await quoteResponse.json();
+        console.log(`Quote data received for ${ticker}:`, JSON.stringify(quoteData));
+        
+        // Get the price data which contains the name
+        const priceData = quoteData?.quoteSummary?.result?.[0]?.price;
+        const summaryDetail = quoteData?.quoteSummary?.result?.[0]?.summaryDetail;
+        
+        // Ensure we have a valid name, with multiple fallbacks
+        const name = priceData?.longName || priceData?.shortName || ticker;
+        console.log(`Name resolved for ${ticker}: ${name}`);
+        
+        if (!name) {
+          throw new Error(`Could not determine name for ticker ${ticker}`);
+        }
+
+        // Then get the chart data for price and volume
+        const chartResponse = await fetch(
           `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1d`
         );
-        if (!response.ok) {
-          throw new Error(`Failed to fetch basic data for ${ticker}: ${response.statusText}`);
+        
+        if (!chartResponse.ok) {
+          console.error(`Failed to fetch chart data for ${ticker}: ${chartResponse.statusText}`);
+          throw new Error(`Failed to fetch chart data for ${ticker}`);
         }
-        const data = await response.json();
         
-        // Then fetch detailed quote data
-        console.log(`Fetching quote data for ${ticker}`);
-        const quoteResponse = await fetch(
-          `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${ticker}?modules=defaultKeyStatistics,summaryDetail,price`
-        );
-        if (!quoteResponse.ok) {
-          throw new Error(`Failed to fetch quote data for ${ticker}: ${quoteResponse.statusText}`);
-        }
-        const quoteData = await quoteResponse.json();
+        const chartData = await chartResponse.json();
+        console.log(`Chart data received for ${ticker}`);
         
-        const summaryDetail = quoteData?.quoteSummary?.result?.[0]?.summaryDetail || {};
-        const priceData = quoteData?.quoteSummary?.result?.[0]?.price || {};
-        
-        // Ensure we have a valid name
-        const name = priceData?.longName || priceData?.shortName || ticker;
-        console.log(`Processing ${ticker} with name: ${name}`);
-        
-        return {
+        const stockData = {
           ticker,
-          name,
+          name, // This should never be null now
           sector: priceData?.sector || 'Unknown',
           market_cap: summaryDetail?.marketCap?.raw || 0,
-          price: data?.chart?.result?.[0]?.meta?.regularMarketPrice || 0,
+          price: chartData?.chart?.result?.[0]?.meta?.regularMarketPrice || 0,
           pe_ratio: summaryDetail?.trailingPE?.raw || 0,
-          dividend_yield: (summaryDetail?.dividendYield?.raw || 0),
+          dividend_yield: summaryDetail?.dividendYield?.raw || 0,
           beta: summaryDetail?.beta?.raw || 0,
-          volume: data?.chart?.result?.[0]?.meta?.regularMarketVolume || 0,
-          timestamp: new Date().toISOString(),
+          volume: chartData?.chart?.result?.[0]?.meta?.regularMarketVolume || 0,
+          updated_at: new Date().toISOString(),
         };
+        
+        console.log(`Processed data for ${ticker}:`, stockData);
+        return stockData;
+        
       } catch (error) {
-        console.error(`Error fetching data for ticker ${ticker}:`, error);
-        // Return a default object with the ticker as name to prevent null values
+        console.error(`Error processing ${ticker}:`, error);
+        // Return a valid object with the ticker as the name to prevent null constraint violation
         return {
           ticker,
-          name: ticker, // Use ticker as name to prevent null constraint violation
+          name: ticker, // Using ticker as name ensures we never have a null name
           sector: 'Unknown',
           market_cap: 0,
           price: 0,
@@ -80,55 +97,46 @@ serve(async (req) => {
           dividend_yield: 0,
           beta: 0,
           volume: 0,
-          timestamp: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
         };
       }
     }));
 
-    console.log('Fetched stock data:', results);
-
-    // Validate data before upserting
+    // Validate the results before attempting to upsert
     const validResults = results.filter(result => {
-      if (!result.name || !result.ticker) {
-        console.error(`Invalid data for ticker ${result.ticker}:`, result);
-        return false;
+      const isValid = result && result.name && result.ticker;
+      if (!isValid) {
+        console.error(`Invalid data found:`, result);
       }
-      return true;
+      return isValid;
     });
 
     if (validResults.length === 0) {
       throw new Error('No valid stock data to update');
     }
 
+    console.log(`Attempting to upsert ${validResults.length} valid records`);
+
     // Update the database with new prices
     const { data, error } = await supabaseAdmin
       .from('stocks')
-      .upsert(
-        validResults.map(result => ({
-          ticker: result.ticker,
-          name: result.name,
-          sector: result.sector,
-          market_cap: result.market_cap,
-          price: result.price,
-          pe_ratio: result.pe_ratio,
-          dividend_yield: result.dividend_yield,
-          beta: result.beta,
-          volume: result.volume,
-          updated_at: result.timestamp,
-        })),
-        { onConflict: 'ticker' }
-      );
+      .upsert(validResults, { onConflict: 'ticker' });
 
     if (error) {
-      console.error('Error updating stock data:', error);
+      console.error('Error upserting stock data:', error);
       throw error;
     }
 
     console.log('Successfully updated stock data');
 
     return new Response(
-      JSON.stringify({ success: true, data: results }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      JSON.stringify({ success: true, data: validResults }),
+      { 
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json'
+        } 
+      }
     );
   } catch (error) {
     console.error('Error in fetch-stock-data function:', error);
@@ -138,7 +146,10 @@ serve(async (req) => {
         error: error.message || 'An error occurred while fetching stock data' 
       }),
       { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }, 
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json'
+        },
         status: 500 
       }
     );
