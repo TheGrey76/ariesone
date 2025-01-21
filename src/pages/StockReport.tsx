@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StockTable from "@/components/StockTable";
+import SingleStockView from "@/components/SingleStockView";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -53,6 +54,9 @@ const StockReport = () => {
     const matchesSector = sectorFilter === "all" || stock.sector === sectorFilter;
     return matchesSearch && matchesSector;
   });
+
+  // Only show sector distribution and key statistics when not viewing a single stock
+  const showFullDashboard = filteredData.length !== 1;
 
   const totalMarketCap = filteredData.reduce((acc, stock) => acc + stock.market_cap, 0);
   const sectorDistribution = sectors
@@ -171,37 +175,43 @@ const StockReport = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-4">Sector Distribution (% of Total Market Cap)</h2>
-            <ChartContainer className="h-[300px]" config={{}}>
-              <PieChart>
-                <Pie
-                  data={sectorDistribution}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={100}
-                  label={({ name, value }) => `${name}: ${value.toFixed(1)}%`}
-                >
-                  {sectorDistribution.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <ChartTooltip content={<ChartTooltipContent />} />
-              </PieChart>
-            </ChartContainer>
+        {filteredData.length === 1 ? (
+          <div className="mb-8">
+            <SingleStockView stock={filteredData[0]} />
           </div>
+        ) : (
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-2xl font-semibold mb-4">Sector Distribution (% of Total Market Cap)</h2>
+              <ChartContainer className="h-[300px]" config={{}}>
+                <PieChart>
+                  <Pie
+                    data={sectorDistribution}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={100}
+                    label={({ name, value }) => `${name}: ${value.toFixed(1)}%`}
+                  >
+                    {sectorDistribution.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                </PieChart>
+              </ChartContainer>
+            </div>
 
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-4">Key Statistics</h2>
-            {renderKeyStatistics()}
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-2xl font-semibold mb-4">Key Statistics</h2>
+              {renderKeyStatistics()}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex justify-between items-center mb-4">
