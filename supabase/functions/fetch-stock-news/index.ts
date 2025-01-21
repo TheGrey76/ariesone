@@ -25,6 +25,10 @@ serve(async (req) => {
       `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&apikey=${apiKey}`
     )
     
+    if (!response.ok) {
+      throw new Error(`Alpha Vantage API error: ${response.statusText}`)
+    }
+    
     const data = await response.json()
     console.log('News data fetched successfully')
 

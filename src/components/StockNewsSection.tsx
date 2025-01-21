@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Newspaper, ExternalLink } from "lucide-react";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 interface StockNewsSectionProps {
   ticker: string;
@@ -34,6 +34,17 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
     if (score > 0.25) return "text-green-500";
     if (score < -0.25) return "text-red-500";
     return "text-yellow-500";
+  };
+
+  const formatPublishedDate = (dateString: string) => {
+    try {
+      // First try to parse the ISO date string
+      const date = parseISO(dateString);
+      return format(date, "MMM d, yyyy 'at' h:mm a");
+    } catch (error) {
+      console.error("Error formatting date:", dateString, error);
+      return "Date unavailable";
+    }
   };
 
   if (isLoading) {
@@ -94,7 +105,7 @@ const StockNewsSection = ({ ticker }: StockNewsSectionProps) => {
                 <p className="text-sm text-gray-600 mt-1">{item.summary}</p>
                 <div className="flex items-center gap-4 mt-2 text-sm">
                   <span className="text-gray-500">
-                    {format(new Date(item.time_published), "MMM d, yyyy 'at' h:mm a")}
+                    {formatPublishedDate(item.time_published)}
                   </span>
                   {item.sentiment_score && (
                     <span className={getSentimentColor(item.sentiment_score)}>
