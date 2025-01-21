@@ -28,44 +28,51 @@ serve(async (req) => {
 
     const results = await Promise.all(tickers.map(async (ticker) => {
       try {
+        // First fetch basic stock data
+        console.log(`Fetching basic data for ${ticker}`);
         const response = await fetch(
           `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1d`
         );
+        if (!response.ok) {
+          throw new Error(`Failed to fetch basic data for ${ticker}: ${response.statusText}`);
+        }
         const data = await response.json();
         
-        // Extract the required data
-        const price = data?.chart?.result?.[0]?.meta?.regularMarketPrice || 0;
-        const volume = data?.chart?.result?.[0]?.meta?.regularMarketVolume || 0;
-        const longName = data?.chart?.result?.[0]?.meta?.longName || ticker;
-        
-        // Get additional info for the stock
+        // Then fetch detailed quote data
+        console.log(`Fetching quote data for ${ticker}`);
         const quoteResponse = await fetch(
           `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${ticker}?modules=defaultKeyStatistics,summaryDetail,price`
         );
+        if (!quoteResponse.ok) {
+          throw new Error(`Failed to fetch quote data for ${ticker}: ${quoteResponse.statusText}`);
+        }
         const quoteData = await quoteResponse.json();
         
         const summaryDetail = quoteData?.quoteSummary?.result?.[0]?.summaryDetail || {};
-        const defaultKeyStatistics = quoteData?.quoteSummary?.result?.[0]?.defaultKeyStatistics || {};
         const priceData = quoteData?.quoteSummary?.result?.[0]?.price || {};
+        
+        // Ensure we have a valid name
+        const name = priceData?.longName || priceData?.shortName || ticker;
+        console.log(`Processing ${ticker} with name: ${name}`);
         
         return {
           ticker,
-          name: longName,
+          name,
           sector: priceData?.sector || 'Unknown',
           market_cap: summaryDetail?.marketCap?.raw || 0,
-          price,
+          price: data?.chart?.result?.[0]?.meta?.regularMarketPrice || 0,
           pe_ratio: summaryDetail?.trailingPE?.raw || 0,
           dividend_yield: (summaryDetail?.dividendYield?.raw || 0),
           beta: summaryDetail?.beta?.raw || 0,
-          volume,
+          volume: data?.chart?.result?.[0]?.meta?.regularMarketVolume || 0,
           timestamp: new Date().toISOString(),
         };
       } catch (error) {
         console.error(`Error fetching data for ticker ${ticker}:`, error);
-        // Return a default object with the ticker to prevent null values
+        // Return a default object with the ticker as name to prevent null values
         return {
           ticker,
-          name: ticker,
+          name: ticker, // Use ticker as name to prevent null constraint violation
           sector: 'Unknown',
           market_cap: 0,
           price: 0,
@@ -80,11 +87,24 @@ serve(async (req) => {
 
     console.log('Fetched stock data:', results);
 
+    // Validate data before upserting
+    const validResults = results.filter(result => {
+      if (!result.name || !result.ticker) {
+        console.error(`Invalid data for ticker ${result.ticker}:`, result);
+        return false;
+      }
+      return true;
+    });
+
+    if (validResults.length === 0) {
+      throw new Error('No valid stock data to update');
+    }
+
     // Update the database with new prices
     const { data, error } = await supabaseAdmin
       .from('stocks')
       .upsert(
-        results.map(result => ({
+        validResults.map(result => ({
           ticker: result.ticker,
           name: result.name,
           sector: result.sector,
