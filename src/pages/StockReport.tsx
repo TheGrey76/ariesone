@@ -20,6 +20,13 @@ import { Cell, Pie, PieChart } from "recharts";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
+import { InfoCircle } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const StockReport = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,7 +54,6 @@ const StockReport = () => {
     return matchesSearch && matchesSector;
   });
 
-  // Calculate sector distribution for pie chart with percentage of total market cap
   const totalMarketCap = filteredData.reduce((acc, stock) => acc + stock.market_cap, 0);
   const sectorDistribution = sectors
     .map((sector) => {
@@ -56,11 +62,11 @@ const StockReport = () => {
         .reduce((acc, stock) => acc + stock.market_cap, 0);
       return {
         name: sector,
-        value: (sectorMarketCap / totalMarketCap) * 100, // Convert to percentage
+        value: (sectorMarketCap / totalMarketCap) * 100,
       };
     })
-    .filter(sector => sector.value > 0) // Only show sectors with market cap
-    .sort((a, b) => b.value - a.value); // Sort by percentage descending
+    .filter(sector => sector.value > 0)
+    .sort((a, b) => b.value - a.value);
 
   const COLORS = [
     "#0088FE",
@@ -83,7 +89,6 @@ const StockReport = () => {
     );
   }
 
-  // Get the most recent update time from the data
   const lastUpdateTime = stockData.length > 0 
     ? format(new Date(stockData[0].updated_at), "MMMM d, yyyy 'at' h:mm a")
     : 'No data available';
@@ -111,7 +116,19 @@ const StockReport = () => {
           <p className="text-xs text-gray-400">Average annual dividend yield percentage</p>
         </div>
         <div>
-          <p className="text-sm text-gray-500">Average Beta</p>
+          <p className="text-sm text-gray-500 flex items-center gap-1">
+            Average Beta
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <InfoCircle className="h-4 w-4 text-gray-400" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Beta measures a stock's volatility compared to the overall market. A beta of 1 indicates the stock moves with the market, above 1 is more volatile, and below 1 is less volatile than the market.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </p>
           <p className="text-2xl font-semibold">{averageBeta}</p>
           <p className="text-xs text-gray-400">Average market volatility measure relative to the index</p>
         </div>
