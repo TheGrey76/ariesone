@@ -82,7 +82,7 @@ const StockTable = ({ data }: StockTableProps) => {
                 <TableCell key={`${stock.ticker}-${key}`}>
                   {key === "ticker" ? (
                     <a 
-                      href="https://www.google.com/finance/quote/AAPL:NYSE"
+                      href={`https://www.google.com/finance/quote/${stock.ticker}:NASDAQ`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1"
