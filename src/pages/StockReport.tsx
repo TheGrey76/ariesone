@@ -19,6 +19,7 @@ import {
 import { Cell, Pie, PieChart } from "recharts";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
 
 const StockReport = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,7 +30,8 @@ const StockReport = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("stocks")
-        .select("*");
+        .select("*")
+        .order('updated_at', { ascending: false });
       
       if (error) throw error;
       return data as StockData[];
@@ -80,6 +82,11 @@ const StockReport = () => {
       </div>
     );
   }
+
+  // Get the most recent update time from the data
+  const lastUpdateTime = stockData.length > 0 
+    ? format(new Date(stockData[0].updated_at), "MMMM d, yyyy 'at' h:mm a")
+    : 'No data available';
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -173,7 +180,12 @@ const StockReport = () => {
         </div>
 
         <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-2xl font-semibold mb-4">Stock List</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-semibold">Stock List</h2>
+            <p className="text-sm text-gray-600">
+              Last updated: {lastUpdateTime}
+            </p>
+          </div>
           <StockTable data={filteredData} />
         </div>
       </main>
