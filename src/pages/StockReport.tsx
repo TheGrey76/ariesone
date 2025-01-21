@@ -17,30 +17,28 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Cell, Pie, PieChart } from "recharts";
-
-// Sample data - Replace this with your actual data fetching logic
-const sampleData: StockData[] = [
-  {
-    ticker: "AAPL",
-    name: "Apple Inc.",
-    sector: "Technology",
-    marketCap: 2850000000000,
-    price: 175.43,
-    peRatio: 28.5,
-    dividendYield: 0.0055,
-    beta: 1.2,
-    volume: 55000000,
-  },
-  // Add more sample data here
-];
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const StockReport = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sectorFilter, setSectorFilter] = useState<string>("all");
 
-  const sectors = Array.from(new Set(sampleData.map((stock) => stock.sector)));
+  const { data: stockData = [], isLoading } = useQuery({
+    queryKey: ["stocks"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("stocks")
+        .select("*");
+      
+      if (error) throw error;
+      return data as StockData[];
+    },
+  });
+
+  const sectors = Array.from(new Set(stockData.map((stock) => stock.sector)));
   
-  const filteredData = sampleData.filter((stock) => {
+  const filteredData = stockData.filter((stock) => {
     const matchesSearch = stock.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       stock.ticker.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesSector = sectorFilter === "all" || stock.sector === sectorFilter;
@@ -62,6 +60,18 @@ const StockReport = () => {
     "#8884D8",
     "#82CA9D",
   ];
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <main className="container mx-auto px-4 py-8">
+          <h1 className="text-4xl font-bold text-aires-navy mb-8">Loading...</h1>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -120,9 +130,7 @@ const StockReport = () => {
                     />
                   ))}
                 </Pie>
-                <ChartTooltip>
-                  <ChartTooltipContent />
-                </ChartTooltip>
+                <ChartTooltip content={<ChartTooltipContent />} />
               </PieChart>
             </ChartContainer>
           </div>

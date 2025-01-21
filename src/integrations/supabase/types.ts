@@ -9,7 +9,51 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      stocks: {
+        Row: {
+          beta: number
+          created_at: string
+          dividend_yield: number
+          id: string
+          market_cap: number
+          name: string
+          pe_ratio: number
+          price: number
+          sector: string
+          ticker: string
+          updated_at: string
+          volume: number
+        }
+        Insert: {
+          beta: number
+          created_at?: string
+          dividend_yield: number
+          id?: string
+          market_cap: number
+          name: string
+          pe_ratio: number
+          price: number
+          sector: string
+          ticker: string
+          updated_at?: string
+          volume: number
+        }
+        Update: {
+          beta?: number
+          created_at?: string
+          dividend_yield?: number
+          id?: string
+          market_cap?: number
+          name?: string
+          pe_ratio?: number
+          price?: number
+          sector?: string
+          ticker?: string
+          updated_at?: string
+          volume?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
