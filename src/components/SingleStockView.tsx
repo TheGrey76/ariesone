@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowDown, ArrowUp, TrendingUp, DollarSign, BarChart3, Newspaper } from "lucide-react";
+import { ArrowDown, ArrowUp, TrendingUp, DollarSign, BarChart3, Newspaper, AlertTriangle, TrendingDown, LineChart } from "lucide-react";
 import StockNewsSection from "./StockNewsSection";
 
 interface SingleStockViewProps {
@@ -42,6 +42,94 @@ const SingleStockView = ({ stock }: SingleStockViewProps) => {
     if (percentage < 2) return "Low yield";
     if (percentage < 4) return "Moderate yield";
     return "High yield";
+  };
+
+  const getMarketAnalysis = (stock: StockData) => {
+    const analyses = [];
+    
+    // Market Position Analysis
+    if (stock.beta > 1.2) {
+      analyses.push({
+        title: "High Growth Potential",
+        description: "Shows aggressive growth characteristics with significant market sensitivity",
+        details: `Beta of ${stock.beta.toFixed(2)} indicates this stock tends to amplify market movements by ${((stock.beta - 1) * 100).toFixed(1)}%`,
+        icon: <TrendingUp className="h-5 w-5 text-green-500" />,
+        color: "border-green-500"
+      });
+    } else if (stock.beta < 0.8) {
+      analyses.push({
+        title: "Defensive Position",
+        description: "Demonstrates stability with lower market correlation",
+        details: `Beta of ${stock.beta.toFixed(2)} suggests this stock may provide protection during market downturns`,
+        icon: <ArrowDown className="h-5 w-5 text-blue-500" />,
+        color: "border-blue-500"
+      });
+    } else {
+      analyses.push({
+        title: "Market Alignment",
+        description: "Balanced market sensitivity with moderate risk",
+        details: `Beta of ${stock.beta.toFixed(2)} indicates movement closely aligned with market trends`,
+        icon: <LineChart className="h-5 w-5 text-purple-500" />,
+        color: "border-purple-500"
+      });
+    }
+
+    // Valuation Analysis
+    if (stock.pe_ratio < 0) {
+      analyses.push({
+        title: "Growth Stage Investment",
+        description: "Company currently operating at a loss, typical for growth phase",
+        details: "Negative P/E ratio suggests focus on growth over current profitability",
+        icon: <AlertTriangle className="h-5 w-5 text-yellow-500" />,
+        color: "border-yellow-500"
+      });
+    } else if (stock.pe_ratio > 25) {
+      analyses.push({
+        title: "Premium Valuation",
+        description: "Trading at a premium to market averages",
+        details: `P/E ratio of ${stock.pe_ratio.toFixed(1)} suggests high growth expectations from investors`,
+        icon: <TrendingUp className="h-5 w-5 text-red-500" />,
+        color: "border-red-500"
+      });
+    } else if (stock.pe_ratio > 0) {
+      analyses.push({
+        title: "Fair Market Value",
+        description: "Reasonably valued relative to earnings",
+        details: `P/E ratio of ${stock.pe_ratio.toFixed(1)} indicates balanced market expectations`,
+        icon: <BarChart3 className="h-5 w-5 text-green-500" />,
+        color: "border-green-500"
+      });
+    }
+
+    // Income Analysis
+    const dividendPercentage = (stock.dividend_yield * 100).toFixed(2);
+    if (stock.dividend_yield > 0.04) {
+      analyses.push({
+        title: "Strong Income Generator",
+        description: `High dividend yield of ${dividendPercentage}%`,
+        details: "Significant income potential through dividend payments",
+        icon: <DollarSign className="h-5 w-5 text-green-500" />,
+        color: "border-green-500"
+      });
+    } else if (stock.dividend_yield > 0) {
+      analyses.push({
+        title: "Moderate Income Component",
+        description: `Dividend yield of ${dividendPercentage}%`,
+        details: "Balanced approach between growth and income",
+        icon: <DollarSign className="h-5 w-5 text-blue-500" />,
+        color: "border-blue-500"
+      });
+    } else {
+      analyses.push({
+        title: "Growth-Focused Strategy",
+        description: "No current dividend payments",
+        details: "Company reinvests profits for future growth",
+        icon: <TrendingUp className="h-5 w-5 text-purple-500" />,
+        color: "border-purple-500"
+      });
+    }
+
+    return analyses;
   };
 
   return (
@@ -140,44 +228,26 @@ const SingleStockView = ({ stock }: SingleStockViewProps) => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Newspaper className="h-5 w-5" />
-            Latest Market Analysis
+            Comprehensive Market Analysis
           </CardTitle>
-          <CardDescription>Recent updates and market sentiment</CardDescription>
+          <CardDescription>In-depth analysis of key metrics and market indicators</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            <div className="border-l-4 border-blue-500 pl-4">
-              <h4 className="font-semibold">Market Position</h4>
-              <p className="text-sm text-gray-600">
-                {stock.beta > 1.2 
-                  ? "Shows aggressive growth characteristics with higher market sensitivity"
-                  : stock.beta < 0.8
-                  ? "Demonstrates defensive characteristics with lower market correlation"
-                  : "Maintains balanced market alignment with moderate sensitivity"}
-              </p>
-            </div>
-            <div className="border-l-4 border-green-500 pl-4">
-              <h4 className="font-semibold">Valuation Insight</h4>
-              <p className="text-sm text-gray-600">
-                {stock.pe_ratio > 25
-                  ? "Trading at a premium, suggesting high growth expectations"
-                  : stock.pe_ratio > 15
-                  ? "Valued in line with market averages"
-                  : stock.pe_ratio > 0
-                  ? "Currently trading at a value-oriented multiple"
-                  : "Negative earnings indicate speculative nature"}
-              </p>
-            </div>
-            <div className="border-l-4 border-purple-500 pl-4">
-              <h4 className="font-semibold">Income Potential</h4>
-              <p className="text-sm text-gray-600">
-                {stock.dividend_yield > 0.04
-                  ? "Significant dividend yield suggests strong income potential"
-                  : stock.dividend_yield > 0
-                  ? "Moderate dividend payments indicate balanced shareholder returns"
-                  : "Focus on growth rather than current income distribution"}
-              </p>
-            </div>
+          <div className="space-y-6">
+            {getMarketAnalysis(stock).map((analysis, index) => (
+              <div key={index} className={`border-l-4 ${analysis.color} pl-4 py-3 bg-gray-50 rounded-r-lg`}>
+                <div className="flex items-center gap-2 mb-1">
+                  {analysis.icon}
+                  <h4 className="font-semibold text-lg">{analysis.title}</h4>
+                </div>
+                <p className="text-sm font-medium text-gray-700 mb-1">
+                  {analysis.description}
+                </p>
+                <p className="text-sm text-gray-600">
+                  {analysis.details}
+                </p>
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>
