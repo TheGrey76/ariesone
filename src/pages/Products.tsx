@@ -1,12 +1,15 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { PieChart, Pie, Cell } from "recharts";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from "react";
+import { PortfolioChart } from "@/components/products/PortfolioChart";
+import { PortfolioSummary } from "@/components/products/PortfolioSummary";
+import { PortfolioTable } from "@/components/products/PortfolioTable";
+import { PEFundsList } from "@/components/products/PEFundsList";
+import { supabase } from "@/integrations/supabase/client";
+import { useQuery } from "@tanstack/react-query";
 
 const portfolioData = [
   {
@@ -155,6 +158,15 @@ const peFundsData = [
 const Products = () => {
   const { toast } = useToast();
 
+  const { data: stockData, isLoading } = useQuery({
+    queryKey: ["real-time-stocks"],
+    queryFn: async () => {
+      const { data: { data } } = await supabase.functions.invoke('fetch-stock-data');
+      return data;
+    },
+    refetchInterval: 60000, // Refresh every minute
+  });
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
@@ -185,32 +197,11 @@ const Products = () => {
     };
   }, []);
 
-  const totalAnnualYield = portfolioData.reduce(
-    (acc, item) => acc + (item.weight / 100) * item.annualYield,
-    0
-  ).toFixed(2);
-
-  const totalMonthlyYield = portfolioData.reduce(
-    (acc, item) => acc + (item.weight / 100) * item.monthlyYield,
-    0
-  ).toFixed(2);
-
-  const chartConfig = {
-    portfolio: {
-      label: "Portfolio",
-      theme: {
-        light: "#2563EB",
-        dark: "#3B82F6"
-      }
-    }
-  };
-
   const handleDownloadPDF = () => {
     generatePDF('portfolio-content', 'AIRES-Portfolio-Holdings.pdf');
   };
 
   const getGoogleFinanceUrl = (ticker: string) => {
-    // Remove any whitespace and ensure clean ticker format
     const cleanTicker = ticker.trim();
     let formattedTicker = cleanTicker;
     let exchange = '';
@@ -231,7 +222,6 @@ const Products = () => {
       formattedTicker = cleanTicker.replace('.HK', '');
       exchange = 'HKG';
     } else {
-      // For US exchanges (NYSE, NASDAQ, AMEX)
       exchange = cleanTicker === 'JAAA' ? 'AMEX' :
                 cleanTicker.includes('CG') || cleanTicker.includes('TPG') ? 'NASDAQ' : 
                 'NYSE';
@@ -239,6 +229,10 @@ const Products = () => {
     
     return `https://www.google.com/finance/quote/${formattedTicker}:${exchange}`;
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 p-8">
@@ -263,28 +257,7 @@ const Products = () => {
                 <CardTitle>Portfolio Composition</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-[300px]">
-                  <ChartContainer config={chartConfig}>
-                    <PieChart>
-                      <Pie
-                        data={portfolioData}
-                        dataKey="weight"
-                        nameKey="category"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={100}
-                        label={({ name, percent }) => 
-                          `${name} ${(percent * 100).toFixed(0)}%`
-                        }
-                      >
-                        {portfolioData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                    </PieChart>
-                  </ChartContainer>
-                </div>
+                <PortfolioChart portfolioData={portfolioData} />
               </CardContent>
             </Card>
 
@@ -303,86 +276,24 @@ const Products = () => {
               <CardTitle>Portfolio Summary</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm text-aires-gray">Total Annual Yield</p>
-                  <p className="text-3xl font-bold text-aires-navy">
-                    {totalAnnualYield}%
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-aires-gray">Total Monthly Yield</p>
-                  <p className="text-3xl font-bold text-aires-navy">
-                    {totalMonthlyYield}%
-                  </p>
-                </div>
-              </div>
+              <PortfolioSummary portfolioData={portfolioData} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
               <CardTitle>Portfolio Components</CardTitle>
+              {stockData && (
+                <p className="text-sm text-gray-600">
+                  Last updated: {new Date(stockData[0]?.timestamp).toLocaleString()}
+                </p>
+              )}
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Selected ETF</TableHead>
-                    <TableHead>Ticker</TableHead>
-                    <TableHead className="text-right">Weight (%)</TableHead>
-                    <TableHead className="text-right">Annual Yield (%)</TableHead>
-                    <TableHead className="text-right">Monthly Yield (%)</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {portfolioData.map((item) => (
-                    <TableRow key={item.ticker}>
-                      <TableCell>{item.category}</TableCell>
-                      <TableCell>{item.etf}</TableCell>
-                      <TableCell>
-                        <a 
-                          href={getGoogleFinanceUrl(item.ticker)} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-aires-blue hover:underline"
-                        >
-                          {item.ticker}
-                        </a>
-                      </TableCell>
-                      <TableCell className="text-right">{item.weight}</TableCell>
-                      <TableCell className="text-right">{item.annualYield}</TableCell>
-                      <TableCell className="text-right">
-                        {item.monthlyYield}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Notes</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-4">
-                {portfolioData.map((item) => (
-                  <li key={item.ticker} className="bg-gray-50 p-4 rounded-lg border border-gray-100 shadow-sm">
-                    <span className="font-medium text-aires-navy">{item.etf} ({item.ticker})</span>: 
-                    <span className="text-gray-700">
-                      {item.category.includes("CLO") 
-                        ? ` Provides exposure to ${item.category}-rated CLOs`
-                        : item.category.includes("Corporate")
-                        ? " Tracks high-yield corporate bonds"
-                        : " Offers exposure to emerging markets bonds"
-                      } with a current yield of approximately {item.annualYield}%.
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <PortfolioTable 
+                portfolioData={portfolioData} 
+                getGoogleFinanceUrl={getGoogleFinanceUrl}
+              />
             </CardContent>
           </Card>
 
@@ -391,37 +302,10 @@ const Products = () => {
               <CardTitle>Listed Private Equity Funds</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-8">
-                {peFundsData.map((region) => (
-                  <div key={region.region} className="space-y-4">
-                    <h3 className="text-xl font-semibold text-aires-navy">{region.region}</h3>
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                      {region.funds.map((fund) => (
-                        <div
-                          key={fund.ticker}
-                          className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
-                        >
-                          <div className="space-y-2">
-                            <div className="flex justify-between items-start">
-                              <h4 className="font-medium text-aires-navy">{fund.name}</h4>
-                              <a 
-                                href={getGoogleFinanceUrl(fund.ticker)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm font-mono text-aires-blue hover:underline"
-                              >
-                                {fund.ticker}
-                              </a>
-                            </div>
-                            <p className="text-sm text-gray-600">{fund.exchange}</p>
-                            <p className="text-sm text-gray-700">{fund.focus}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <PEFundsList 
+                peFundsData={peFundsData}
+                getGoogleFinanceUrl={getGoogleFinanceUrl}
+              />
             </CardContent>
           </Card>
         </div>
