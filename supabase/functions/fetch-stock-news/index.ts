@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error('No ticker provided')
     }
 
-    const apiKey = Deno.env.get('ALPHA_VANTAGE_API_KEY')
+    const apiKey = Deno.env.get('FINNHUB_API_KEY')
     if (!apiKey) {
       throw new Error('API key not configured')
     }
@@ -25,48 +25,54 @@ serve(async (req) => {
     console.log(`Fetching news for ticker: ${ticker}`)
     
     // Calculate date from 7 days ago
-    const sevenDaysAgo = new Date()
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
-    const timeFrom = sevenDaysAgo.toISOString().split('T')[0]
+    const toDate = new Date()
+    const fromDate = new Date()
+    fromDate.setDate(fromDate.getDate() - 7)
     
-    console.log(`Fetching news from: ${timeFrom}`)
+    // Format dates as YYYY-MM-DD
+    const from = fromDate.toISOString().split('T')[0]
+    const to = toDate.toISOString().split('T')[0]
     
-    // Updated to include time_from parameter for last week's news
+    console.log(`Fetching news from: ${from} to: ${to}`)
+    
     const response = await fetch(
-      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${ticker}&topics=technology,earnings,ipo,financial_markets&time_from=${timeFrom}&sort=RELEVANCE&limit=20&apikey=${apiKey}`
+      `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`
     )
     
     if (!response.ok) {
-      throw new Error(`Alpha Vantage API error: ${response.statusText}`)
+      throw new Error(`Finnhub API error: ${response.statusText}`)
     }
     
-    const data = await response.json()
-    console.log('News data received:', data)
+    const newsItems = await response.json()
+    console.log(`Received ${newsItems.length} news items`)
 
-    // Check if we have actual news items
-    if (!data.feed || data.feed.length === 0) {
-      console.log('No news items found in response')
-      if (data.Information) {
-        console.log('API Information:', data.Information)
+    // Process and format the news data to match our existing structure
+    const processedNews = newsItems
+      .filter(item => item.headline && item.url && item.summary) // Filter out items missing required fields
+      .map(item => ({
+        title: item.headline,
+        url: item.url,
+        time_published: new Date(item.datetime * 1000).toISOString(),
+        summary: item.summary,
+        source: item.source,
+        sentiment_score: item.sentiment || 0,
+        relevance_score: 1,
+      }))
+      .slice(0, 20) // Limit to 20 items
+
+    // Group by source and limit items per source
+    const sourceCount = new Map()
+    const diverseNews = processedNews.filter(item => {
+      const count = sourceCount.get(item.source) || 0
+      if (count < 3) { // Limit to 3 articles per source
+        sourceCount.set(item.source, count + 1)
+        return true
       }
-    }
-
-    // Filter to ensure diverse sources
-    if (data.feed && Array.isArray(data.feed)) {
-      const sourceCounts = new Map()
-      data.feed = data.feed.filter(item => {
-        const source = item.source
-        const currentCount = sourceCounts.get(source) || 0
-        if (currentCount < 3) { // Limit to 3 articles per source
-          sourceCounts.set(source, currentCount + 1)
-          return true
-        }
-        return false
-      })
-    }
+      return false
+    })
 
     return new Response(
-      JSON.stringify(data),
+      JSON.stringify({ feed: diverseNews }),
       { 
         headers: { 
           ...corsHeaders,
