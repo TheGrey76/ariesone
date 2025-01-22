@@ -44,11 +44,12 @@ const SingleStockPage = () => {
         <Navigation />
         <main className="container mx-auto px-4 py-8">
           <Button
-            variant="ghost"
+            variant="outline"
             onClick={() => navigate("/stock-report")}
-            className="mb-8 hover:bg-gray-100"
+            className="mb-8 flex items-center gap-2 text-aires-navy hover:bg-aires-navy hover:text-white transition-colors"
+            size="lg"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="h-5 w-5" />
             Back to Stock List
           </Button>
           <h1 className="text-4xl font-bold text-aires-navy">Loading...</h1>
@@ -64,11 +65,12 @@ const SingleStockPage = () => {
         <Navigation />
         <main className="container mx-auto px-4 py-8">
           <Button
-            variant="ghost"
+            variant="outline"
             onClick={() => navigate("/stock-report")}
-            className="mb-8 hover:bg-gray-100"
+            className="mb-8 flex items-center gap-2 text-aires-navy hover:bg-aires-navy hover:text-white transition-colors"
+            size="lg"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="h-5 w-5" />
             Back to Stock List
           </Button>
           <Alert variant="destructive">
@@ -91,11 +93,12 @@ const SingleStockPage = () => {
       <Navigation />
       <main className="container mx-auto px-4 py-8">
         <Button
-          variant="ghost"
+          variant="outline"
           onClick={() => navigate("/stock-report")}
-          className="mb-8 hover:bg-gray-100"
+          className="mb-8 flex items-center gap-2 text-aires-navy hover:bg-aires-navy hover:text-white transition-colors"
+          size="lg"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="h-5 w-5" />
           Back to Stock List
         </Button>
         <h1 className="text-4xl font-bold text-aires-navy mb-8">
