@@ -47,8 +47,18 @@ serve(async (req) => {
     console.log(`Received ${newsItems.length} news items`)
 
     // Process and format the news data to match our existing structure
+    // Added relevance filtering based on ticker mention in title or summary
     const processedNews = newsItems
-      .filter(item => item.headline && item.url && item.summary) // Filter out items missing required fields
+      .filter(item => {
+        // Check if the news is relevant by looking for the ticker in title or summary
+        const tickerRegex = new RegExp(ticker, 'i')
+        return (
+          item.headline && 
+          item.url && 
+          item.summary && 
+          (tickerRegex.test(item.headline) || tickerRegex.test(item.summary))
+        )
+      })
       .map(item => ({
         title: item.headline,
         url: item.url,
