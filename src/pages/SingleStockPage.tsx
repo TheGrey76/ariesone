@@ -38,20 +38,26 @@ const SingleStockPage = () => {
     enabled: !!ticker,
   });
 
+  const BackButton = () => (
+    <div className="sticky top-0 z-50 bg-white shadow-md py-4 px-6 mb-8">
+      <Button
+        variant="default"
+        onClick={() => navigate("/stock-report")}
+        className="flex items-center gap-2 bg-aires-navy hover:bg-aires-blue text-white transition-colors"
+        size="lg"
+      >
+        <ArrowLeft className="h-6 w-6" />
+        Back to Stock List
+      </Button>
+    </div>
+  );
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
-        <main className="container mx-auto px-4 py-8">
-          <Button
-            variant="outline"
-            onClick={() => navigate("/stock-report")}
-            className="mb-8 flex items-center gap-2 text-aires-navy hover:bg-aires-navy hover:text-white transition-colors"
-            size="lg"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back to Stock List
-          </Button>
+        <main className="container mx-auto px-4">
+          <BackButton />
           <h1 className="text-4xl font-bold text-aires-navy">Loading...</h1>
         </main>
         <Footer />
@@ -63,16 +69,8 @@ const SingleStockPage = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
-        <main className="container mx-auto px-4 py-8">
-          <Button
-            variant="outline"
-            onClick={() => navigate("/stock-report")}
-            className="mb-8 flex items-center gap-2 text-aires-navy hover:bg-aires-navy hover:text-white transition-colors"
-            size="lg"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back to Stock List
-          </Button>
+        <main className="container mx-auto px-4">
+          <BackButton />
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
@@ -91,16 +89,8 @@ const SingleStockPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <main className="container mx-auto px-4 py-8">
-        <Button
-          variant="outline"
-          onClick={() => navigate("/stock-report")}
-          className="mb-8 flex items-center gap-2 text-aires-navy hover:bg-aires-navy hover:text-white transition-colors"
-          size="lg"
-        >
-          <ArrowLeft className="h-5 w-5" />
-          Back to Stock List
-        </Button>
+      <main className="container mx-auto px-4">
+        <BackButton />
         <h1 className="text-4xl font-bold text-aires-navy mb-8">
           {stock.name} ({stock.ticker})
         </h1>
