@@ -24,7 +24,7 @@ serve(async (req) => {
 
     console.log(`Fetching news for ticker: ${ticker}`)
     
-    // Calculate date from 7 days ago
+    // Calculate date range for the past week
     const toDate = new Date()
     const fromDate = new Date()
     fromDate.setDate(fromDate.getDate() - 7)
@@ -46,18 +46,20 @@ serve(async (req) => {
     const newsItems = await response.json()
     console.log(`Received ${newsItems.length} news items`)
 
-    // Process and format the news data to match our existing structure
-    // Added relevance filtering based on ticker mention in title or summary
+    // Enhanced relevance filtering and processing
     const processedNews = newsItems
       .filter(item => {
-        // Check if the news is relevant by looking for the ticker in title or summary
-        const tickerRegex = new RegExp(ticker, 'i')
-        return (
-          item.headline && 
-          item.url && 
-          item.summary && 
-          (tickerRegex.test(item.headline) || tickerRegex.test(item.summary))
-        )
+        // Strict filtering: Check if the ticker is mentioned as a word
+        // This prevents matching AAPL in "AAPLX" or "MSFT" in "MSFTX"
+        const tickerPattern = new RegExp(`\\b${ticker}\\b`, 'i')
+        const hasRequiredFields = item.headline && item.url && item.summary
+        const isRelevant = tickerPattern.test(item.headline) || tickerPattern.test(item.summary)
+        
+        if (hasRequiredFields && !isRelevant) {
+          console.log(`Filtered out news item: "${item.headline}" - Does not mention ${ticker}`)
+        }
+        
+        return hasRequiredFields && isRelevant
       })
       .map(item => ({
         title: item.headline,
@@ -68,9 +70,9 @@ serve(async (req) => {
         sentiment_score: item.sentiment || 0,
         relevance_score: 1,
       }))
-      .slice(0, 20) // Limit to 20 items
+      .slice(0, 20) // Limit to 20 most recent items
 
-    // Group by source and limit items per source
+    // Group by source and limit items per source for diversity
     const sourceCount = new Map()
     const diverseNews = processedNews.filter(item => {
       const count = sourceCount.get(item.source) || 0
@@ -78,8 +80,11 @@ serve(async (req) => {
         sourceCount.set(item.source, count + 1)
         return true
       }
+      console.log(`Filtered out news item from ${item.source} - Source limit reached`)
       return false
     })
+
+    console.log(`Returning ${diverseNews.length} filtered and diverse news items for ${ticker}`)
 
     return new Response(
       JSON.stringify({ feed: diverseNews }),
