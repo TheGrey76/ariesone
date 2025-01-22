@@ -43,16 +43,15 @@ const SingleStockPage = () => {
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <main className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-4 mb-8">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="hover:bg-transparent hover:text-aires-blue"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back
-            </Button>
-            <h1 className="text-4xl font-bold text-aires-navy">Loading...</h1>
-          </div>
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/stock-report")}
+            className="mb-8 hover:bg-gray-100"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Stock List
+          </Button>
+          <h1 className="text-4xl font-bold text-aires-navy">Loading...</h1>
         </main>
         <Footer />
       </div>
@@ -64,15 +63,14 @@ const SingleStockPage = () => {
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <main className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-4 mb-8">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="hover:bg-transparent hover:text-aires-blue"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back
-            </Button>
-          </div>
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/stock-report")}
+            className="mb-8 hover:bg-gray-100"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Stock List
+          </Button>
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
@@ -92,18 +90,17 @@ const SingleStockPage = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       <main className="container mx-auto px-4 py-8">
-        <div className="flex items-center gap-4 mb-8">
-          <Button
-            variant="ghost"
-            onClick={() => navigate(-1)}
-            className="hover:bg-transparent hover:text-aires-blue"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back
-          </Button>
-          <h1 className="text-4xl font-bold text-aires-navy">
-            {stock.name} ({stock.ticker})
-          </h1>
-        </div>
+        <Button
+          variant="ghost"
+          onClick={() => navigate("/stock-report")}
+          className="mb-8 hover:bg-gray-100"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Stock List
+        </Button>
+        <h1 className="text-4xl font-bold text-aires-navy mb-8">
+          {stock.name} ({stock.ticker})
+        </h1>
         <SingleStockView stock={stock} />
       </main>
       <Footer />
