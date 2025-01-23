@@ -124,7 +124,14 @@ const Index = () => {
             Who I Am
           </h2>
           <h3 className="text-xl md:text-2xl font-heading font-medium text-left pl-4 border-l-4 border-gradient-to-b from-aires-emerald to-aires-blue animate-fade-up bg-gradient-to-r from-aires-emerald to-aires-blue bg-clip-text text-transparent mb-8">
-            Edoardo Grigione
+            <a 
+              href="https://www.linkedin.com/in/edoardogrigione/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              Edoardo Grigione
+            </a>
           </h3>
           <div className="prose prose-lg max-w-none space-y-6 text-aires-gray">
             <p>
