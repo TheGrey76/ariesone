@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Brain, Target, LineChart, ArrowRight } from "lucide-react";
+import { Brain, Target, LineChart, ArrowRight, Linkedin } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const Index = () => {
@@ -15,6 +15,10 @@ const Index = () => {
   const { ref: whoIAmRef, inView: whoIAmInView } = useInView({ threshold: 0.1 });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1 });
   const { ref: contactRef, inView: contactInView } = useInView({ threshold: 0.1 });
+
+  const handleLinkedInClick = () => {
+    window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank");
+  };
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
@@ -123,16 +127,18 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-4 text-center">
             Who I Am
           </h2>
-          <h3 className="text-xl md:text-2xl font-heading font-medium text-left pl-4 border-l-4 border-gradient-to-b from-aires-emerald to-aires-blue animate-fade-up bg-gradient-to-r from-aires-emerald to-aires-blue bg-clip-text text-transparent mb-8">
-            <a 
-              href="https://www.linkedin.com/in/edoardogrigione/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:opacity-80 transition-opacity"
-            >
+          <div className="flex items-center gap-2 pl-4 border-l-4 border-gradient-to-b from-aires-emerald to-aires-blue mb-8">
+            <h3 className="text-xl md:text-2xl font-heading font-medium bg-gradient-to-r from-aires-emerald to-aires-blue bg-clip-text text-transparent">
               Edoardo Grigione
-            </a>
-          </h3>
+            </h3>
+            <button
+              onClick={handleLinkedInClick}
+              className="p-1 rounded-full hover:bg-aires-blue/10 transition-colors"
+              aria-label="Visit LinkedIn Profile"
+            >
+              <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+            </button>
+          </div>
           <div className="prose prose-lg max-w-none space-y-6 text-aires-gray">
             <p>
               In my current role as a partner, my focus has solidified around capital raising, where I play a critical part in driving the financial architecture of VC and PE deals. My efforts are concentrated on securing strategic funding that aligns with our investment philosophy and enhances the long-term value of our portfolio companies.
