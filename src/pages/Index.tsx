@@ -39,17 +39,19 @@ const Index = () => {
       >
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-10 transform scale-105 transition-transform duration-1000" 
              style={{ transform: heroInView ? "scale(1)" : "scale(1.05)" }} />
-        <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white to-[#E5DEFF]" />
         <div className="max-w-7xl mx-auto text-center relative">
-          <h1 className="text-5xl md:text-7xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent mb-6 animate-fade-up">
-            Empowering Data-Driven Financial Solutions
+          <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6 animate-fade-up">
+            <span className="bg-gradient-to-r from-[#1A1F2C] to-[#8E9196] bg-clip-text text-transparent">A</span>
+            <span className="bg-gradient-to-r from-[#9b87f5] to-[#8B5CF6] bg-clip-text text-transparent">I</span>
+            <span className="bg-gradient-to-r from-[#8E9196] to-[#1A1F2C] bg-clip-text text-transparent">RES</span>
           </h1>
           <p className="text-lg md:text-xl bg-gradient-to-r from-aires-gray to-aires-navy bg-clip-text text-transparent mb-8 max-w-2xl mx-auto animate-fade-up">
             Strategic advisory and sponsorship for innovative financial instruments.
           </p>
           <Button
             size="lg"
-            className="bg-aires-navy hover:bg-aires-blue transition-all duration-300 transform hover:scale-105 animate-fade-up"
+            className="bg-[#9b87f5] hover:bg-[#8B5CF6] transition-all duration-300 transform hover:scale-105 animate-fade-up"
             onClick={scrollToAbout}
           >
             Learn More <ArrowRight className="ml-2" />
