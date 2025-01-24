@@ -141,22 +141,25 @@ const Index = () => {
           </div>
           <div className="prose prose-lg max-w-none space-y-6 text-aires-gray">
             <p>
-              In my current role as a partner, my focus has solidified around capital raising, where I play a critical part in driving the financial architecture of VC and PE deals. My efforts are concentrated on securing strategic funding that aligns with our investment philosophy and enhances the long-term value of our portfolio companies.
+              In my role as a partner, I specialize in capital raising, crafting the financial strategies that fuel successful venture capital (VC) and private equity (PE) deals. My focus is on securing strategic funding that aligns with our investment philosophy and enhances the long-term value of our portfolio companies.
             </p>
             <p>
-              The analytical skills I've honed over the years have become essential tools in this process, enabling me to assess and mitigate financial risks effectively. My ability to identify optimal investment opportunities and structure deals that balance risk and reward is central to my contribution to our firm's success.
+              My career has taken me across the globe, giving me the opportunity to work in major financial hubs. In New York, I raised over $200 million for my hedge fund, working with institutional investors and private clients. In Switzerland, the UK, and Italy, I've built strong investor networks and driven funding efforts that have helped businesses grow and scale.
             </p>
             <p>
-              I am passionate about tackling challenges in Investor Relations and fundraising. Throughout my career, I've approached complex problems head-on, consistently delivering results that exceed expectations. By fostering strong partnerships and setting clear goals, I've driven successful projects that create real, lasting value.
+              Over the years, I've developed analytical skills that are vital for spotting investment opportunities, assessing financial risks, and structuring deals that balance risk and reward. I don't just crunch numbers—I design deals that deliver real value for all parties involved.
             </p>
             <p>
-              My journey has taken me across continents, working in international business to help companies grow in new markets and build solid relationships with investors. This experience has deepened my understanding of cultural differences and how to effectively expand operations across borders.
+              I'm passionate about tackling challenges in investor relations and fundraising. Throughout my career, I've taken on complex problems and consistently delivered results that exceed expectations. By building strong partnerships and setting clear goals, I've been able to drive projects that create lasting impact.
             </p>
             <p>
-              Beyond technical expertise, I believe in the power of sophisticated relationships that combine human insight with a data-driven approach. By leveraging both intuitive human connections and rigorous data analysis, I create holistic strategies that drive impactful outcomes.
+              My international experience has deepened my understanding of cultural differences and how to navigate them effectively. I've worked across continents, helping companies expand into new markets and build meaningful relationships with investors.
             </p>
             <p>
-              I thrive in dynamic environments, combining strategic thinking with a hands-on approach to bring ideas to life. My drive is to help businesses grow, innovate, and create meaningful value for all stakeholders.
+              Beyond the technical side, I believe in the power of relationships. By combining human insight with a data-driven approach, I create strategies that don't just meet goals—they push boundaries and deliver impactful results.
+            </p>
+            <p>
+              I thrive in fast-paced, dynamic environments where I can think strategically, roll up my sleeves, and make things happen. Whether it's VC and PE fundraising, hedge fund capital raising, or international business development, I'm driven by the opportunity to create value and make an impact.
             </p>
           </div>
         </div>
