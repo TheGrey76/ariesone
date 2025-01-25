@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Footer } from "@/components/Footer";
+import Footer from "@/components/Footer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -45,18 +45,13 @@ const Login = () => {
     }
 
     try {
-      const { error } = await signUp(email, password);
-      
-      if (!error) {
-        toast({
-          title: "Account created successfully",
-          description: "You can now sign in with your credentials.",
-        });
-        setEmail("");
-        setPassword("");
-      } else {
-        throw error;
-      }
+      await signUp(email, password);
+      toast({
+        title: "Account created successfully",
+        description: "You can now sign in with your credentials.",
+      });
+      setEmail("");
+      setPassword("");
     } catch (error) {
       let errorMessage = "An error occurred";
       
@@ -91,13 +86,8 @@ const Login = () => {
     }
 
     try {
-      const { error } = await signIn(email, password);
-      
-      if (!error) {
-        navigate("/stock-report");
-      } else {
-        throw error;
-      }
+      await signIn(email, password);
+      navigate("/stock-report");
     } catch (error) {
       let errorMessage = "An error occurred";
       
