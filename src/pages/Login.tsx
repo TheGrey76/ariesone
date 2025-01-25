@@ -7,16 +7,33 @@ import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Lock, Mail } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const validateForm = () => {
+    setError("");
+    if (!email || !email.includes("@")) {
+      setError("Please enter a valid email address");
+      return false;
+    }
+    if (!password || password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (isSignUp: boolean) => {
+    if (!validateForm()) return;
+
     setIsLoading(true);
     try {
       if (isSignUp) {
@@ -34,10 +51,12 @@ const Login = () => {
         navigate("/products");
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "An error occurred";
+      setError(errorMessage);
       toast({
         variant: "destructive",
         title: "Error",
-        description: error instanceof Error ? error.message : "An error occurred",
+        description: errorMessage,
       });
     } finally {
       setIsLoading(false);
@@ -56,6 +75,11 @@ const Login = () => {
             <p className="text-aires-gray mb-8">
               Access your exclusive financial insights and portfolio analysis
             </p>
+            {error && (
+              <Alert variant="destructive" className="mb-6">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
             <div className="space-y-6">
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
@@ -72,7 +96,7 @@ const Login = () => {
                 <Lock className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
                 <Input
                   type="password"
-                  placeholder="Password"
+                  placeholder="Password (min. 6 characters)"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={isLoading}
