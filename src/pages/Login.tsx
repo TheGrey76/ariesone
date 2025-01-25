@@ -6,8 +6,16 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Lock, Mail } from "lucide-react";
+import { Lock, Mail, ArrowRight } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -57,7 +65,6 @@ const Login = () => {
       let errorMessage = "An error occurred";
       
       if (error instanceof Error) {
-        // Handle specific Supabase error messages
         if (error.message.includes("Email not confirmed")) {
           errorMessage = "Please confirm your email address before signing in.";
         } else if (error.message.includes("Invalid login credentials")) {
@@ -85,60 +92,98 @@ const Login = () => {
       <Navigation />
       <div className="flex-grow flex items-center justify-center px-4 py-16">
         <div className="max-w-md w-full">
-          <div className="bg-white/95 backdrop-blur-xl p-8 rounded-2xl shadow-2xl animate-fade-up">
-            <h1 className="text-3xl font-heading font-bold text-aires-navy mb-2 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
-              Investor Portal
-            </h1>
-            <p className="text-aires-gray mb-8">
-              Access your exclusive financial insights and portfolio analysis
-            </p>
-            {error && (
-              <Alert variant="destructive" className="mb-6">
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-            <div className="space-y-6">
-              <div className="relative">
-                <Mail className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
-                <Input
-                  type="email"
-                  placeholder="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={isLoading}
-                  className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
-                />
-              </div>
-              <div className="relative">
-                <Lock className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
-                <Input
-                  type="password"
-                  placeholder="Password (min. 6 characters)"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  disabled={isLoading}
-                  className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
-                />
-              </div>
-              <div className="space-y-4">
-                <Button
-                  onClick={() => handleSubmit(false)}
-                  disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-300 transform hover:scale-[1.02]"
-                >
-                  Sign In
-                </Button>
-                <Button
-                  onClick={() => handleSubmit(true)}
-                  disabled={isLoading}
-                  variant="outline"
-                  className="w-full border-aires-gray/20 hover:bg-aires-emerald/10 hover:border-aires-emerald transition-all duration-300"
-                >
-                  Create Account
-                </Button>
-              </div>
-            </div>
-          </div>
+          <Card className="bg-white/95 backdrop-blur-xl shadow-2xl animate-fade-up">
+            <CardHeader>
+              <CardTitle className="text-3xl font-heading font-bold text-aires-navy bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+                Investor Portal
+              </CardTitle>
+              <CardDescription className="text-aires-gray">
+                Access your exclusive financial insights and portfolio analysis
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue="login" className="space-y-6">
+                <TabsList className="grid grid-cols-2">
+                  <TabsTrigger value="login">Sign In</TabsTrigger>
+                  <TabsTrigger value="signup">Create Account</TabsTrigger>
+                </TabsList>
+
+                {error && (
+                  <Alert variant="destructive">
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                )}
+
+                <TabsContent value="login">
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="email"
+                        placeholder="Email address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        disabled={isLoading}
+                        className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
+                      />
+                    </div>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        disabled={isLoading}
+                        className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
+                      />
+                    </div>
+                    <Button
+                      onClick={() => handleSubmit(false)}
+                      disabled={isLoading}
+                      className="w-full bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-300 transform hover:scale-[1.02]"
+                    >
+                      Sign In <ArrowRight className="ml-2" />
+                    </Button>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="signup">
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="email"
+                        placeholder="Email address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        disabled={isLoading}
+                        className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
+                      />
+                    </div>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="password"
+                        placeholder="Password (min. 6 characters)"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        disabled={isLoading}
+                        className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
+                      />
+                    </div>
+                    <Button
+                      onClick={() => handleSubmit(true)}
+                      disabled={isLoading}
+                      className="w-full bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-300 transform hover:scale-[1.02]"
+                    >
+                      Create Account <ArrowRight className="ml-2" />
+                    </Button>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
         </div>
       </div>
       <Footer />
