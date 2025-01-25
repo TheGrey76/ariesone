@@ -50,8 +50,11 @@ const Login = () => {
         await signUp(email, password);
         toast({
           title: "Account created successfully",
-          description: "Please check your email to verify your account before signing in.",
+          description: "You can now sign in with your credentials.",
         });
+        // Reset form after successful signup
+        setEmail("");
+        setPassword("");
       } else {
         await signIn(email, password);
         toast({
