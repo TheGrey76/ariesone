@@ -112,11 +112,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-aires-navy to-aires-blue">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-aires-navy via-aires-blue to-aires-emerald">
       <div className="flex-grow flex items-center justify-center p-4">
-        <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-xl animate-fade-up">
+        <Card className="w-full max-w-md bg-white/90 backdrop-blur-md shadow-xl animate-fade-up border-aires-lightBlue/20">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-3xl font-heading text-center text-aires-navy">
+            <CardTitle className="text-4xl font-heading text-center bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
               AIRES
             </CardTitle>
             <CardDescription className="text-center text-aires-gray">
@@ -126,8 +126,12 @@ const Login = () => {
           <CardContent>
             <Tabs defaultValue="signin" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Create Account</TabsTrigger>
+                <TabsTrigger value="signin" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-aires-navy data-[state=active]:to-aires-blue data-[state=active]:text-white">
+                  Sign In
+                </TabsTrigger>
+                <TabsTrigger value="signup" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-aires-navy data-[state=active]:to-aires-blue data-[state=active]:text-white">
+                  Create Account
+                </TabsTrigger>
               </TabsList>
               <TabsContent value="signin">
                 <form onSubmit={handleSignIn} className="space-y-6">
@@ -137,7 +141,7 @@ const Login = () => {
                       <Input
                         type="email"
                         placeholder="Email"
-                        className="pl-10"
+                        className="pl-10 bg-white/50 backdrop-blur-sm border-aires-lightBlue/30 focus:border-aires-blue"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -149,7 +153,7 @@ const Login = () => {
                       <Input
                         type="password"
                         placeholder="Password"
-                        className="pl-10"
+                        className="pl-10 bg-white/50 backdrop-blur-sm border-aires-lightBlue/30 focus:border-aires-blue"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
@@ -157,7 +161,7 @@ const Login = () => {
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-aires-navy hover:bg-aires-blue transition-colors duration-300"
+                    className="w-full bg-gradient-to-r from-aires-navy to-aires-blue hover:from-aires-blue hover:to-aires-emerald transition-all duration-300"
                   >
                     Sign In
                   </Button>
@@ -171,7 +175,7 @@ const Login = () => {
                       <Input
                         type="email"
                         placeholder="Email"
-                        className="pl-10"
+                        className="pl-10 bg-white/50 backdrop-blur-sm border-aires-lightBlue/30 focus:border-aires-blue"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -183,7 +187,7 @@ const Login = () => {
                       <Input
                         type="password"
                         placeholder="Password"
-                        className="pl-10"
+                        className="pl-10 bg-white/50 backdrop-blur-sm border-aires-lightBlue/30 focus:border-aires-blue"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
@@ -191,7 +195,7 @@ const Login = () => {
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-aires-navy hover:bg-aires-blue transition-colors duration-300"
+                    className="w-full bg-gradient-to-r from-aires-navy to-aires-blue hover:from-aires-blue hover:to-aires-emerald transition-all duration-300"
                   >
                     Create Account
                   </Button>
