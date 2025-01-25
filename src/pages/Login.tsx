@@ -35,12 +35,14 @@ const Login = () => {
     if (!validateForm()) return;
 
     setIsLoading(true);
+    setError("");
+
     try {
       if (isSignUp) {
         await signUp(email, password);
         toast({
           title: "Account created successfully",
-          description: "Please check your email to verify your account.",
+          description: "Please check your email to verify your account before signing in.",
         });
       } else {
         await signIn(email, password);
@@ -51,7 +53,22 @@ const Login = () => {
         navigate("/products");
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "An error occurred";
+      console.error("Auth error:", error);
+      let errorMessage = "An error occurred";
+      
+      if (error instanceof Error) {
+        // Handle specific Supabase error messages
+        if (error.message.includes("Email not confirmed")) {
+          errorMessage = "Please confirm your email address before signing in.";
+        } else if (error.message.includes("Invalid login credentials")) {
+          errorMessage = "Invalid email or password. Please try again.";
+        } else if (error.message.includes("User already registered")) {
+          errorMessage = "An account with this email already exists. Please sign in instead.";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
       setError(errorMessage);
       toast({
         variant: "destructive",
