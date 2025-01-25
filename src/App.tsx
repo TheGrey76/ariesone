@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import Sponsorship from "./pages/Sponsorship";
 import Advisory from "./pages/Advisory";
@@ -31,8 +32,22 @@ const App = () => (
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/stock-report" element={<StockReport />} />
-            <Route path="/stock/:ticker" element={<SingleStockPage />} />
+            <Route 
+              path="/stock-report" 
+              element={
+                <ProtectedRoute>
+                  <StockReport />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/stock/:ticker" 
+              element={
+                <ProtectedRoute>
+                  <SingleStockPage />
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
