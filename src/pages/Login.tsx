@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Lock, Mail } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -44,37 +45,44 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-aires-navy via-aires-blue to-aires-emerald">
       <Navigation />
       <div className="max-w-md mx-auto pt-32 px-4">
-        <div className="bg-white/80 backdrop-blur-md p-8 rounded-lg shadow-lg">
-          <h1 className="text-2xl font-heading font-bold text-aires-navy mb-6">
-            Welcome to AIRES
+        <div className="bg-white/95 backdrop-blur-xl p-8 rounded-2xl shadow-2xl animate-fade-up">
+          <h1 className="text-3xl font-heading font-bold text-aires-navy mb-2 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+            Investor Portal
           </h1>
-          <div className="space-y-4">
-            <div>
+          <p className="text-aires-gray mb-8">
+            Access your exclusive financial insights and portfolio analysis
+          </p>
+          <div className="space-y-6">
+            <div className="relative">
+              <Mail className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
               <Input
                 type="email"
-                placeholder="Email"
+                placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
+                className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
               />
             </div>
-            <div>
+            <div className="relative">
+              <Lock className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
               <Input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
+                className="pl-10 bg-white/50 border-aires-gray/20 focus:border-aires-emerald transition-all"
               />
             </div>
-            <div className="flex gap-4">
+            <div className="space-y-4">
               <Button
                 onClick={() => handleSubmit(false)}
                 disabled={isLoading}
-                className="flex-1"
+                className="w-full bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-300 transform hover:scale-[1.02]"
               >
                 Sign In
               </Button>
@@ -82,9 +90,9 @@ const Login = () => {
                 onClick={() => handleSubmit(true)}
                 disabled={isLoading}
                 variant="outline"
-                className="flex-1"
+                className="w-full border-aires-gray/20 hover:bg-aires-emerald/10 hover:border-aires-emerald transition-all duration-300"
               >
-                Sign Up
+                Create Account
               </Button>
             </div>
           </div>
