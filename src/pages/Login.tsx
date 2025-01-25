@@ -52,7 +52,6 @@ const Login = () => {
           title: "Account created successfully",
           description: "You can now sign in with your credentials.",
         });
-        // Reset form after successful signup
         setEmail("");
         setPassword("");
       } else {
@@ -68,9 +67,7 @@ const Login = () => {
       let errorMessage = "An error occurred";
       
       if (error instanceof Error) {
-        if (error.message.includes("Email not confirmed")) {
-          errorMessage = "Please confirm your email address before signing in.";
-        } else if (error.message.includes("Invalid login credentials")) {
+        if (error.message.includes("Invalid login credentials")) {
           errorMessage = "Invalid email or password. Please try again.";
         } else if (error.message.includes("User already registered")) {
           errorMessage = "An account with this email already exists. Please sign in instead.";
