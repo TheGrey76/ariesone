@@ -56,9 +56,7 @@ const Login = () => {
       let errorMessage = "An error occurred";
       
       if (error instanceof Error) {
-        if (error.message.includes("Invalid login credentials")) {
-          errorMessage = "Invalid email or password. Please try again.";
-        } else if (error.message.includes("User already registered")) {
+        if (error.message.includes("User already registered")) {
           errorMessage = "An account with this email already exists. Please sign in instead.";
         } else {
           errorMessage = error.message;
@@ -81,6 +79,15 @@ const Login = () => {
         variant: "destructive",
         title: "Invalid email",
         description: "Please enter a valid email address.",
+      });
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      toast({
+        variant: "destructive",
+        title: "Invalid password",
+        description: "Password must be at least 6 characters long.",
       });
       return;
     }
