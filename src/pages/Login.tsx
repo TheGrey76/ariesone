@@ -71,6 +71,8 @@ const Login = () => {
           errorMessage = "Invalid email or password. Please try again.";
         } else if (error.message.includes("User already registered")) {
           errorMessage = "An account with this email already exists. Please sign in instead.";
+        } else if (error.message.includes("validation_failed")) {
+          errorMessage = "Please ensure your password is at least 6 characters long.";
         } else {
           errorMessage = error.message;
         }
@@ -143,7 +145,7 @@ const Login = () => {
                       disabled={isLoading}
                       className="w-full bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-300 transform hover:scale-[1.02]"
                     >
-                      Sign In <ArrowRight className="ml-2" />
+                      {isLoading ? "Signing in..." : "Sign In"} <ArrowRight className="ml-2" />
                     </Button>
                   </div>
                 </TabsContent>
@@ -177,7 +179,7 @@ const Login = () => {
                       disabled={isLoading}
                       className="w-full bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-300 transform hover:scale-[1.02]"
                     >
-                      Create Account <ArrowRight className="ml-2" />
+                      {isLoading ? "Creating account..." : "Create Account"} <ArrowRight className="ml-2" />
                     </Button>
                   </div>
                 </TabsContent>
