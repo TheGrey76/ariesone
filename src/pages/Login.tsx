@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import Footer from "@/components/Footer";
+import { Mail, Lock } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -99,11 +100,7 @@ const Login = () => {
       let errorMessage = "An error occurred";
       
       if (error instanceof Error) {
-        if (error.message.includes("Invalid login credentials")) {
-          errorMessage = "Invalid email or password. Please try again.";
-        } else {
-          errorMessage = error.message;
-        }
+        errorMessage = "Invalid email or password. Please try again.";
       }
       
       toast({
@@ -115,63 +112,87 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-aires-navy to-aires-blue">
       <div className="flex-grow flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
+        <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-xl animate-fade-up">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Investor Portal</CardTitle>
-            <CardDescription className="text-center">
-              Enter your credentials to access the portal
+            <CardTitle className="text-3xl font-heading text-center text-aires-navy">
+              AIRES
+            </CardTitle>
+            <CardDescription className="text-center text-aires-gray">
+              Enter your credentials to access the investor portal
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="signin" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="signin">Sign In</TabsTrigger>
                 <TabsTrigger value="signup">Create Account</TabsTrigger>
               </TabsList>
               <TabsContent value="signin">
-                <form onSubmit={handleSignIn} className="space-y-4">
+                <form onSubmit={handleSignIn} className="space-y-6">
                   <div className="space-y-2">
-                    <Input
-                      type="email"
-                      placeholder="Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="email"
+                        placeholder="Email"
+                        className="pl-10"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <Input
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        className="pl-10"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
                   </div>
-                  <Button type="submit" className="w-full">
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-aires-navy hover:bg-aires-blue transition-colors duration-300"
+                  >
                     Sign In
                   </Button>
                 </form>
               </TabsContent>
               <TabsContent value="signup">
-                <form onSubmit={handleSignUp} className="space-y-4">
+                <form onSubmit={handleSignUp} className="space-y-6">
                   <div className="space-y-2">
-                    <Input
-                      type="email"
-                      placeholder="Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="email"
+                        placeholder="Email"
+                        className="pl-10"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <Input
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-2.5 h-5 w-5 text-aires-gray" />
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        className="pl-10"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
                   </div>
-                  <Button type="submit" className="w-full">
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-aires-navy hover:bg-aires-blue transition-colors duration-300"
+                  >
                     Create Account
                   </Button>
                 </form>
