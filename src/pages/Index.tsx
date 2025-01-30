@@ -1,7 +1,7 @@
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import WebsitePresentation, { WebsitePresentationButton } from "@/components/WebsitePresentation";
+import WebsitePresentation from "@/components/WebsitePresentation";
 
 const Index = () => {
   return (
