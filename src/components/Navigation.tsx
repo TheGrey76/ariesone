@@ -31,7 +31,7 @@ const Navigation = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link
               to="/"
-              className="text-2xl font-bold text-aires-navy hover:text-aires-blue transition-colors"
+              className="text-2xl font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
               AIRES
             </Link>
@@ -41,19 +41,19 @@ const Navigation = () => {
           <div className="hidden md:flex md:items-center md:space-x-8">
             <Link
               to="/about"
-              className="font-medium text-aires-navy hover:text-aires-blue transition-colors"
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
               About
             </Link>
             <Link
               to="/products"
-              className="font-medium text-aires-navy hover:text-aires-blue transition-colors"
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
               Services
             </Link>
             <Link
               to="/contact"
-              className="font-medium text-aires-navy hover:text-aires-blue transition-colors"
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
               Contact
             </Link>
@@ -82,21 +82,21 @@ const Navigation = () => {
             <div className="flex flex-col space-y-4 p-4">
               <Link
                 to="/about"
-                className="font-medium text-aires-navy hover:text-aires-blue transition-colors"
+                className="font-medium bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent hover:opacity-80 transition-opacity"
                 onClick={toggleMenu}
               >
                 About
               </Link>
               <Link
                 to="/products"
-                className="font-medium text-aires-navy hover:text-aires-blue transition-colors"
+                className="font-medium bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent hover:opacity-80 transition-opacity"
                 onClick={toggleMenu}
               >
                 Services
               </Link>
               <Link
                 to="/contact"
-                className="font-medium text-aires-navy hover:text-aires-blue transition-colors"
+                className="font-medium bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent hover:opacity-80 transition-opacity"
                 onClick={toggleMenu}
               >
                 Contact

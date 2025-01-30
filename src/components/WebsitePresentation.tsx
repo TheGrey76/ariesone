@@ -17,7 +17,7 @@ const WebsitePresentation = () => {
       {/* Hero Section with Full Height */}
       <section className="min-h-screen flex flex-col justify-center items-center relative">
         <div className="text-center space-y-8 max-w-4xl mx-auto px-4">
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
+          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent animate-gradient">
             Aires Capital
           </h1>
           <p className="text-xl md:text-2xl text-aires-navy/80 max-w-2xl mx-auto leading-relaxed">
@@ -36,7 +36,7 @@ const WebsitePresentation = () => {
       {/* Who We Are Section */}
       <section id="about" className="py-24 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 space-y-8">
-          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent text-center">
+          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent text-center">
             Who We Are
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -50,7 +50,9 @@ const WebsitePresentation = () => {
               </p>
             </div>
             <div className="bg-gradient-to-br from-aires-navy/5 to-aires-blue/5 p-8 rounded-xl">
-              <h3 className="text-2xl font-semibold text-aires-navy mb-4">Our Values</h3>
+              <h3 className="text-2xl font-semibold bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent mb-4">
+                Our Values
+              </h3>
               <ul className="space-y-4 text-aires-navy/80">
                 <li>• Excellence in Investment Management</li>
                 <li>• Client-Centric Approach</li>
@@ -65,7 +67,7 @@ const WebsitePresentation = () => {
       {/* Services Section */}
       <section id="services" className="py-24">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent text-center mb-16">
+          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent text-center mb-16">
             Our Services
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -92,7 +94,7 @@ const WebsitePresentation = () => {
       {/* Products Section */}
       <section id="products" className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent text-center mb-16">
+          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent text-center mb-16">
             Investment Solutions
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -119,7 +121,7 @@ const WebsitePresentation = () => {
       {/* Contact Section */}
       <section id="contact" className="py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent mb-8">
+          <h2 className="text-4xl font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent mb-8">
             Get In Touch
           </h2>
           <p className="text-lg text-aires-navy/80 mb-12">
