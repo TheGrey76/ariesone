@@ -51,16 +51,16 @@ const Services = () => {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="services" className="w-full">
-              <TabsList className="w-full bg-white/10 border-white/20">
+              <TabsList className="w-full bg-white/5 border-white/20">
                 <TabsTrigger 
                   value="services"
-                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20"
+                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20 data-[state=active]:text-white hover:bg-aires-emerald/10 transition-colors"
                 >
                   Services
                 </TabsTrigger>
                 <TabsTrigger 
                   value="fees"
-                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20"
+                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20 data-[state=active]:text-white hover:bg-aires-emerald/10 transition-colors"
                 >
                   Fee Structure
                 </TabsTrigger>
