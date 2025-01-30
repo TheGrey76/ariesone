@@ -9,9 +9,6 @@ const Index = () => {
       <Navigation />
       <main className="flex-grow">
         <div className="container mx-auto py-12">
-          <div className="flex justify-end mb-8">
-            <WebsitePresentationButton />
-          </div>
           <WebsitePresentation />
         </div>
       </main>

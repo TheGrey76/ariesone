@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,6 +14,19 @@ const WebsitePresentation = () => {
         <p className="text-xl bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent max-w-2xl mx-auto">
           Your Trusted Partner in Investment Management
         </p>
+      </section>
+
+      {/* Who I Am Section */}
+      <section className="space-y-6">
+        <h2 className="text-3xl font-semibold bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent text-center">
+          Who I Am
+        </h2>
+        <div className="p-6 bg-gradient-to-br from-aires-navy/5 to-aires-blue/5 rounded-xl shadow-lg border border-aires-navy/10">
+          <p className="text-aires-navy/80 text-center">
+            With over a decade of experience in investment management, I specialize in creating tailored investment solutions 
+            that align with my clients' unique financial goals and risk preferences.
+          </p>
+        </div>
       </section>
 
       {/* Services Section */}
@@ -59,6 +71,20 @@ const WebsitePresentation = () => {
         </div>
       </section>
 
+      {/* Download Section */}
+      <section className="space-y-6">
+        <div className="flex justify-center">
+          <Button
+            onClick={() => generatePDF('website-presentation', 'Aires-Capital-Presentation.pdf')}
+            className="bg-gradient-to-r from-aires-navy to-aires-blue text-white font-medium px-6 py-2 rounded-lg flex items-center gap-2 transition-all hover:opacity-90"
+            size="lg"
+          >
+            <FileText className="w-5 h-5" />
+            Download Presentation
+          </Button>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section className="space-y-6">
         <h2 className="text-3xl font-semibold bg-gradient-to-r from-aires-navy to-aires-blue bg-clip-text text-transparent text-center">
@@ -72,23 +98,6 @@ const WebsitePresentation = () => {
         </div>
       </section>
     </div>
-  );
-};
-
-export const WebsitePresentationButton = () => {
-  const handleDownload = () => {
-    generatePDF('website-presentation', 'Aires-Capital-Presentation.pdf');
-  };
-
-  return (
-    <Button
-      onClick={handleDownload}
-      className="bg-gradient-to-r from-aires-navy to-aires-blue text-white font-medium px-6 py-2 rounded-lg flex items-center gap-2 transition-all hover:opacity-90"
-      size="lg"
-    >
-      <FileText className="w-5 h-5" />
-      Download Presentation
-    </Button>
   );
 };
 
