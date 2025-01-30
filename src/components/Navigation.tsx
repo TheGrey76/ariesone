@@ -55,12 +55,6 @@ const Navigation = () => {
               Services
             </a>
             <a
-              href="/services"
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Services Details
-            </a>
-            <a
               href="#contact"
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
             >
@@ -113,13 +107,6 @@ const Navigation = () => {
                 onClick={toggleMenu}
               >
                 Services
-              </a>
-              <a
-                href="/services"
-                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={toggleMenu}
-              >
-                Services Details
               </a>
               <a
                 href="#contact"
