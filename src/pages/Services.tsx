@@ -54,13 +54,13 @@ const Services = () => {
               <TabsList className="w-full bg-white/5 border-white/20">
                 <TabsTrigger 
                   value="services"
-                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20 data-[state=active]:text-white hover:bg-aires-emerald/10 transition-colors"
+                  className="w-1/2 text-white data-[state=active]:bg-aires-lightBlue/20 data-[state=active]:text-white hover:bg-aires-lightBlue/10 transition-colors"
                 >
                   Services
                 </TabsTrigger>
                 <TabsTrigger 
                   value="fees"
-                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20 data-[state=active]:text-white hover:bg-aires-emerald/10 transition-colors"
+                  className="w-1/2 text-white data-[state=active]:bg-aires-lightBlue/20 data-[state=active]:text-white hover:bg-aires-lightBlue/10 transition-colors"
                 >
                   Fee Structure
                 </TabsTrigger>
@@ -128,7 +128,7 @@ const Services = () => {
                         <ul className="space-y-2">
                           {service.features.map((feature, idx) => (
                             <li key={idx} className="text-white/80 flex items-center gap-2">
-                              <div className="h-1.5 w-1.5 rounded-full bg-aires-emerald" />
+                              <div className="h-1.5 w-1.5 rounded-full bg-aires-lightBlue" />
                               {feature}
                             </li>
                           ))}
