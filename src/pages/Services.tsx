@@ -43,10 +43,10 @@ const Services = () => {
         <Card className="w-full max-w-4xl mx-auto mt-8 bg-white/10 backdrop-blur-sm border-white/20">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-heading font-bold text-white">
-              Our Services & Fees
+              Our Services & Fee Structure
             </CardTitle>
             <CardDescription className="text-white/80">
-              Discover our comprehensive range of financial services and transparent fee structure
+              Discover our comprehensive range of financial services and transparent approach to fees
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -62,7 +62,7 @@ const Services = () => {
                   value="fees"
                   className="w-1/2 text-white data-[state=active]:bg-white/20"
                 >
-                  Fees
+                  Fee Structure
                 </TabsTrigger>
               </TabsList>
               
@@ -122,24 +122,24 @@ const Services = () => {
                   {[
                     {
                       icon: DollarSign,
-                      title: "Advisory Fees",
-                      description: "Transparent fee structure for our advisory services.",
+                      title: "Advisory Fee Structure",
+                      description: "Transparent and flexible fee arrangements tailored to your needs.",
                       items: [
-                        "Initial consultation: Complimentary",
-                        "Portfolio review: 0.5% of AUM",
-                        "Ongoing advisory: 1% annual fee",
-                        "Custom solutions: Project-based"
+                        "Complimentary initial consultation",
+                        "Asset-based fees for portfolio management",
+                        "Performance-based fee options available",
+                        "Custom fee arrangements for specific mandates"
                       ]
                     },
                     {
                       icon: FileText,
-                      title: "Product Fees",
-                      description: "Fee structure for investment products and services.",
+                      title: "Investment Product Fees",
+                      description: "Clear and competitive fee structure for investment products.",
                       items: [
-                        "Product structuring: 0.3% - 0.8%",
-                        "Management fee: 0.75% annual",
-                        "Performance fee: 15% above hurdle",
-                        "Early redemption: 1% - 2%"
+                        "Structuring fees based on complexity",
+                        "Management fees aligned with industry standards",
+                        "Performance fees with appropriate hurdle rates",
+                        "Flexible terms for institutional clients"
                       ]
                     }
                   ].map((fee, index) => (
