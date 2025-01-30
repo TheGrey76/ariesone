@@ -14,7 +14,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { BriefcaseBusiness, DollarSign, ChartBar, FileText } from "lucide-react";
+import { BriefcaseBusiness, ChartBar, FileText, DollarSign } from "lucide-react";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -43,10 +43,10 @@ const Services = () => {
         <Card className="w-full max-w-4xl mx-auto mt-8 bg-white/10 backdrop-blur-sm border-white/20">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-heading font-bold text-white">
-              Our Services & Fee Structure
+              Investment Advisory Services
             </CardTitle>
             <CardDescription className="text-white/80">
-              Discover our comprehensive range of financial services and transparent approach to fees
+              Tailored solutions for institutional investors and family offices
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -122,24 +122,24 @@ const Services = () => {
                   {[
                     {
                       icon: DollarSign,
-                      title: "Advisory Fee Structure",
-                      description: "Transparent and flexible fee arrangements tailored to your needs.",
+                      title: "Investment Advisory",
+                      description: "Our fee structure is designed to align our interests with yours.",
                       items: [
-                        "Complimentary initial consultation",
-                        "Asset-based fees for portfolio management",
-                        "Performance-based fee options available",
-                        "Custom fee arrangements for specific mandates"
+                        "Customized fee arrangements based on mandate size and complexity",
+                        "Transparent reporting and fee calculation methodology",
+                        "Flexible structures to accommodate different investment strategies",
+                        "Competitive rates aligned with industry standards"
                       ]
                     },
                     {
                       icon: FileText,
-                      title: "Investment Product Fees",
-                      description: "Clear and competitive fee structure for investment products.",
+                      title: "Investment Products",
+                      description: "Structured to provide value while maintaining transparency.",
                       items: [
-                        "Structuring fees based on complexity",
-                        "Management fees aligned with industry standards",
-                        "Performance fees with appropriate hurdle rates",
-                        "Flexible terms for institutional clients"
+                        "Fee structures tailored to product complexity and investment horizon",
+                        "Institutional-grade fee arrangements",
+                        "Performance-based components available",
+                        "Alignment of interests through co-investment opportunities"
                       ]
                     }
                   ].map((fee, index) => (
