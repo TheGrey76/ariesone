@@ -25,7 +25,7 @@ const Services = () => {
         <div className="flex justify-between items-start mb-8">
           <Button
             variant="outline"
-            className="text-white hover:bg-white/20 border-white/20"
+            className="border-white/20 text-white hover:bg-white/10 hover:text-white transition-colors"
             onClick={() => navigate(-1)}
           >
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
