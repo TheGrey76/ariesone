@@ -28,18 +28,18 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       <section 
         ref={heroRef}
-        className={`min-h-screen flex items-center justify-center px-4 relative transition-opacity duration-700 ${
+        className={`min-h-screen flex items-center justify-center px-4 relative bg-white transition-opacity duration-700 ${
           heroInView ? "opacity-100" : "opacity-0"
         }`}
       >
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-10 transform scale-105 transition-transform duration-1000" 
              style={{ transform: heroInView ? "scale(1)" : "scale(1.05)" }} />
-        <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
+        <div className="absolute inset-0 bg-white" />
         <div className="max-w-7xl mx-auto text-center relative">
           <h1 className="text-5xl md:text-7xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent mb-6 animate-fade-up">
             Empowering Data-Driven Financial Solutions
@@ -60,12 +60,12 @@ const Index = () => {
       <section 
         id="about" 
         ref={aboutRef}
-        className={`py-32 px-4 relative transition-all duration-700 transform ${
+        className={`py-32 px-4 relative bg-white transition-all duration-700 transform ${
           aboutInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
-        <div className="absolute inset-0 bg-white/50" />
+        <div className="absolute inset-0 bg-white" />
         <div className="max-w-7xl mx-auto relative">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
             Who We Are
@@ -117,12 +117,12 @@ const Index = () => {
       <section 
         id="who-i-am" 
         ref={whoIAmRef}
-        className={`py-20 px-4 relative transition-all duration-700 transform ${
+        className={`py-20 px-4 relative bg-white transition-all duration-700 transform ${
           whoIAmInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
-        <div className="absolute inset-0 bg-white/50" />
+        <div className="absolute inset-0 bg-white" />
         <div className="max-w-4xl mx-auto relative">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-4 text-center">
             Who I Am
@@ -168,12 +168,12 @@ const Index = () => {
       <section 
         id="services" 
         ref={servicesRef}
-        className={`py-20 px-4 relative transition-all duration-700 transform ${
+        className={`py-20 px-4 relative bg-white transition-all duration-700 transform ${
           servicesInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-fixed bg-center opacity-5" />
-        <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
+        <div className="absolute inset-0 bg-white" />
         <div className="max-w-7xl mx-auto relative">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
             Our Services
@@ -261,7 +261,7 @@ const Index = () => {
       <section 
         id="contact" 
         ref={contactRef}
-        className={`py-20 px-4 relative transition-all duration-700 transform ${
+        className={`py-20 px-4 relative bg-white transition-all duration-700 transform ${
           contactInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
