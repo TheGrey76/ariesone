@@ -14,6 +14,7 @@ import Products from "./pages/Products";
 import Login from "./pages/Login";
 import StockReport from "./pages/StockReport";
 import SingleStockPage from "./pages/SingleStockPage";
+import Services from "./pages/Services";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/services" element={<Services />} />
             <Route 
               path="/stock-report" 
               element={
