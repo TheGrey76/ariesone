@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -58,12 +59,6 @@ const Navigation = () => {
             >
               Contact
             </a>
-            <a
-              href="/login"
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Investor Portal
-            </a>
           </div>
         </div>
 
@@ -97,13 +92,6 @@ const Navigation = () => {
                 onClick={toggleMenu}
               >
                 Contact
-              </a>
-              <a
-                href="/login"
-                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={toggleMenu}
-              >
-                Investor Portal
               </a>
             </div>
           </div>
