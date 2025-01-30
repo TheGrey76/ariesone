@@ -24,8 +24,8 @@ const Services = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-start mb-8">
           <Button
-            variant="ghost"
-            className="text-white hover:bg-white/10"
+            variant="outline"
+            className="text-white hover:bg-white/20 border-white/20"
             onClick={() => navigate(-1)}
           >
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -54,13 +54,13 @@ const Services = () => {
               <TabsList className="w-full bg-white/10 border-white/20">
                 <TabsTrigger 
                   value="services"
-                  className="w-1/2 text-white data-[state=active]:bg-white/20"
+                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20"
                 >
                   Services
                 </TabsTrigger>
                 <TabsTrigger 
                   value="fees"
-                  className="w-1/2 text-white data-[state=active]:bg-white/20"
+                  className="w-1/2 text-white data-[state=active]:bg-aires-emerald/20"
                 >
                   Fee Structure
                 </TabsTrigger>
