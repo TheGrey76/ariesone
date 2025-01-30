@@ -14,7 +14,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { BriefcaseBusiness, ChartBar, FileText, DollarSign } from "lucide-react";
+import { ChartBar, LineChart, ShieldCheck, Briefcase } from "lucide-react";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -70,25 +70,47 @@ const Services = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
                     {
-                      icon: BriefcaseBusiness,
-                      title: "Advisory Services",
-                      description: "Strategic guidance for portfolio optimization and market opportunities.",
+                      icon: ChartBar,
+                      title: "Portfolio Analysis",
+                      description: "Comprehensive portfolio analysis and optimization strategies.",
                       features: [
-                        "Portfolio analysis and optimization",
-                        "Market opportunity assessment",
-                        "Risk management strategies",
-                        "Investment planning"
+                        "Risk-adjusted performance analysis",
+                        "Asset allocation optimization",
+                        "Portfolio rebalancing strategies",
+                        "Investment efficiency assessment"
                       ]
                     },
                     {
-                      icon: ChartBar,
-                      title: "Investment Products",
-                      description: "Innovative financial instruments and structured products.",
+                      icon: LineChart,
+                      title: "Market Opportunities",
+                      description: "Strategic market opportunity assessment and analysis.",
                       features: [
-                        "Custom product structuring",
-                        "Fund development",
-                        "Alternative investments",
-                        "ESG integration"
+                        "Market trend analysis",
+                        "Sector rotation strategies",
+                        "Emerging market opportunities",
+                        "Global macro analysis"
+                      ]
+                    },
+                    {
+                      icon: ShieldCheck,
+                      title: "Risk Management",
+                      description: "Comprehensive risk management strategies and solutions.",
+                      features: [
+                        "Risk exposure analysis",
+                        "Hedging strategies",
+                        "Downside protection",
+                        "Volatility management"
+                      ]
+                    },
+                    {
+                      icon: Briefcase,
+                      title: "Investment Planning",
+                      description: "Strategic investment planning and execution.",
+                      features: [
+                        "Investment policy development",
+                        "Strategic asset allocation",
+                        "Performance monitoring",
+                        "Investment guidelines"
                       ]
                     }
                   ].map((service, index) => (
@@ -121,7 +143,7 @@ const Services = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
                     {
-                      icon: DollarSign,
+                      icon: Briefcase,
                       title: "Investment Advisory",
                       description: "Our fee structure is designed to align our interests with yours.",
                       items: [
@@ -132,7 +154,7 @@ const Services = () => {
                       ]
                     },
                     {
-                      icon: FileText,
+                      icon: ChartBar,
                       title: "Investment Products",
                       description: "Structured to provide value while maintaining transparency.",
                       items: [
