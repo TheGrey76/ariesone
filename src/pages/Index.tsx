@@ -5,9 +5,9 @@ import WebsitePresentation, { WebsitePresentationButton } from "@/components/Web
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-aires-navy via-aires-blue to-aires-emerald">
       <Navigation />
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-grow">
         <div className="container mx-auto py-12">
           <div className="flex justify-end mb-8">
             <WebsitePresentationButton />
