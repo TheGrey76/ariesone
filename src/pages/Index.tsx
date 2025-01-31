@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
@@ -6,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Brain, LineChart, Rocket, Shield, ArrowRight } from "lucide-react";
+import { Brain, LineChart, Rocket, Shield, ArrowRight, CircuitBoard, Database, Network } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const Index = () => {
@@ -61,15 +60,50 @@ const Index = () => {
         }`}
       >
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
-        <div className="absolute inset-0 bg-white/50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-blue-50/80" />
         <div className="max-w-7xl mx-auto relative">
-          <div className="prose prose-lg max-w-4xl mx-auto text-aires-gray">
-            <p className="text-lg">
-              At Aires Data, we are redefining capital raising by integrating Artificial Intelligence and data-driven decision-making into every stage of the fundraising process. Traditional models rely on networks and manual outreach—we leverage technology to optimize investor targeting, enhance engagement, and accelerate deal execution.
-            </p>
-            <p className="text-lg">
-              By harnessing AI-powered analytics, investor intelligence, and predictive modeling, Aires Data empowers fund managers, investors, and financial sponsors with faster, smarter, and more efficient capital-raising solutions.
-            </p>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <CircuitBoard className="w-8 h-8 text-aires-navy mb-4" />
+                <p className="text-lg text-aires-gray">
+                  At Aires Data, we are redefining capital raising by integrating Artificial Intelligence and data-driven decision-making into every stage of the fundraising process.
+                </p>
+              </div>
+              
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <Database className="w-8 h-8 text-aires-emerald mb-4" />
+                <p className="text-lg text-aires-gray">
+                  Traditional models rely on networks and manual outreach—we leverage technology to optimize investor targeting, enhance engagement, and accelerate deal execution.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-8 md:mt-12">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <Network className="w-8 h-8 text-aires-blue mb-4" />
+                <p className="text-lg text-aires-gray">
+                  By harnessing AI-powered analytics, investor intelligence, and predictive modeling, Aires Data empowers fund managers, investors, and financial sponsors with faster, smarter, and more efficient capital-raising solutions.
+                </p>
+              </div>
+              
+              <div className="relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald rounded-xl blur-md opacity-30"></div>
+                <div className="relative bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="h-2 w-2 rounded-full bg-aires-navy"></div>
+                    <div className="h-2 w-2 rounded-full bg-aires-blue"></div>
+                    <div className="h-2 w-2 rounded-full bg-aires-emerald"></div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+                    The Future of Capital Raising
+                  </h3>
+                  <p className="text-aires-gray">
+                    Experience the next generation of fundraising with our AI-powered platform.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
