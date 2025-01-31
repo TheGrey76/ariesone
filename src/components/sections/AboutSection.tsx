@@ -1,6 +1,6 @@
 
 import { useInView } from "react-intersection-observer";
-import { Brain, Database, Network } from "lucide-react";
+import { CircuitBoard, Database, Network } from "lucide-react";
 
 const AboutSection = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
