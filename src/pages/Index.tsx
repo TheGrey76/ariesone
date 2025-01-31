@@ -62,16 +62,16 @@ const Index = () => {
         <div className="absolute inset-0 bg-[url('/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png')] bg-cover bg-center opacity-5" />
         <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-blue-50/80" />
         <div className="max-w-7xl mx-auto relative">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-8">
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-all duration-300 h-full">
                 <CircuitBoard className="w-8 h-8 text-aires-navy mb-4" />
                 <p className="text-lg text-aires-gray">
                   At Aires Data, we are redefining capital raising by integrating Artificial Intelligence and data-driven decision-making into every stage of the fundraising process.
                 </p>
               </div>
               
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-all duration-300 h-full">
                 <Database className="w-8 h-8 text-aires-emerald mb-4" />
                 <p className="text-lg text-aires-gray">
                   Traditional models rely on networks and manual outreach—we leverage technology to optimize investor targeting, enhance engagement, and accelerate deal execution.
@@ -79,17 +79,17 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="space-y-8 md:mt-12">
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+            <div className="space-y-8">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-all duration-300 h-full">
                 <Network className="w-8 h-8 text-aires-blue mb-4" />
                 <p className="text-lg text-aires-gray">
                   By harnessing AI-powered analytics, investor intelligence, and predictive modeling, Aires Data empowers fund managers, investors, and financial sponsors with faster, smarter, and more efficient capital-raising solutions.
                 </p>
               </div>
               
-              <div className="relative">
+              <div className="relative h-full">
                 <div className="absolute -inset-1 bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald rounded-xl blur-md opacity-30"></div>
-                <div className="relative bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <div className="relative bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-all duration-300 h-full">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="h-2 w-2 rounded-full bg-aires-navy"></div>
                     <div className="h-2 w-2 rounded-full bg-aires-blue"></div>
