@@ -42,12 +42,6 @@ const Navigation = () => {
               About
             </a>
             <a
-              href="#who-i-am"
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Who I Am
-            </a>
-            <a
               href="#services"
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
             >
@@ -71,13 +65,6 @@ const Navigation = () => {
                 onClick={toggleMenu}
               >
                 About
-              </a>
-              <a
-                href="#who-i-am"
-                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={toggleMenu}
-              >
-                Who I Am
               </a>
               <a
                 href="#services"
