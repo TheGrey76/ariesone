@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +15,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 const queryClient = new QueryClient();
 
 function App() {
+  const isDevelopment = import.meta.env.DEV;
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
@@ -22,12 +25,23 @@ function App() {
           <Sonner />
           <Router>
             <div className="min-h-screen flex flex-col">
-              <Navigation />
+              <Navigation isDevelopment={isDevelopment} />
               <main className="flex-grow">
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />
                   <Route path="/terms" element={<Terms />} />
+                  {isDevelopment && (
+                    <>
+                      <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/ai-report" element={<AIReport />} />
+                      <Route path="/products" element={<Products />} />
+                      <Route path="/advisory" element={<Advisory />} />
+                      <Route path="/sponsorship" element={<Sponsorship />} />
+                      <Route path="/stock-report" element={<StockReport />} />
+                      <Route path="/stock/:symbol" element={<SingleStockPage />} />
+                    </>
+                  )}
                 </Routes>
               </main>
               <Footer />
