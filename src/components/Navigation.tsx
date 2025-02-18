@@ -36,18 +36,6 @@ const Navigation = () => {
           </Button>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/dashboard"
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Dashboard
-            </Link>
-            <Link
-              to="/ai-report"
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              AI Report
-            </Link>
             <a
               href="#contact"
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
@@ -60,20 +48,6 @@ const Navigation = () => {
         {isMobile && isOpen && (
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
-              <Link
-                to="/dashboard"
-                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={toggleMenu}
-              >
-                Dashboard
-              </Link>
-              <Link
-                to="/ai-report"
-                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={toggleMenu}
-              >
-                AI Report
-              </Link>
               <a
                 href="#contact"
                 className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
