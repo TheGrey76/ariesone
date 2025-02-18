@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Database, FileText, PieChart, Eye } from "lucide-react";
@@ -12,7 +11,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 interface Fund {
   id: string;
@@ -187,7 +185,7 @@ const AIReport = () => {
                   onClick={() => setSelectedFund(fund)}
                 >
                   <Eye className="w-4 h-4" />
-                  View KIID
+                  View Details
                 </button>
               </div>
             ))}
@@ -198,119 +196,80 @@ const AIReport = () => {
       <Dialog open={!!selectedFund} onOpenChange={() => setSelectedFund(null)}>
         <DialogContent className="max-w-4xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-aires-navy">
-              Key Investor Information Document (KIID)
+            <DialogTitle className="text-2xl font-bold text-aires-navy mb-6">
+              {selectedFund?.fund_name} - Fund Details
             </DialogTitle>
           </DialogHeader>
-          <Tabs defaultValue="objectives" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="objectives">Objectives</TabsTrigger>
-              <TabsTrigger value="risks">Risk Profile</TabsTrigger>
-              <TabsTrigger value="performance">Performance</TabsTrigger>
-              <TabsTrigger value="details">Fund Details</TabsTrigger>
-            </TabsList>
-            <TabsContent value="objectives" className="mt-6 space-y-4">
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4">Investment Objectives and Policy</h3>
-                <p className="text-gray-700 mb-4">
-                  {selectedFund?.fund_name} is a {selectedFund?.strategy.toLowerCase()} focused investment fund that aims to generate superior returns through strategic investments in its target market.
-                </p>
-                <ul className="list-disc list-inside space-y-2 text-gray-700">
-                  <li>Primary focus on {selectedFund?.strategy} opportunities</li>
-                  <li>Actively managed portfolio with strategic asset allocation</li>
-                  <li>Long-term capital appreciation objective</li>
-                  <li>Disciplined investment approach with risk management</li>
-                </ul>
+          
+          <div className="space-y-8">
+            <div className="grid grid-cols-4 gap-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-600 mb-1">AUM</p>
+                <p className="text-xl font-bold text-aires-navy">${selectedFund?.aum.toLocaleString()}M</p>
               </div>
-            </TabsContent>
-            <TabsContent value="risks" className="mt-6">
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4">Risk and Reward Profile</h3>
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-medium mb-2">Key Risks</h4>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
-                      <li>Market volatility</li>
-                      <li>Liquidity risk</li>
-                      <li>Currency risk</li>
-                      <li>Investment strategy risk</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-2">Risk Mitigation</h4>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
-                      <li>Diversification strategy</li>
-                      <li>Regular monitoring</li>
-                      <li>Professional management</li>
-                      <li>Risk assessment tools</li>
-                    </ul>
-                  </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-600 mb-1">IRR</p>
+                <p className="text-xl font-bold text-aires-navy">{selectedFund?.irr}%</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-600 mb-1">TVPI</p>
+                <p className="text-xl font-bold text-aires-navy">{selectedFund?.tvpi}x</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-600 mb-1">Strategy</p>
+                <p className="text-xl font-bold text-aires-navy">{selectedFund?.strategy}</p>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-lg font-semibold mb-4">Investment Objectives</h3>
+              <p className="text-gray-700 mb-4">
+                {selectedFund?.fund_name} is a {selectedFund?.strategy.toLowerCase()} focused investment fund that aims to generate superior returns through strategic investments in its target market.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-medium mb-2">Key Focuses</h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Primary focus on {selectedFund?.strategy} opportunities</li>
+                    <li>Actively managed portfolio</li>
+                    <li>Long-term capital appreciation</li>
+                    <li>Disciplined investment approach</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Risk Management</h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Diversification strategy</li>
+                    <li>Regular monitoring</li>
+                    <li>Professional management</li>
+                    <li>Risk assessment tools</li>
+                  </ul>
                 </div>
               </div>
-            </TabsContent>
-            <TabsContent value="performance" className="mt-6">
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4">Performance Metrics</h3>
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-medium mb-2">Key Performance Indicators</h4>
-                    <div className="space-y-3">
-                      <div>
-                        <p className="text-sm text-gray-600">Internal Rate of Return (IRR)</p>
-                        <p className="text-2xl font-bold text-aires-navy">{selectedFund?.irr}%</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-600">Total Value to Paid-In (TVPI)</p>
-                        <p className="text-2xl font-bold text-aires-navy">{selectedFund?.tvpi}x</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-600">Assets Under Management</p>
-                        <p className="text-2xl font-bold text-aires-navy">${selectedFund?.aum.toLocaleString()}M</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-2">Historical Performance</h4>
-                    <p className="text-gray-700">
-                      Past performance data and detailed analytics available upon request.
-                      Historical returns should not be considered a reliable indicator of future performance.
-                    </p>
-                  </div>
+            </div>
+
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-lg font-semibold mb-4">Additional Information</h3>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                <div>
+                  <p className="text-sm text-gray-600">Investment Manager</p>
+                  <p className="font-medium">Aires Capital Management</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Fund Currency</p>
+                  <p className="font-medium">USD</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Inception Date</p>
+                  <p className="font-medium">January 2024</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Investment Approach</p>
+                  <p className="font-medium">Active Management</p>
                 </div>
               </div>
-            </TabsContent>
-            <TabsContent value="details" className="mt-6">
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4">Fund Information</h3>
-                <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Fund Name</p>
-                    <p className="font-medium">{selectedFund?.fund_name}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Strategy</p>
-                    <p className="font-medium">{selectedFund?.strategy}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Fund Size</p>
-                    <p className="font-medium">${selectedFund?.aum.toLocaleString()}M</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Investment Manager</p>
-                    <p className="font-medium">Aires Capital Management</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Fund Currency</p>
-                    <p className="font-medium">USD</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Inception Date</p>
-                    <p className="font-medium">January 2024</p>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
-          </Tabs>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
