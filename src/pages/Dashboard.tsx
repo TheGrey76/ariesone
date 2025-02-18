@@ -14,6 +14,7 @@ import {
   Bar,
   LineChart,
   Line,
+  BarChart,
 } from "recharts";
 
 // Dati fake per i grafici
