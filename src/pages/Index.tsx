@@ -6,9 +6,16 @@ import WhyUsSection from "@/components/sections/WhyUsSection";
 import ContactSection from "@/components/sections/ContactSection";
 
 const Index = () => {
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="pt-20">
-      <HeroSection />
+      <HeroSection onExploreClick={scrollToServices} />
       <AboutSection />
       <ServicesSection />
       <WhyUsSection />
