@@ -32,6 +32,7 @@ import {
 const StockReport = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sectorFilter, setSectorFilter] = useState<string>("all");
+  const isDevelopment = import.meta.env.DEV;
 
   const { data: stockData = [], isLoading } = useQuery({
     queryKey: ["stocks"],
@@ -55,7 +56,6 @@ const StockReport = () => {
     return matchesSearch && matchesSector;
   });
 
-  // Only show sector distribution and key statistics when not viewing a single stock
   const showFullDashboard = filteredData.length !== 1;
 
   const totalMarketCap = filteredData.reduce((acc, stock) => acc + stock.market_cap, 0);
@@ -84,7 +84,7 @@ const StockReport = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Navigation />
+        <Navigation isDevelopment={isDevelopment} />
         <main className="container mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-aires-navy mb-8">Loading...</h1>
         </main>
@@ -142,7 +142,7 @@ const StockReport = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+      <Navigation isDevelopment={isDevelopment} />
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-aires-navy mb-8">Stock Report</h1>
         

@@ -1,3 +1,4 @@
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,6 +13,7 @@ import { AlertTriangle } from "lucide-react";
 const SingleStockPage = () => {
   const { ticker } = useParams();
   const navigate = useNavigate();
+  const isDevelopment = import.meta.env.DEV;
 
   const { data: stock, isLoading, error } = useQuery({
     queryKey: ["stock", ticker],
@@ -55,7 +57,7 @@ const SingleStockPage = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Navigation />
+        <Navigation isDevelopment={isDevelopment} />
         <main className="container mx-auto px-4">
           <BackButton />
           <h1 className="text-4xl font-bold text-aires-navy">Loading...</h1>
@@ -68,7 +70,7 @@ const SingleStockPage = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Navigation />
+        <Navigation isDevelopment={isDevelopment} />
         <main className="container mx-auto px-4">
           <BackButton />
           <Alert variant="destructive">
@@ -88,7 +90,7 @@ const SingleStockPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+      <Navigation isDevelopment={isDevelopment} />
       <main className="container mx-auto px-4">
         <BackButton />
         <h1 className="text-4xl font-bold text-aires-navy mb-8">

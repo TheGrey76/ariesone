@@ -1,4 +1,6 @@
 
+import Navigation from "@/components/Navigation";
+
 const Terms = () => {
   const isDevelopment = import.meta.env.DEV;
 
