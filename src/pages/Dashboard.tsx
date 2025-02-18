@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LineChart, BarChart, PieChart } from "lucide-react";
+import { LineChart as LineChartIcon, BarChart as BarChartIcon, PieChart as PieChartIcon } from "lucide-react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
   Bar,
+  LineChart,
   Line,
 } from "recharts";
 
@@ -59,7 +60,7 @@ const Dashboard = () => {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                 <CardTitle className="text-sm font-medium">Total AUM</CardTitle>
-                <LineChart className="w-4 h-4 text-aires-navy" />
+                <LineChartIcon className="w-4 h-4 text-aires-navy" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">$12.4B</div>
@@ -69,7 +70,7 @@ const Dashboard = () => {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                 <CardTitle className="text-sm font-medium">Performance</CardTitle>
-                <BarChart className="w-4 h-4 text-aires-emerald" />
+                <BarChartIcon className="w-4 h-4 text-aires-emerald" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">15.2%</div>
@@ -79,7 +80,7 @@ const Dashboard = () => {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                 <CardTitle className="text-sm font-medium">Fund Distribution</CardTitle>
-                <PieChart className="w-4 h-4 text-aires-blue" />
+                <PieChartIcon className="w-4 h-4 text-aires-blue" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">24</div>
