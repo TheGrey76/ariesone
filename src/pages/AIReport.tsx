@@ -1,10 +1,17 @@
 
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Database, FileText, PieChart } from "lucide-react";
+import { Database, FileText, PieChart, Eye } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { useToast } from "@/components/ui/use-toast";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface Fund {
   id: string;
@@ -17,6 +24,7 @@ interface Fund {
 
 const AIReport = () => {
   const { toast } = useToast();
+  const [selectedFund, setSelectedFund] = useState<Fund | null>(null);
 
   const { data: funds, isLoading, error } = useQuery({
     queryKey: ['funds'],
@@ -173,7 +181,11 @@ const AIReport = () => {
                     Strategy: {fund.strategy} | IRR: {fund.irr}% | TVPI: {fund.tvpi}
                   </p>
                 </div>
-                <button className="text-aires-blue hover:underline text-sm">
+                <button 
+                  className="flex items-center gap-2 text-aires-blue hover:underline text-sm"
+                  onClick={() => setSelectedFund(fund)}
+                >
+                  <Eye className="w-4 h-4" />
                   View Details
                 </button>
               </div>
@@ -181,6 +193,38 @@ const AIReport = () => {
           </div>
         </CardContent>
       </Card>
+
+      <Dialog open={!!selectedFund} onOpenChange={() => setSelectedFund(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-aires-navy">
+              {selectedFund?.fund_name}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-6 mt-4">
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-sm font-medium text-gray-500">Strategy</h4>
+                <p className="text-lg">{selectedFund?.strategy}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-500">AUM</h4>
+                <p className="text-lg">${selectedFund?.aum.toLocaleString()} M</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-sm font-medium text-gray-500">IRR</h4>
+                <p className="text-lg">{selectedFund?.irr}%</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-500">TVPI</h4>
+                <p className="text-lg">{selectedFund?.tvpi}x</p>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
