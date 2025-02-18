@@ -1,54 +1,42 @@
+
 import Navigation from "@/components/Navigation";
 
 const PrivacyPolicy = () => {
+  const isDevelopment = import.meta.env.DEV;
+
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      <Navigation isDevelopment={isDevelopment} />
       <div className="max-w-4xl mx-auto px-4 py-24">
         <h1 className="text-3xl font-heading font-bold text-aires-navy mb-8">Privacy Policy</h1>
         <div className="prose prose-lg">
           <p className="mb-6">Last updated: {new Date().toLocaleDateString()}</p>
           
           <section className="mb-8">
-            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">1. Introduction</h2>
+            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">1. Information We Collect</h2>
             <p>
-              AIRES ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.
+              We collect information that you provide directly to us, information we obtain automatically when you use our services, and information from other sources.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">2. Information We Collect</h2>
-            <p>We collect information that you voluntarily provide to us when you:</p>
-            <ul className="list-disc pl-6 mt-2">
-              <li>Contact us through our website</li>
-              <li>Subscribe to our newsletter</li>
-              <li>Request information about our services</li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">3. How We Use Your Information</h2>
-            <p>We use the information we collect to:</p>
-            <ul className="list-disc pl-6 mt-2">
-              <li>Respond to your inquiries</li>
-              <li>Send you updates and marketing communications</li>
-              <li>Improve our website and services</li>
-              <li>Comply with legal obligations</li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">4. Contact Us</h2>
+            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">2. How We Use Your Information</h2>
             <p>
-              If you have questions about this Privacy Policy, please contact us at:
-              <br />
-              AIRES
-              <br />
-              27, Old Gloucester Street
-              <br />
-              LONDON WC1N 3AX
-              <br />
-              UNITED KINGDOM
+              We use the information we collect to provide, maintain, and improve our services, to develop new ones, and to protect AIRES and our users.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">3. Information Sharing</h2>
+            <p>
+              We do not share your personal information with companies, organizations, or individuals outside of AIRES except in the following cases: with your consent, with domain administrators, for external processing, or for legal reasons.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-heading font-semibold text-aires-navy mb-4">4. Data Security</h2>
+            <p>
+              We work hard to protect AIRES and our users from unauthorized access to or unauthorized alteration, disclosure, or destruction of information we hold.
             </p>
           </section>
         </div>

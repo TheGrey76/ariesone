@@ -11,6 +11,13 @@ import Terms from "./pages/Terms";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import Dashboard from "./pages/Dashboard";
+import AIReport from "./pages/AIReport";
+import Products from "./pages/Products";
+import Advisory from "./pages/Advisory";
+import Sponsorship from "./pages/Sponsorship";
+import StockReport from "./pages/StockReport";
+import SingleStockPage from "./pages/SingleStockPage";
 
 const queryClient = new QueryClient();
 

@@ -1,9 +1,10 @@
-import Navigation from "@/components/Navigation";
 
 const Terms = () => {
+  const isDevelopment = import.meta.env.DEV;
+
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      <Navigation isDevelopment={isDevelopment} />
       <div className="max-w-4xl mx-auto px-4 py-24">
         <h1 className="text-3xl font-heading font-bold text-aires-navy mb-8">Terms & Conditions</h1>
         <div className="prose prose-lg">
