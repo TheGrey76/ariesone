@@ -3,37 +3,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Database, FileText, PieChart } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { useToast } from "@/components/ui/use-toast";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
-// Dati di esempio per i fund manager
-const topFunds = [
-  {
-    fundName: "Alpha Growth Fund",
-    aum: 1250,
-    irr: 18.5,
-    tvpi: 2.3,
-    strategy: "Growth Equity"
-  },
-  {
-    fundName: "Beta Value Partners",
-    aum: 980,
-    irr: 16.8,
-    tvpi: 2.1,
-    strategy: "Value"
-  },
-  {
-    fundName: "Gamma Tech Fund",
-    aum: 1500,
-    irr: 22.4,
-    tvpi: 2.8,
-    strategy: "Technology"
-  },
-];
+interface Fund {
+  id: string;
+  fund_name: string;
+  aum: number;
+  irr: number;
+  tvpi: number;
+  strategy: string;
+}
 
 const AIReport = () => {
   const { toast } = useToast();
 
+  const { data: funds, isLoading, error } = useQuery({
+    queryKey: ['funds'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('funds')
+        .select('*')
+        .order('irr', { ascending: false });
+
+      if (error) throw error;
+      return data as Fund[];
+    },
+  });
+
   const handleGenerateReport = async () => {
-    // Creiamo il contenuto del report
+    if (!funds) return;
+
     const reportContent = `
       <div id="report" style="font-family: Arial, sans-serif; padding: 40px;">
         <h1 style="color: #333;">AI-Generated Investment Report</h1>
@@ -48,9 +48,9 @@ const AIReport = () => {
             <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">TVPI</th>
             <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Strategy</th>
           </tr>
-          ${topFunds.map(fund => `
+          ${funds.map(fund => `
             <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">${fund.fundName}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">${fund.fund_name}</td>
               <td style="border: 1px solid #ddd; padding: 8px;">${fund.aum}</td>
               <td style="border: 1px solid #ddd; padding: 8px;">${fund.irr}</td>
               <td style="border: 1px solid #ddd; padding: 8px;">${fund.tvpi}</td>
@@ -61,7 +61,6 @@ const AIReport = () => {
       </div>
     `;
 
-    // Aggiungiamo temporaneamente il contenuto al DOM
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = reportContent;
     tempDiv.style.position = "absolute";
@@ -84,6 +83,22 @@ const AIReport = () => {
       document.body.removeChild(tempDiv);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-24">
+        <p>Caricamento...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-24">
+        <p className="text-red-500">Errore nel caricamento dei dati</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-24">
@@ -143,23 +158,23 @@ const AIReport = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Reports</CardTitle>
+          <CardTitle>Available Funds</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {[1, 2, 3].map((i) => (
+            {funds?.map((fund) => (
               <div
-                key={i}
+                key={fund.id}
                 className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <div>
-                  <h3 className="font-medium">Fund Performance Report #{i}</h3>
+                  <h3 className="font-medium">{fund.fund_name}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Generated on {new Date().toLocaleDateString()}
+                    Strategy: {fund.strategy} | IRR: {fund.irr}% | TVPI: {fund.tvpi}
                   </p>
                 </div>
                 <button className="text-aires-blue hover:underline text-sm">
-                  View Report
+                  View Details
                 </button>
               </div>
             ))}
