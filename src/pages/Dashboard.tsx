@@ -1,5 +1,5 @@
 
-import { PieChart, LineChart, BarChart } from "lucide-react";
+import { PieChart, LineChart, BarChart, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const Dashboard = () => {
         </h1>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-4 gap-6">
         <Link to="/ai-report">
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -50,6 +50,20 @@ const Dashboard = () => {
             </p>
           </CardContent>
         </Card>
+
+        <Link to="/pdf-analysis">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+              <CardTitle className="text-sm font-medium">PDF Analysis</CardTitle>
+              <FileText className="w-4 h-4 text-aires-navy" />
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Analisi AI dei documenti PDF
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
     </div>
   );
