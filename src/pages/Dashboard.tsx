@@ -1,5 +1,4 @@
-
-import { PieChart, LineChart, BarChart } from "lucide-react";
+import { PieChart } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -27,30 +26,32 @@ const Dashboard = () => {
           </Card>
         </Link>
 
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Market Overview</CardTitle>
-            <LineChart className="w-4 h-4 text-aires-emerald" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Analisi delle performance di mercato
-            </p>
-          </CardContent>
-        </Card>
+          
 
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Portfolio Analysis</CardTitle>
-            <BarChart className="w-4 h-4 text-aires-blue" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Analisi del portafoglio
-            </p>
-          </CardContent>
-        </Card>
+          
+            
+              
+                Market Overview
+                
+                
+                  Analisi delle performance di mercato
+                
+              
+            
+
+          
+            
+              
+                Portfolio Analysis
+                
+                
+                  Analisi del portafoglio
+                
+              
+            
       </div>
+
+      
     </div>
   );
 };
