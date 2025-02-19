@@ -23,7 +23,7 @@ const App = () => {
     <AuthProvider>
       <Router>
         <ScrollToTop />
-        <Navigation />
+        <Navigation isDevelopment={true} />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<Products />} />
