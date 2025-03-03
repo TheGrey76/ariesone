@@ -1,8 +1,25 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/lovable-uploads/6bc5935f-995b-4dde-a87d-95701537a35c.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.05; /* Opacità molto bassa per renderlo appena visibile */
+  z-index: -1;
+  pointer-events: none;
 }
 
 .logo {
