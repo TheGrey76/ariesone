@@ -17,30 +17,28 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
     setIsOpen(!isOpen);
   };
 
-  // Function to handle mobile menu link clicks
-  const handleMobileMenuClick = (targetId: string) => {
-    setIsOpen(false); // Close the menu
+  // Function to handle section navigation
+  const handleSectionNavigation = (sectionId: string) => {
+    // Close mobile menu if it's open
+    if (isOpen) {
+      setIsOpen(false);
+    }
     
-    // Debug log to check what targetId is being passed
-    console.log(`Trying to scroll to: ${targetId}`);
+    console.log(`Navigating to section: ${sectionId}`);
     
     // Small delay to ensure the menu is closed before scrolling
     setTimeout(() => {
-      // Check if targetId is "about" or "services" which are section IDs
-      const sectionId = targetId.replace('#', '');
-      console.log(`Looking for element with ID: ${sectionId}`);
-      
       const element = document.getElementById(sectionId);
       if (element) {
-        console.log(`Found element, scrolling to: ${sectionId}`);
+        console.log(`Found element with ID: ${sectionId}, scrolling now`);
         element.scrollIntoView({ behavior: 'smooth' });
       } else {
         console.log(`Element not found with ID: ${sectionId}`);
-        // Try to find any element that might match
+        // Debug - list all available IDs
         const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
         console.log(`Available IDs on page: ${allIds.join(', ')}`);
       }
-    }, 500); // Increased delay to make sure DOM is ready
+    }, 100);
   };
 
   return (
@@ -73,18 +71,18 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
           </Button>
 
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#services"
+            <button
+              onClick={() => handleSectionNavigation('services')}
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
             >
               Transformative Solutions
-            </a>
-            <a
-              href="#about"
+            </button>
+            <button
+              onClick={() => handleSectionNavigation('about')}
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
             >
               Innovation in Action
-            </a>
+            </button>
             {isDevelopment && (
               <>
                 <Link
@@ -101,12 +99,12 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                 </Link>
               </>
             )}
-            <a
-              href="#contact"
+            <button
+              onClick={() => handleSectionNavigation('contact')}
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
             >
               Contact
-            </a>
+            </button>
           </div>
         </div>
 
@@ -114,13 +112,13 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
               <button
-                onClick={() => handleMobileMenuClick("services")}
+                onClick={() => handleSectionNavigation('services')}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 Transformative Solutions
               </button>
               <button
-                onClick={() => handleMobileMenuClick("about")}
+                onClick={() => handleSectionNavigation('about')}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 Innovation in Action
@@ -144,7 +142,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                 </>
               )}
               <button
-                onClick={() => handleMobileMenuClick("contact")}
+                onClick={() => handleSectionNavigation('contact')}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 Contact
