@@ -7,6 +7,7 @@ const AboutSection = () => {
 
   return (
     <section 
+      id="about"
       ref={ref}
       className={`py-20 px-4 relative transition-all duration-700 transform ${
         inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"

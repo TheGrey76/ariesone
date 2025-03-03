@@ -21,15 +21,26 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
   const handleMobileMenuClick = (targetId: string) => {
     setIsOpen(false); // Close the menu
     
+    // Debug log to check what targetId is being passed
+    console.log(`Trying to scroll to: ${targetId}`);
+    
     // Small delay to ensure the menu is closed before scrolling
     setTimeout(() => {
-      const element = document.getElementById(targetId.substring(1));
+      // Check if targetId is "about" or "services" which are section IDs
+      const sectionId = targetId.replace('#', '');
+      console.log(`Looking for element with ID: ${sectionId}`);
+      
+      const element = document.getElementById(sectionId);
       if (element) {
+        console.log(`Found element, scrolling to: ${sectionId}`);
         element.scrollIntoView({ behavior: 'smooth' });
       } else {
-        console.log(`Element not found: ${targetId}`);
+        console.log(`Element not found with ID: ${sectionId}`);
+        // Try to find any element that might match
+        const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
+        console.log(`Available IDs on page: ${allIds.join(', ')}`);
       }
-    }, 300);
+    }, 500); // Increased delay to make sure DOM is ready
   };
 
   return (
@@ -103,13 +114,13 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
               <button
-                onClick={() => handleMobileMenuClick("#services")}
+                onClick={() => handleMobileMenuClick("services")}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 Transformative Solutions
               </button>
               <button
-                onClick={() => handleMobileMenuClick("#about")}
+                onClick={() => handleMobileMenuClick("about")}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 Innovation in Action
@@ -133,7 +144,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                 </>
               )}
               <button
-                onClick={() => handleMobileMenuClick("#contact")}
+                onClick={() => handleMobileMenuClick("contact")}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 Contact
