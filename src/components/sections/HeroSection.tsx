@@ -23,14 +23,11 @@ const HeroSection = ({ onExploreClick }: { onExploreClick: () => void }) => {
           </h1>
           <div className="absolute -inset-1 blur-md opacity-30 bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald -z-10"></div>
         </div>
-        <h2 className="text-xl md:text-2xl mb-2 animate-fade-up whitespace-nowrap">
+        <h2 className="text-xl md:text-2xl mb-8 animate-fade-up whitespace-nowrap">
           <span className="text-aires-navy font-heading">Reinventing Capital Raising</span>
           <span className="text-aires-emerald font-heading"> with </span>
           <span className="text-aires-blue font-heading">AI & Data</span>
         </h2>
-        <p className="text-lg text-aires-gray mb-8 max-w-4xl mx-auto animate-fade-up">
-          Empowering Fundraising Through AI-Driven Insights & Smart Data
-        </p>
         <Button
           size="lg"
           className="bg-aires-navy hover:bg-aires-blue transition-all duration-300 transform hover:scale-105 animate-fade-up"
