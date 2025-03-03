@@ -20,11 +20,11 @@ const HeroSection = ({ onExploreClick }: { onExploreClick: () => void }) => {
         <h1 className="text-5xl md:text-7xl font-heading font-bold text-aires-blue mb-6 animate-fade-up">
           AIRES
         </h1>
-        <p className="text-xl md:text-2xl mb-2 animate-fade-up">
+        <h2 className="text-xl md:text-2xl mb-2 animate-fade-up">
           <span className="text-aires-navy font-heading">Reinventing Capital Raising </span>
           <span className="text-aires-emerald font-heading">with </span>
           <span className="text-aires-blue font-heading">AI & Data</span>
-        </p>
+        </h2>
         <p className="text-lg text-aires-gray mb-8 max-w-4xl mx-auto animate-fade-up">
           Empowering Fundraising Through AI-Driven Insights & Smart Data
         </p>
