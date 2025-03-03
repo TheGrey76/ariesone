@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -47,16 +46,11 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
         <div className="flex items-center justify-between h-20">
           <div className="flex flex-col items-start">
             <Link to="/" className="flex items-center">
-              <img 
-                src="/lovable-uploads/c29f8969-08d9-4165-8345-26b2c4066ce2.png" 
-                alt="AIRES Logo" 
-                className="h-20 mr-2" /* Increased from h-16 to h-20 for better readability */
-              />
               <span className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
                 AIRES
               </span>
             </Link>
-            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent pl-20"> {/* Adjusted padding to pl-20 to align with the larger logo */}
+            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
               Data Driven Decision
             </span>
           </div>
