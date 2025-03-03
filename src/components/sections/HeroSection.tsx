@@ -17,16 +17,9 @@ const HeroSection = ({ onExploreClick }: { onExploreClick: () => void }) => {
            style={{ transform: inView ? "scale(1)" : "scale(1.05)" }} />
       <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
       <div className="max-w-7xl mx-auto text-center relative">
-        <div className="flex justify-center items-center mb-6">
-          <img 
-            src="/lovable-uploads/517b8cb3-5d1d-4535-9aa8-00db40ad6258.png" 
-            alt="AIRES Logo" 
-            className="h-16 md:h-20 mr-2"
-          />
-          <h1 className="text-5xl md:text-7xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent animate-fade-up">
-            AIRES
-          </h1>
-        </div>
+        <h1 className="text-5xl md:text-7xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent animate-fade-up mb-6">
+          AIRES
+        </h1>
         <p className="text-lg md:text-xl text-aires-gray mb-8 max-w-4xl mx-auto animate-fade-up">
           Reinventing Capital Raising with AI & Data — Empowering Fundraising Through AI-Driven Insights & Smart Data
         </p>
