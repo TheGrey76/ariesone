@@ -50,13 +50,13 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
               <img 
                 src="/lovable-uploads/c29f8969-08d9-4165-8345-26b2c4066ce2.png" 
                 alt="AIRES Logo" 
-                className="h-12 mr-2"
+                className="h-8 mr-2" /* Changed from h-12 to h-8 to match the height of the letter "A" */
               />
               <span className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
                 AIRES
               </span>
             </Link>
-            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent pl-14">
+            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent pl-10"> {/* Adjusted padding from pl-14 to pl-10 to account for smaller logo */}
               Data Driven Decision
             </span>
           </div>
