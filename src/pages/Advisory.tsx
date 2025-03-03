@@ -28,7 +28,7 @@ const Advisory = () => {
                 AIRES
               </a>
             </div>
-            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
+            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent ml-10">
               Data Driven Decision
             </span>
           </div>
