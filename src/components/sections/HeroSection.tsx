@@ -17,9 +17,12 @@ const HeroSection = ({ onExploreClick }: { onExploreClick: () => void }) => {
            style={{ transform: inView ? "scale(1)" : "scale(1.05)" }} />
       <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
       <div className="max-w-7xl mx-auto text-center relative">
-        <h1 className="text-5xl md:text-7xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent mb-6 animate-fade-up">
-          AIRES
-        </h1>
+        <div className="relative mb-6 inline-block">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold animate-fade-up relative">
+            <span className="bg-clip-text text-transparent bg-gradient-to-br from-aires-navy via-aires-blue to-aires-emerald drop-shadow-sm">AIRES</span>
+          </h1>
+          <div className="absolute -inset-1 blur-md opacity-30 bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald -z-10"></div>
+        </div>
         <h2 className="text-xl md:text-2xl mb-2 animate-fade-up whitespace-nowrap">
           <span className="text-aires-navy font-heading">Reinventing Capital Raising</span>
           <span className="text-aires-emerald font-heading"> with </span>
