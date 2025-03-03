@@ -27,11 +27,8 @@ const HeroSection = ({ onExploreClick }: { onExploreClick: () => void }) => {
             AIRES
           </h1>
         </div>
-        <p className="text-lg md:text-xl text-aires-gray mb-8 max-w-3xl mx-auto animate-fade-up">
-          Reinventing Capital Raising with AI & Data
-        </p>
-        <p className="text-lg md:text-xl text-aires-gray mb-8 max-w-3xl mx-auto animate-fade-up">
-          Empowering Fundraising Through AI-Driven Insights & Smart Data
+        <p className="text-lg md:text-xl text-aires-gray mb-8 max-w-4xl mx-auto animate-fade-up">
+          Reinventing Capital Raising with AI & Data — Empowering Fundraising Through AI-Driven Insights & Smart Data
         </p>
         <Button
           size="lg"
