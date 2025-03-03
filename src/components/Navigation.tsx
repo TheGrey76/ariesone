@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -23,11 +23,13 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
     
     // Small delay to ensure the menu is closed before scrolling
     setTimeout(() => {
-      const element = document.querySelector(targetId);
+      const element = document.getElementById(targetId.substring(1));
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        console.log(`Element not found: ${targetId}`);
       }
-    }, 100);
+    }, 300);
   };
 
   return (
