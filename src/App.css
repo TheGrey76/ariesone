@@ -17,7 +17,7 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.05; /* Opacità molto bassa per renderlo appena visibile */
+  opacity: 0.15; /* Increased opacity from 0.05 to 0.15 */
   z-index: -1;
   pointer-events: none;
 }
