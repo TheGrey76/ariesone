@@ -48,7 +48,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
           <div className="flex flex-col items-start">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/517b8cb3-5d1d-4535-9aa8-00db40ad6258.png" 
+                src="/lovable-uploads/c29f8969-08d9-4165-8345-26b2c4066ce2.png" 
                 alt="AIRES Logo" 
                 className="h-12 mr-2"
               />
