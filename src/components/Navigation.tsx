@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -46,6 +47,18 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
           </Button>
 
           <div className="hidden md:flex items-center space-x-8">
+            <a
+              href="#services"
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
+            >
+              Transformative Solutions
+            </a>
+            <a
+              href="#about"
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
+            >
+              Innovation in Action
+            </a>
             {isDevelopment && (
               <>
                 <Link
@@ -74,6 +87,20 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
         {isMobile && isOpen && (
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
+              <a
+                href="#services"
+                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
+                onClick={toggleMenu}
+              >
+                Transformative Solutions
+              </a>
+              <a
+                href="#about"
+                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
+                onClick={toggleMenu}
+              >
+                Innovation in Action
+              </a>
               {isDevelopment && (
                 <>
                   <Link
