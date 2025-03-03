@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -17,9 +18,16 @@ const Advisory = () => {
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
           <div className="flex flex-col items-end">
-            <a href="/" className="text-2xl font-heading font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
-              AIRES
-            </a>
+            <div className="flex items-center">
+              <img 
+                src="/lovable-uploads/517b8cb3-5d1d-4535-9aa8-00db40ad6258.png" 
+                alt="AIRES Logo" 
+                className="h-8 mr-2"
+              />
+              <a href="/" className="text-2xl font-heading font-semibold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
+                AIRES
+              </a>
+            </div>
             <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
               Data Driven Decision
             </span>

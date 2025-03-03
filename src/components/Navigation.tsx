@@ -22,8 +22,15 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex flex-col items-start">
-            <Link to="/" className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
-              AIRES
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/517b8cb3-5d1d-4535-9aa8-00db40ad6258.png" 
+                alt="AIRES Logo" 
+                className="h-12 mr-2"
+              />
+              <span className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
+                AIRES
+              </span>
             </Link>
             <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
               Data Driven Decision
