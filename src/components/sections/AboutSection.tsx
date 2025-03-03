@@ -15,7 +15,7 @@ const AboutSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
       <div className="max-w-7xl mx-auto relative">
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
-          Our AI-Driven Expertise
+          Innovation in Action
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {[
