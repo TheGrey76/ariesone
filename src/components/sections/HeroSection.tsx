@@ -17,11 +17,19 @@ const HeroSection = ({ onExploreClick }: { onExploreClick: () => void }) => {
            style={{ transform: inView ? "scale(1)" : "scale(1.05)" }} />
       <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
       <div className="max-w-7xl mx-auto text-center relative">
-        <h1 className="text-5xl md:text-7xl font-heading font-bold text-aires-navy mb-6 animate-fade-up">
+        <h1 className="text-5xl md:text-7xl font-heading font-bold text-aires-blue mb-6 animate-fade-up">
           AIRES
         </h1>
-        <p className="text-lg md:text-xl text-aires-gray mb-8 max-w-4xl mx-auto animate-fade-up">
-          Reinventing Capital Raising with AI & Data — Empowering Fundraising Through AI-Driven Insights & Smart Data
+        <div className="mb-2 animate-fade-up">
+          <h2 className="text-3xl md:text-5xl font-heading">
+            <span className="text-aires-navy">Reinventing Capital Raising </span>
+            <span className="text-aires-emerald">with</span>
+            <br className="hidden sm:block" />
+            <span className="text-aires-blue"> AI & Data</span>
+          </h2>
+        </div>
+        <p className="text-lg text-aires-gray mb-8 max-w-4xl mx-auto animate-fade-up">
+          Empowering Fundraising Through AI-Driven Insights & Smart Data
         </p>
         <Button
           size="lg"
