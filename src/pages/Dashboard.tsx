@@ -21,11 +21,9 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <img 
-                  src="/lovable-uploads/51149253-a392-4fb8-8ab0-e82c839c0455.png" 
-                  alt="Fund Reports" 
-                  className="w-full h-32 object-cover rounded-md"
-                />
+                <div className="flex justify-center items-center h-32 bg-gray-50 rounded-md">
+                  <PieChart className="w-16 h-16 text-aires-navy" />
+                </div>
                 <p className="text-sm text-muted-foreground">
                   Visualizza i report dettagliati dei fondi
                 </p>
@@ -42,11 +40,9 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <img 
-                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
-                  alt="Market Overview" 
-                  className="w-full h-32 object-cover rounded-md"
-                />
+                <div className="flex justify-center items-center h-32 bg-gray-50 rounded-md">
+                  <BarChart className="w-16 h-16 text-aires-navy" />
+                </div>
                 <p className="text-sm text-muted-foreground">
                   Analisi delle performance di mercato
                 </p>
@@ -63,11 +59,9 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <img 
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
-                  alt="Portfolio Analysis" 
-                  className="w-full h-32 object-cover rounded-md"
-                />
+                <div className="flex justify-center items-center h-32 bg-gray-50 rounded-md">
+                  <LineChart className="w-16 h-16 text-aires-navy" />
+                </div>
                 <p className="text-sm text-muted-foreground">
                   Analisi del portafoglio
                 </p>
