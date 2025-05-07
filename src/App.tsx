@@ -19,6 +19,8 @@ import Sponsorship from "./pages/Sponsorship";
 import StockReport from "./pages/StockReport";
 import SingleStockPage from "./pages/SingleStockPage";
 import AiresLanding from "./pages/AiresLanding";
+import MarketOverview from "./pages/MarketOverview";
+import PortfolioAnalysis from "./pages/PortfolioAnalysis";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +51,8 @@ function App() {
                       <Route path="/sponsorship" element={<Sponsorship />} />
                       <Route path="/stock-report" element={<StockReport />} />
                       <Route path="/stock/:symbol" element={<SingleStockPage />} />
+                      <Route path="/market-overview" element={<MarketOverview />} />
+                      <Route path="/portfolio-analysis" element={<PortfolioAnalysis />} />
                     </>
                   )}
                 </Routes>

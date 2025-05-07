@@ -1,8 +1,9 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavigationProps {
   isDevelopment: boolean;
@@ -11,6 +12,7 @@ interface NavigationProps {
 const Navigation = ({ isDevelopment }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,19 +27,23 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
     
     console.log(`Navigating to section: ${sectionId}`);
     
-    // Small delay to ensure the menu is closed before scrolling
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        console.log(`Found element with ID: ${sectionId}, scrolling now`);
-        element.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        console.log(`Element not found with ID: ${sectionId}`);
-        // Debug - list all available IDs
-        const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
-        console.log(`Available IDs on page: ${allIds.join(', ')}`);
-      }
-    }, 100);
+    // If we're not on the home page, navigate there first
+    if (location.pathname !== "/") {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
+    // If we are on the home page, just scroll to the section
+    const element = document.getElementById(sectionId);
+    if (element) {
+      console.log(`Found element with ID: ${sectionId}, scrolling now`);
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.log(`Element not found with ID: ${sectionId}`);
+      // Debug - list all available IDs
+      const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
+      console.log(`Available IDs on page: ${allIds.join(', ')}`);
+    }
   };
 
   return (
