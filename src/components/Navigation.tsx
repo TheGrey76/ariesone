@@ -1,9 +1,10 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, PieChart, BarChart, LineChart } from "lucide-react";
+import { Menu, X, PieChart, BarChart, LineChart, LogIn } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface NavigationProps {
   isDevelopment: boolean;
@@ -13,6 +14,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
+  const { user } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -71,27 +73,39 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             </button>
             {isDevelopment && (
               <>
-                <Link
-                  to="/market-overview"
-                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
-                >
-                  <BarChart className="h-4 w-4" />
-                  Market Overview
-                </Link>
-                <Link
-                  to="/portfolio-analysis"
-                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
-                >
-                  <LineChart className="h-4 w-4" />
-                  Portfolio Analysis
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
-                >
-                  <PieChart className="h-4 w-4" />
-                  Dashboard
-                </Link>
+                {user ? (
+                  <>
+                    <Link
+                      to="/market-overview"
+                      className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
+                    >
+                      <BarChart className="h-4 w-4" />
+                      Market Overview
+                    </Link>
+                    <Link
+                      to="/portfolio-analysis"
+                      className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
+                    >
+                      <LineChart className="h-4 w-4" />
+                      Portfolio Analysis
+                    </Link>
+                    <Link
+                      to="/dashboard"
+                      className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
+                    >
+                      <PieChart className="h-4 w-4" />
+                      Dashboard
+                    </Link>
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
+                  >
+                    <LogIn className="h-4 w-4" />
+                    Login
+                  </Link>
+                )}
               </>
             )}
             <button
@@ -114,30 +128,43 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
               </button>
               {isDevelopment && (
                 <>
-                  <Link
-                    to="/market-overview"
-                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
-                    onClick={toggleMenu}
-                  >
-                    <BarChart className="h-4 w-4" />
-                    Market Overview
-                  </Link>
-                  <Link
-                    to="/portfolio-analysis"
-                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
-                    onClick={toggleMenu}
-                  >
-                    <LineChart className="h-4 w-4" />
-                    Portfolio Analysis
-                  </Link>
-                  <Link
-                    to="/dashboard"
-                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
-                    onClick={toggleMenu}
-                  >
-                    <PieChart className="h-4 w-4" />
-                    Dashboard
-                  </Link>
+                  {user ? (
+                    <>
+                      <Link
+                        to="/market-overview"
+                        className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
+                        onClick={toggleMenu}
+                      >
+                        <BarChart className="h-4 w-4" />
+                        Market Overview
+                      </Link>
+                      <Link
+                        to="/portfolio-analysis"
+                        className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
+                        onClick={toggleMenu}
+                      >
+                        <LineChart className="h-4 w-4" />
+                        Portfolio Analysis
+                      </Link>
+                      <Link
+                        to="/dashboard"
+                        className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
+                        onClick={toggleMenu}
+                      >
+                        <PieChart className="h-4 w-4" />
+                        Dashboard
+                      </Link>
+                    </>
+                  ) : (
+                    <Link
+                      to="/login"
+                      className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
+                      onClick={toggleMenu}
+                    >
+                      <LogIn className="h-4 w-4" />
+                      Login
+                    </Link>
+                  )}
                 </>
               )}
               <button
