@@ -18,6 +18,7 @@ import Advisory from "./pages/Advisory";
 import Sponsorship from "./pages/Sponsorship";
 import StockReport from "./pages/StockReport";
 import SingleStockPage from "./pages/SingleStockPage";
+import AiresLanding from "./pages/AiresLanding";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +36,8 @@ function App() {
               <Navigation isDevelopment={isDevelopment} />
               <main className="flex-grow">
                 <Routes>
-                  <Route path="/" element={<Index />} />
+                  <Route path="/" element={<AiresLanding />} />
+                  <Route path="/old" element={<Index />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />
                   <Route path="/terms" element={<Terms />} />
                   {isDevelopment && (
