@@ -8,7 +8,7 @@ const Footer = () => {
   };
   
   const handleEmailClick = () => {
-    window.location.href = "mailto:eg@ariesdata.net";
+    window.location.href = "mailto:eg@airesdata.net";
   };
 
   return (
@@ -32,7 +32,7 @@ const Footer = () => {
               onClick={handleEmailClick}
             >
               <Mail className="w-4 h-4" />
-              eg@ariesdata.net
+              eg@airesdata.net
             </Button>
             
             <Button
