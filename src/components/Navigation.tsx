@@ -69,12 +69,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             >
               About Us
             </button>
-            <button
-              onClick={() => handleSectionNavigation('services')}
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Services
-            </button>
             {isDevelopment && (
               <>
                 <Link
@@ -117,12 +111,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 About Us
-              </button>
-              <button
-                onClick={() => handleSectionNavigation('services')}
-                className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-              >
-                Services
               </button>
               {isDevelopment && (
                 <>
