@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, PieChart, BarChart, LineChart } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link, useLocation } from "react-router-dom";
 
@@ -25,8 +25,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
       setIsOpen(false);
     }
     
-    console.log(`Navigating to section: ${sectionId}`);
-    
     // If we're not on the home page, navigate there first
     if (location.pathname !== "/") {
       window.location.href = `/#${sectionId}`;
@@ -36,13 +34,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
     // If we are on the home page, just scroll to the section
     const element = document.getElementById(sectionId);
     if (element) {
-      console.log(`Found element with ID: ${sectionId}, scrolling now`);
       element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.log(`Element not found with ID: ${sectionId}`);
-      // Debug - list all available IDs
-      const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
-      console.log(`Available IDs on page: ${allIds.join(', ')}`);
     }
   };
 
@@ -72,30 +64,39 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
 
           <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => handleSectionNavigation('services')}
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Transformative Solutions
-            </button>
-            <button
               onClick={() => handleSectionNavigation('about')}
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
             >
-              Innovation in Action
+              About Us
+            </button>
+            <button
+              onClick={() => handleSectionNavigation('services')}
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
+            >
+              Services
             </button>
             {isDevelopment && (
               <>
                 <Link
-                  to="/dashboard"
-                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
+                  to="/market-overview"
+                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
                 >
-                  Dashboard
+                  <BarChart className="h-4 w-4" />
+                  Market Overview
                 </Link>
                 <Link
-                  to="/ai-report"
-                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
+                  to="/portfolio-analysis"
+                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
                 >
-                  AI Report
+                  <LineChart className="h-4 w-4" />
+                  Portfolio Analysis
+                </Link>
+                <Link
+                  to="/dashboard"
+                  className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
+                >
+                  <PieChart className="h-4 w-4" />
+                  Dashboard
                 </Link>
               </>
             )}
@@ -112,32 +113,42 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
               <button
-                onClick={() => handleSectionNavigation('services')}
-                className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-              >
-                Transformative Solutions
-              </button>
-              <button
                 onClick={() => handleSectionNavigation('about')}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
-                Innovation in Action
+                About Us
+              </button>
+              <button
+                onClick={() => handleSectionNavigation('services')}
+                className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
+              >
+                Services
               </button>
               {isDevelopment && (
                 <>
                   <Link
-                    to="/dashboard"
-                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
+                    to="/market-overview"
+                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
                     onClick={toggleMenu}
                   >
-                    Dashboard
+                    <BarChart className="h-4 w-4" />
+                    Market Overview
                   </Link>
                   <Link
-                    to="/ai-report"
-                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
+                    to="/portfolio-analysis"
+                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
                     onClick={toggleMenu}
                   >
-                    AI Report
+                    <LineChart className="h-4 w-4" />
+                    Portfolio Analysis
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
+                    onClick={toggleMenu}
+                  >
+                    <PieChart className="h-4 w-4" />
+                    Dashboard
                   </Link>
                 </>
               )}
