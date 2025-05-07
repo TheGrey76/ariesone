@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle } from "lucide-react";
+import { StockData } from "@/types/stock";
 
 const SingleStockPage = () => {
   const { ticker } = useParams();
@@ -35,7 +36,7 @@ const SingleStockPage = () => {
       }
 
       console.log("Stock data received:", data);
-      return data;
+      return data as StockData;
     },
     enabled: !!ticker,
   });
@@ -80,6 +81,25 @@ const SingleStockPage = () => {
               {error instanceof Error && error.message === "Stock not found" 
                 ? `No stock found with ticker symbol ${ticker}`
                 : "Failed to load stock data. Please try again later."}
+            </AlertDescription>
+          </Alert>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!stock) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation isDevelopment={isDevelopment} />
+        <main className="container mx-auto px-4">
+          <BackButton />
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              No stock data found for ticker symbol {ticker}
             </AlertDescription>
           </Alert>
         </main>

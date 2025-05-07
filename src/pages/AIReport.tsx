@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Database, FileText, PieChart, Eye } from "lucide-react";
@@ -29,8 +30,8 @@ const AIReport = () => {
     queryKey: ['funds'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('funds')
-        .select('*')
+        .from("funds")
+        .select("*")
         .order('irr', { ascending: false });
 
       if (error) throw error;

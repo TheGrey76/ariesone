@@ -9,7 +9,111 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      funds: {
+        Row: {
+          aum: number
+          created_at: string
+          fund_name: string
+          id: string
+          irr: number
+          strategy: string
+          tvpi: number
+          updated_at: string
+        }
+        Insert: {
+          aum: number
+          created_at?: string
+          fund_name: string
+          id?: string
+          irr: number
+          strategy: string
+          tvpi: number
+          updated_at?: string
+        }
+        Update: {
+          aum?: number
+          created_at?: string
+          fund_name?: string
+          id?: string
+          irr?: number
+          strategy?: string
+          tvpi?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          company: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          role: string | null
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          role?: string | null
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      stocks: {
+        Row: {
+          beta: number
+          created_at: string
+          dividend_yield: number
+          id: string
+          market_cap: number
+          name: string
+          pe_ratio: number
+          price: number
+          sector: string
+          ticker: string
+          updated_at: string
+          volume: number
+        }
+        Insert: {
+          beta: number
+          created_at?: string
+          dividend_yield: number
+          id?: string
+          market_cap: number
+          name: string
+          pe_ratio: number
+          price: number
+          sector: string
+          ticker: string
+          updated_at?: string
+          volume: number
+        }
+        Update: {
+          beta?: number
+          created_at?: string
+          dividend_yield?: number
+          id?: string
+          market_cap?: number
+          name?: string
+          pe_ratio?: number
+          price?: number
+          sector?: string
+          ticker?: string
+          updated_at?: string
+          volume?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
