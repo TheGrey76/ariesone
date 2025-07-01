@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -21,7 +20,7 @@ const SingleStockPage = () => {
     queryFn: async () => {
       console.log("Fetching stock data for ticker:", ticker);
       const { data, error } = await supabase
-        .from("stocks")
+        .from("stocks" as any)
         .select("*")
         .eq("ticker", ticker)
         .maybeSingle();
@@ -55,25 +54,15 @@ const SingleStockPage = () => {
     </div>
   );
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <Navigation isDevelopment={isDevelopment} />
-        <main className="container mx-auto px-4">
-          <BackButton />
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navigation isDevelopment={isDevelopment} />
+      <main className="container mx-auto px-4">
+        <BackButton />
+        {isLoading && (
           <h1 className="text-4xl font-bold text-aires-navy">Loading...</h1>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <Navigation isDevelopment={isDevelopment} />
-        <main className="container mx-auto px-4">
-          <BackButton />
+        )}
+        {error && (
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
@@ -83,18 +72,8 @@ const SingleStockPage = () => {
                 : "Failed to load stock data. Please try again later."}
             </AlertDescription>
           </Alert>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (!stock) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <Navigation isDevelopment={isDevelopment} />
-        <main className="container mx-auto px-4">
-          <BackButton />
+        )}
+        {!stock && !isLoading && !error && (
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
@@ -102,21 +81,15 @@ const SingleStockPage = () => {
               No stock data found for ticker symbol {ticker}
             </AlertDescription>
           </Alert>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation isDevelopment={isDevelopment} />
-      <main className="container mx-auto px-4">
-        <BackButton />
-        <h1 className="text-4xl font-bold text-aires-navy mb-8">
-          {stock.name} ({stock.ticker})
-        </h1>
-        <SingleStockView stock={stock} />
+        )}
+        {stock && (
+          <>
+            <h1 className="text-4xl font-bold text-aires-navy mb-8">
+              {stock.name} ({stock.ticker})
+            </h1>
+            <SingleStockView stock={stock} />
+          </>
+        )}
       </main>
       <Footer />
     </div>

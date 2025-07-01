@@ -30,7 +30,7 @@ const AIReport = () => {
     queryKey: ['funds'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("funds")
+        .from("funds" as any)
         .select("*")
         .order('irr', { ascending: false });
 

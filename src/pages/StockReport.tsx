@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -38,7 +39,7 @@ const StockReport = () => {
     queryKey: ["stocks"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("stocks")
+        .from("stocks" as any)
         .select("*")
         .order('updated_at', { ascending: false });
       
