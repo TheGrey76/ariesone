@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, PieChart, BarChart, LineChart, LogIn } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
 interface NavigationProps {
@@ -14,6 +14,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const toggleMenu = () => {
@@ -27,17 +28,23 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
       setIsOpen(false);
     }
     
-    // If we're not on the home page, navigate there first
-    if (location.pathname !== "/") {
-      window.location.href = `/#${sectionId}`;
+    // If we're on the AiresLanding page, navigate to the old page with the section
+    if (location.pathname === "/") {
+      navigate(`/old#${sectionId}`);
       return;
     }
     
-    // If we are on the home page, just scroll to the section
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // If we're on the old page, just scroll to the section
+    if (location.pathname === "/old") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
     }
+    
+    // If we're on any other page, navigate to the old page with the section
+    navigate(`/old#${sectionId}`);
   };
 
   return (
