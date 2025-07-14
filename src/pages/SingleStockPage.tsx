@@ -35,7 +35,7 @@ const SingleStockPage = () => {
       }
 
       console.log("Stock data received:", data);
-      return data as StockData;
+      return data as unknown as StockData;
     },
     enabled: !!ticker,
   });

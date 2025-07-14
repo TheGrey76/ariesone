@@ -44,7 +44,7 @@ const StockReport = () => {
         .order('updated_at', { ascending: false });
       
       if (error) throw error;
-      return data as StockData[];
+      return data as unknown as StockData[];
     },
   });
 

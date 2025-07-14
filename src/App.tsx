@@ -22,6 +22,7 @@ import AiresLanding from "./pages/AiresLanding";
 import MarketOverview from "./pages/MarketOverview";
 import PortfolioAnalysis from "./pages/PortfolioAnalysis";
 import Login from "./pages/Login";
+import Pricing from "./pages/Pricing";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -59,6 +60,7 @@ function App() {
                       <Route path="/products" element={<Products />} />
                       <Route path="/advisory" element={<Advisory />} />
                       <Route path="/sponsorship" element={<Sponsorship />} />
+                      <Route path="/pricing" element={<Pricing />} />
                       <Route path="/stock-report" element={<StockReport />} />
                       <Route path="/stock/:symbol" element={<SingleStockPage />} />
                       <Route 

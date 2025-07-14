@@ -35,7 +35,7 @@ const AIReport = () => {
         .order('irr', { ascending: false });
 
       if (error) throw error;
-      return data as Fund[];
+      return data as unknown as Fund[];
     },
   });
 
