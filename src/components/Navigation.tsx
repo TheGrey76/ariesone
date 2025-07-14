@@ -78,15 +78,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             >
               About Us
             </button>
-            <button
-              onClick={() => {
-                console.log("Desktop Pricing button clicked!");
-                navigate('/pricing');
-              }}
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all cursor-pointer"
-            >
-              Pricing
-            </button>
             {isDevelopment && (
               <>
                 {user ? (
@@ -136,16 +127,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
         {isMobile && isOpen && (
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
-              <Link
-                to="/pricing"
-                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={(e) => {
-                  console.log("Mobile Pricing link clicked!");
-                  toggleMenu();
-                }}
-              >
-                Pricing
-              </Link>
               <button
                 onClick={() => handleSectionNavigation('about')}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
