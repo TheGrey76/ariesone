@@ -78,13 +78,15 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             >
               About Us
             </button>
-            <a
-              href="/pricing"
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all relative z-50 cursor-pointer"
-              onClick={() => console.log("Desktop Pricing link clicked!")}
+            <button
+              onClick={() => {
+                console.log("Desktop Pricing button clicked!");
+                navigate('/pricing');
+              }}
+              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all cursor-pointer"
             >
               Pricing
-            </a>
+            </button>
             {isDevelopment && (
               <>
                 {user ? (
