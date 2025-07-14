@@ -81,6 +81,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             <Link
               to="/pricing"
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
+              onClick={() => console.log("Desktop Pricing link clicked!")}
             >
               Pricing
             </Link>
@@ -136,7 +137,10 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
               <Link
                 to="/pricing"
                 className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  console.log("Mobile Pricing link clicked!");
+                  toggleMenu();
+                }}
               >
                 Pricing
               </Link>
