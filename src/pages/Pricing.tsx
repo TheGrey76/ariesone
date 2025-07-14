@@ -5,6 +5,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useState } from "react";
 
 const Pricing = () => {
+  console.log("Pricing component is rendering");
+  
   return (
     <div className="min-h-screen bg-background pt-20">
       <div className="container mx-auto px-4 py-16 max-w-6xl">
