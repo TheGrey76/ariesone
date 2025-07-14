@@ -60,7 +60,6 @@ function App() {
                       <Route path="/products" element={<Products />} />
                       <Route path="/advisory" element={<Advisory />} />
                       <Route path="/sponsorship" element={<Sponsorship />} />
-                      <Route path="/pricing" element={<Pricing />} />
                       <Route path="/stock-report" element={<StockReport />} />
                       <Route path="/stock/:symbol" element={<SingleStockPage />} />
                       <Route 

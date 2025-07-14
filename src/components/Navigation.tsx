@@ -72,12 +72,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
           </Button>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/pricing"
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Pricing
-            </Link>
             <button
               onClick={() => handleSectionNavigation('about')}
               className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
@@ -133,13 +127,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
         {isMobile && isOpen && (
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
-              <Link
-                to="/pricing"
-                className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-                onClick={toggleMenu}
-              >
-                Pricing
-              </Link>
               <button
                 onClick={() => handleSectionNavigation('about')}
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
