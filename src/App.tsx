@@ -22,7 +22,6 @@ import AiresLanding from "./pages/AiresLanding";
 import MarketOverview from "./pages/MarketOverview";
 import PortfolioAnalysis from "./pages/PortfolioAnalysis";
 import Login from "./pages/Login";
-import Pricing from "./pages/Pricing";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 const queryClient = new QueryClient();
