@@ -20,8 +20,7 @@ import {
   Upload, 
   Check, 
   Users, 
-  Zap,
-  Linkedin
+  Zap
 } from "lucide-react";
 
 const AiresLanding = () => {
