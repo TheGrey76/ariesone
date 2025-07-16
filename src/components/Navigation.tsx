@@ -78,15 +78,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             >
               About Us
             </button>
-            <button
-              onClick={() => {
-                console.log("Desktop Pricing button clicked!");
-                navigate('/pricing');
-              }}
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all cursor-pointer"
-            >
-              Pricing
-            </button>
             {isDevelopment && (
               <>
                 {user ? (
@@ -141,16 +132,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                 className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
               >
                 About Us
-              </button>
-              <button
-                onClick={() => {
-                  console.log("Mobile Pricing button clicked!");
-                  navigate('/pricing');
-                  toggleMenu();
-                }}
-                className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-              >
-                Pricing
               </button>
               {isDevelopment && (
                 <>
