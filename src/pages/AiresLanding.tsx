@@ -232,19 +232,12 @@ const AiresLanding = () => {
           <p className="text-aires-gray mb-8">
             Let's discuss how AI can accelerate your capital raising strategy.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Button 
-              className="bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white px-8 py-4 text-lg rounded-lg"
+              className="bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white px-10 py-4 text-lg rounded-lg"
               onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
             >
               Book a Call
-            </Button>
-            <Button 
-              variant="outline"
-              className="border-aires-blue text-aires-blue hover:bg-aires-blue hover:text-white px-8 py-4 text-lg rounded-lg"
-              onClick={() => window.open("mailto:contact@airesdata.net", "_blank")}
-            >
-              Contact Us
             </Button>
           </div>
         </div>
