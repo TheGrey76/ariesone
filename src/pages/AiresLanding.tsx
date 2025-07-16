@@ -67,11 +67,11 @@ const AiresLanding = () => {
           <Button 
             className="bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white px-8 py-6 text-lg rounded-lg"
             onClick={() => {
-              const element = document.getElementById("beta-signup");
+              const element = document.getElementById("contact");
               element?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Join the Beta <ArrowRight className="ml-2" />
+            Get Started <ArrowRight className="ml-2" />
           </Button>
         </div>
       </section>
@@ -223,92 +223,30 @@ const AiresLanding = () => {
         </div>
       </section>
 
-      {/* Beta Signup Form */}
-      <section id="beta-signup" className="py-20 px-4 bg-gray-50">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-4 text-aires-navy">
-            Join the Beta
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 bg-gray-50">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-aires-navy">
+            Ready to Transform Your Fundraising?
           </h2>
-          <p className="text-center text-aires-gray mb-8">
-            Be among the first to experience the future of fundraising and deal placement.
+          <p className="text-aires-gray mb-8">
+            Let's discuss how AI can accelerate your capital raising strategy.
           </p>
-          <Card className="border border-aires-blue/20 shadow-lg">
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="fullName" className="block text-sm font-medium text-aires-gray mb-1">
-                      Full Name *
-                    </label>
-                    <Input
-                      id="fullName"
-                      value={formData.fullName}
-                      onChange={(e) => handleChange("fullName", e.target.value)}
-                      required
-                      placeholder="John Smith"
-                      className="w-full"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-aires-gray mb-1">
-                      Email *
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleChange("email", e.target.value)}
-                      required
-                      placeholder="john@example.com"
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="role" className="block text-sm font-medium text-aires-gray mb-1">
-                      Role *
-                    </label>
-                    <Select
-                      value={formData.role}
-                      onValueChange={(value) => handleChange("role", value)}
-                      required
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select your role" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="GP">GP</SelectItem>
-                        <SelectItem value="Advisor">Advisor</SelectItem>
-                        <SelectItem value="Founder">Founder</SelectItem>
-                        <SelectItem value="Other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label htmlFor="linkedin" className="block text-sm font-medium text-aires-gray mb-1">
-                      LinkedIn (Optional)
-                    </label>
-                    <Input
-                      id="linkedin"
-                      value={formData.linkedin}
-                      onChange={(e) => handleChange("linkedin", e.target.value)}
-                      placeholder="linkedin.com/in/yourprofile"
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-                <div className="pt-4">
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white py-6 text-lg rounded-lg"
-                  >
-                    Request Access
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              className="bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white px-8 py-4 text-lg rounded-lg"
+              onClick={() => window.open("https://calendly.com/your-link", "_blank")}
+            >
+              Book a Call
+            </Button>
+            <Button 
+              variant="outline"
+              className="border-aires-blue text-aires-blue hover:bg-aires-blue hover:text-white px-8 py-4 text-lg rounded-lg"
+              onClick={() => window.open("mailto:contact@airesdata.net", "_blank")}
+            >
+              Contact Us
+            </Button>
+          </div>
         </div>
       </section>
 
