@@ -250,20 +250,10 @@ const AiresLanding = () => {
             About Aires Data
           </h2>
           <div className="bg-gradient-to-br from-aires-navy/5 to-aires-emerald/5 p-8 rounded-lg">
-            <p className="text-lg text-aires-gray mb-6 text-center">
+            <p className="text-lg text-aires-gray text-center">
               Aires Data is created by Edoardo Grigione, an international fundraising advisor and founder of Aries76 Ltd, 
               to make capital raising more efficient, scalable, and data-driven.
             </p>
-            <div className="flex justify-center">
-              <Button
-                variant="outline"
-                className="flex items-center gap-2 border-aires-blue text-aires-blue hover:bg-aires-blue hover:text-white"
-                onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
-              >
-                <Linkedin size={20} />
-                Connect with the founder
-              </Button>
-            </div>
           </div>
         </div>
       </section>
