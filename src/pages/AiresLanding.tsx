@@ -235,7 +235,7 @@ const AiresLanding = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               className="bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white px-8 py-4 text-lg rounded-lg"
-              onClick={() => window.open("https://calendly.com/your-link", "_blank")}
+              onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
             >
               Book a Call
             </Button>
