@@ -1,6 +1,6 @@
 
 import { useInView } from "react-intersection-observer";
-import { Brain, LineChart, Rocket, Shield } from "lucide-react";
+import { Bot, Target, TrendingUp } from "lucide-react";
 
 const WhyUsSection = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
@@ -8,60 +8,52 @@ const WhyUsSection = () => {
   return (
     <section 
       ref={ref}
-      className={`py-20 px-4 relative transition-all duration-700 transform ${
+      className={`py-20 px-4 bg-card transition-all duration-700 transform ${
         inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
-      <div className="absolute inset-0 bg-white/50" />
-      <div className="max-w-7xl mx-auto relative">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
-          Why Aires Data?
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            {
-              icon: Brain,
-              title: "AI & Big Data Integration",
-              description: "Smarter capital raising through predictive analytics and automated investor matching."
-            },
-            {
-              icon: LineChart,
-              title: "Real-Time Market Intelligence",
-              description: "Data-driven insights for better decision-making in fund placements and secondaries."
-            },
-            {
-              icon: Rocket,
-              title: "Tech-Enhanced Efficiency",
-              description: "Reduce fundraising timelines, improve investor engagement, and maximize outcomes."
-            },
-            {
-              icon: Shield,
-              title: "Trust & Transparency",
-              description: "AI-powered reporting and compliance tools ensure data-driven accountability."
-            }
-          ].map((feature, index) => (
-            <div 
-              key={feature.title}
-              className="text-center"
-              style={{ 
-                transitionDelay: `${index * 100}ms`,
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)"
-              }}
-            >
-              <div className="bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald p-0.5 rounded-full w-16 h-16 mx-auto mb-4">
-                <div className="bg-white rounded-full p-3 h-full">
-                  <feature.icon className="w-full h-full text-aires-emerald" />
-                </div>
-              </div>
-              <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
-                {feature.title}
-              </h3>
-              <p className="text-aires-gray text-sm">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
+            Why We Win
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+            AIRES is not another SaaS tool. It's built for one job: closing capital
+          </p>
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            The rise of AI in private markets is transforming fundraising. Limited Partners (LPs) now expect tailored approaches, while General Partners (GPs) face increasing pressure to deliver results. AIRES meets this critical inflection point.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="bg-background border border-border rounded-xl p-8 text-left">
+            <h3 className="text-xl font-bold text-foreground mb-4">AI Adoption</h3>
+            <p className="text-muted-foreground">
+              AI is rapidly becoming essential in modern fundraising strategies.
+            </p>
+          </div>
+          
+          <div className="bg-background border border-border rounded-xl p-8 text-left">
+            <h3 className="text-xl font-bold text-foreground mb-4">Curated Approaches</h3>
+            <p className="text-muted-foreground">
+              LPs demand more personalized and relevant deal opportunities than ever.
+            </p>
+          </div>
+          
+          <div className="bg-background border border-border rounded-xl p-8 text-left">
+            <h3 className="text-xl font-bold text-foreground mb-4">Increased Pressure</h3>
+            <p className="text-muted-foreground">
+              GPs must adapt quickly to shifting market expectations and challenges.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-center">
+          <img 
+            src="/lovable-uploads/2f8e1a5a-3776-4a7f-9e02-578fac44bf3f.png"
+            alt="Why We Win"
+            className="w-full max-w-4xl h-auto rounded-2xl shadow-2xl"
+          />
         </div>
       </div>
     </section>

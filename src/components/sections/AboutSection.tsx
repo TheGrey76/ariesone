@@ -1,6 +1,6 @@
 
 import { useInView } from "react-intersection-observer";
-import { CircuitBoard, Database, Network } from "lucide-react";
+import { User, Target, TrendingUp } from "lucide-react";
 
 const AboutSection = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
@@ -9,82 +9,58 @@ const AboutSection = () => {
     <section 
       id="about"
       ref={ref}
-      className={`py-20 px-4 relative transition-all duration-700 transform ${
+      className={`py-20 px-4 bg-card transition-all duration-700 transform ${
         inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white to-blue-50" />
-      <div className="max-w-7xl mx-auto relative">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-aires-navy mb-12 text-center">
-          Innovation in Action
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {[
-            {
-              icon: CircuitBoard,
-              title: "AI Integration",
-              description: "At Aires Data, we are redefining capital raising by integrating Artificial Intelligence and data-driven decision-making into every stage of the fundraising process.",
-              iconColor: "text-aires-navy"
-            },
-            {
-              icon: Database,
-              title: "Data-Driven Solutions",
-              description: "Traditional models rely on networks and manual outreach—we leverage technology to optimize investor targeting, enhance engagement, and accelerate deal execution.",
-              iconColor: "text-aires-emerald"
-            },
-            {
-              icon: Network,
-              title: "Smart Analytics",
-              description: "By harnessing AI-powered analytics, investor intelligence, and predictive modeling, Aires Data empowers fund managers, investors, and financial sponsors with faster, smarter, and more efficient capital-raising solutions.",
-              iconColor: "text-aires-blue"
-            },
-            {
-              title: "The Future of Capital Raising",
-              description: "Experience the next generation of fundraising with our AI-powered platform.",
-              special: true
-            }
-          ].map((item, index) => (
-            <div
-              key={index}
-              className={`p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full ${
-                item.special
-                  ? "relative"
-                  : "bg-white/80 backdrop-blur-sm shadow-lg"
-              }`}
-              style={{ 
-                transitionDelay: `${index * 100}ms`,
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)"
-              }}
-            >
-              {item.special ? (
-                <>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald rounded-lg blur-md opacity-30" />
-                  <div className="relative bg-white/90 backdrop-blur-sm rounded-lg p-8 h-full">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="h-2 w-2 rounded-full bg-aires-navy" />
-                      <div className="h-2 w-2 rounded-full bg-aires-blue" />
-                      <div className="h-2 w-2 rounded-full bg-aires-emerald" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
-                      {item.title}
-                    </h3>
-                    <p className="text-aires-gray">{item.description}</p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  {item.icon && (
-                    <item.icon className={`w-8 h-8 ${item.iconColor} mb-4`} />
-                  )}
-                  <h3 className="text-xl font-bold mb-4 text-aires-navy">
-                    {item.title}
-                  </h3>
-                  <p className="text-aires-gray">{item.description}</p>
-                </>
-              )}
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
+            Intelligent Fundraising Infrastructure
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            At AIRES, we revolutionise capital raising by providing an integrated infrastructure that enhances investor engagement, optimizes workflows, and drives data-informed decision-making, ensuring our clients stay ahead in a dynamic funding environment.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="bg-background border border-border rounded-xl p-8 text-center">
+            <div className="bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <User className="w-10 h-10 text-primary" />
             </div>
-          ))}
+            <h3 className="text-xl font-bold text-foreground mb-4">Investor Profiling</h3>
+            <p className="text-muted-foreground">
+              Tailored profiles help identify the best-fit investors for each opportunity.
+            </p>
+          </div>
+          
+          <div className="bg-background border border-border rounded-xl p-8 text-center">
+            <div className="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <Target className="w-10 h-10 text-accent" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Deal Placement</h3>
+            <p className="text-muted-foreground">
+              We streamline the process, ensuring relevant deals reach the right investors.
+            </p>
+          </div>
+          
+          <div className="bg-background border border-border rounded-xl p-8 text-center">
+            <div className="bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <TrendingUp className="w-10 h-10 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Analytics</h3>
+            <p className="text-muted-foreground">
+              Our robust analytics provide insights for informed decision-making and strategy refinement.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-center">
+          <img 
+            src="/lovable-uploads/72a65659-54a8-4543-9556-c0ce8304e776.png"
+            alt="Intelligent Fundraising Infrastructure"
+            className="w-full max-w-4xl h-auto rounded-2xl shadow-2xl"
+          />
         </div>
       </div>
     </section>
