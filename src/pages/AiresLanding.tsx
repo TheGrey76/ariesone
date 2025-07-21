@@ -87,7 +87,7 @@ const AiresLanding = () => {
                 <div className="w-16 h-16 rounded-full bg-aires-blue/10 flex items-center justify-center mb-4">
                   <Database className="w-8 h-8 text-aires-blue" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-aires-navy">Fundraising made scalable with AI</h3>
+                <h3 className="text-xl font-semibold mb-2 text-white">Fundraising made scalable with AI</h3>
                 <p className="text-white">
                   Leverage AI to streamline your fundraising process and reach more investors with less effort.
                 </p>
@@ -99,7 +99,7 @@ const AiresLanding = () => {
                 <div className="w-16 h-16 rounded-full bg-aires-blue/10 flex items-center justify-center mb-4">
                   <Search className="w-8 h-8 text-aires-blue" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-aires-navy">Instant investor profiling and deal matching</h3>
+                <h3 className="text-xl font-semibold mb-2 text-white">Instant investor profiling and deal matching</h3>
                 <p className="text-white">
                   Our AI matches your deals with the most suitable investors based on deep profiling and historical data.
                 </p>
@@ -111,7 +111,7 @@ const AiresLanding = () => {
                 <div className="w-16 h-16 rounded-full bg-aires-blue/10 flex items-center justify-center mb-4">
                   <Mail className="w-8 h-8 text-aires-blue" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-aires-navy">Automated teaser, deck & investor communication</h3>
+                <h3 className="text-xl font-semibold mb-2 text-white">Automated teaser, deck & investor communication</h3>
                 <p className="text-white">
                   Generate professional teasers, enhance your deck, and automate investor communications.
                 </p>
