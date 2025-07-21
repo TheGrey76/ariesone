@@ -24,7 +24,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-background border border-border rounded-xl p-8 text-center">
+          <div className="p-8 text-center">
             <div className="bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
               <User className="w-10 h-10 text-primary" />
             </div>
@@ -34,7 +34,7 @@ const AboutSection = () => {
             </p>
           </div>
           
-          <div className="bg-background border border-border rounded-xl p-8 text-center">
+          <div className="p-8 text-center">
             <div className="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
               <Target className="w-10 h-10 text-accent" />
             </div>
@@ -44,7 +44,7 @@ const AboutSection = () => {
             </p>
           </div>
           
-          <div className="bg-background border border-border rounded-xl p-8 text-center">
+          <div className="p-8 text-center">
             <div className="bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
               <TrendingUp className="w-10 h-10 text-primary" />
             </div>
