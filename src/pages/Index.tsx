@@ -6,7 +6,7 @@ import VisionSection from "@/components/sections/VisionSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import WhyUsSection from "@/components/sections/WhyUsSection";
 import BrochureDownload from "@/components/BrochureDownload";
-import ContactSection from "@/components/sections/ContactSection";
+
 
 const Index = () => {
   const scrollToServices = () => {
@@ -27,7 +27,7 @@ const Index = () => {
       <section id="brochure" className="py-16 bg-card">
         <BrochureDownload />
       </section>
-      <ContactSection />
+      
     </div>
   );
 };

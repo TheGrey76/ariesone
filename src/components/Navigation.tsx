@@ -109,12 +109,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                 )}
               </>
             )}
-            <button
-              onClick={() => handleSectionNavigation('contact')}
-              className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all"
-            >
-              Contact
-            </button>
           </div>
         </div>
 
@@ -162,12 +156,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                   )}
                 </>
               )}
-              <button
-                onClick={() => handleSectionNavigation('contact')}
-                className="text-left font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent"
-              >
-                Contact
-              </button>
             </div>
           </div>
         )}
