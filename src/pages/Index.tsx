@@ -2,7 +2,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import BrokenLandscapeSection from "@/components/sections/BrokenLandscapeSection";
 import VisionSection from "@/components/sections/VisionSection";
-import AboutSection from "@/components/sections/AboutSection";
+
 import ServicesSection from "@/components/sections/ServicesSection";
 import WhyUsSection from "@/components/sections/WhyUsSection";
 import BrochureDownload from "@/components/BrochureDownload";
@@ -21,7 +21,7 @@ const Index = () => {
       <HeroSection onExploreClick={scrollToServices} />
       <BrokenLandscapeSection />
       <VisionSection />
-      <AboutSection />
+      
       <ServicesSection />
       <WhyUsSection />
       <section id="brochure" className="py-16 bg-card">
