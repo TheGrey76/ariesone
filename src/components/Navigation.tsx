@@ -98,15 +98,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                       Dashboard
                     </Link>
                   </>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
-                  >
-                    <LogIn className="h-4 w-4" />
-                    Login
-                  </Link>
-                )}
+                ) : null}
               </>
             )}
           </div>
@@ -144,16 +136,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                         Dashboard
                       </Link>
                     </>
-                  ) : (
-                    <Link
-                      to="/login"
-                      className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
-                      onClick={toggleMenu}
-                    >
-                      <LogIn className="h-4 w-4" />
-                      Login
-                    </Link>
-                  )}
+                  ) : null}
                 </>
               )}
             </div>

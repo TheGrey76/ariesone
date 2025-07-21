@@ -21,7 +21,7 @@ import SingleStockPage from "./pages/SingleStockPage";
 import AiresLanding from "./pages/AiresLanding";
 import MarketOverview from "./pages/MarketOverview";
 import PortfolioAnalysis from "./pages/PortfolioAnalysis";
-import Login from "./pages/Login";
+
 import Pricing from "./pages/Pricing";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
@@ -45,7 +45,7 @@ function App() {
                   <Route path="/old" element={<Index />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />
                   <Route path="/terms" element={<Terms />} />
-                  <Route path="/login" element={<Login />} />
+                  
                   {isDevelopment && (
                     <>
                       <Route 
