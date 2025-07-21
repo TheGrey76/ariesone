@@ -78,7 +78,7 @@ const AiresLanding = () => {
       {/* Value Proposition */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12 text-white">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12 text-aires-navy">
             Transforming Capital Raising
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -88,7 +88,7 @@ const AiresLanding = () => {
                   <Database className="w-8 h-8 text-aires-blue" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-aires-navy">Fundraising made scalable with AI</h3>
-                <p className="text-aires-gray">
+                <p className="text-white">
                   Leverage AI to streamline your fundraising process and reach more investors with less effort.
                 </p>
               </CardContent>
@@ -100,7 +100,7 @@ const AiresLanding = () => {
                   <Search className="w-8 h-8 text-aires-blue" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-aires-navy">Instant investor profiling and deal matching</h3>
-                <p className="text-aires-gray">
+                <p className="text-white">
                   Our AI matches your deals with the most suitable investors based on deep profiling and historical data.
                 </p>
               </CardContent>
@@ -112,7 +112,7 @@ const AiresLanding = () => {
                   <Mail className="w-8 h-8 text-aires-blue" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-aires-navy">Automated teaser, deck & investor communication</h3>
-                <p className="text-aires-gray">
+                <p className="text-white">
                   Generate professional teasers, enhance your deck, and automate investor communications.
                 </p>
               </CardContent>
