@@ -60,7 +60,7 @@ const AiresLanding = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald">
             AI-powered Fundraising & Deal Placement
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-aires-gray">
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
             Reinvent capital raising with automation, investor intelligence, and global scale.
           </p>
           <Button 
