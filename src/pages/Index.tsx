@@ -1,7 +1,6 @@
 
 import HeroSection from "@/components/sections/HeroSection";
 import PainPointsSection from "@/components/sections/PainPointsSection";
-import BrokenLandscapeSection from "@/components/sections/BrokenLandscapeSection";
 import VisionSection from "@/components/sections/VisionSection";
 import AboutSection from "@/components/sections/AboutSection";
 import ServicesSection from "@/components/sections/ServicesSection";
@@ -21,7 +20,6 @@ const Index = () => {
     <div className="pt-20">
       <HeroSection onExploreClick={scrollToServices} />
       <PainPointsSection />
-      <BrokenLandscapeSection />
       <VisionSection />
       <AboutSection />
       <ServicesSection />
