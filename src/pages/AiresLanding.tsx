@@ -57,7 +57,7 @@ const AiresLanding = () => {
       <section className="min-h-[90vh] flex flex-col justify-center items-center px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-aires-navy/5 to-aires-emerald/5 -z-10" />
         <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 text-aires-navy">
             AI-powered Fundraising & Deal Placement
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-aires-navy">
