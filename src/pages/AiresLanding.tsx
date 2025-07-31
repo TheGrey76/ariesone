@@ -60,11 +60,11 @@ const AiresLanding = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald">
             AI-powered Fundraising & Deal Placement
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-aires-gray">
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-aires-navy">
             Reinvent capital raising with automation, investor intelligence, and global scale.
           </p>
           <Button 
-            className="bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white px-8 py-6 text-lg rounded-lg"
+            className="bg-gradient-to-r from-aires-blue to-aires-green hover:from-aires-blueDark hover:to-aires-greenLight transition-all duration-500 text-white px-8 py-6 text-lg rounded-lg shadow-lg"
             onClick={() => {
               const element = document.getElementById("contact");
               element?.scrollIntoView({ behavior: "smooth" });
@@ -233,7 +233,7 @@ const AiresLanding = () => {
           </p>
           <div className="flex justify-center">
             <Button 
-              className="bg-gradient-to-r from-aires-navy to-aires-emerald hover:from-aires-blue hover:to-aires-emerald transition-all duration-500 text-white px-10 py-4 text-lg rounded-lg"
+              className="bg-gradient-to-r from-aires-blue to-aires-green hover:from-aires-blueDark hover:to-aires-greenLight transition-all duration-500 text-white px-10 py-4 text-lg rounded-lg shadow-lg"
               onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
             >
               Book a Call

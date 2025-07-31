@@ -9,7 +9,7 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/82f1920b-dea8-4596-900b-66cbcbe922d8.png" 
               alt="Aires Logo" 
-              className="h-20 md:h-24 w-auto mx-auto mb-4"
+              className="h-28 md:h-36 lg:h-40 w-auto mx-auto mb-4"
             />
             <p className="text-sm text-aires-gray">
               AI-powered fundraising & deal placement
