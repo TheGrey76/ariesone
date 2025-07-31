@@ -24,6 +24,7 @@ export default {
           blueDark: "hsl(var(--aires-blue-dark))",
           green: "hsl(var(--aires-green))",
           greenLight: "hsl(var(--aires-green-light))",
+          navy: "hsl(var(--aires-navy))",
           gray: "hsl(var(--aires-gray))",
           light: "hsl(var(--aires-light))",
         },
