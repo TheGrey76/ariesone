@@ -6,9 +6,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-center items-center">
           <div className="text-center">
-            <div className="text-3xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent mb-2">
-              Aires Data
-            </div>
+            <img 
+              src="/lovable-uploads/82f1920b-dea8-4596-900b-66cbcbe922d8.png" 
+              alt="Aires Logo" 
+              className="h-12 w-auto mx-auto mb-2"
+            />
             <p className="text-sm text-aires-gray">
               AI-powered fundraising & deal placement
             </p>

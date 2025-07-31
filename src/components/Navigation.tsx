@@ -51,15 +51,14 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <div className="flex flex-col items-start">
+          <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald bg-clip-text text-transparent">
-                AIRES
-              </span>
+              <img 
+                src="/lovable-uploads/82f1920b-dea8-4596-900b-66cbcbe922d8.png" 
+                alt="Aires Logo" 
+                className="h-16 md:h-20 w-auto"
+              />
             </Link>
-            <span className="text-sm font-heading font-semibold bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent">
-              Data Driven Decision
-            </span>
           </div>
 
           <Button
@@ -78,7 +77,7 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
                   <>
                     <Link
                       to="/market-overview"
-                      className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent hover:from-aires-blue hover:to-aires-emerald transition-all flex items-center gap-1"
+                      className="font-medium bg-gradient-to-r from-aires-blue to-aires-green bg-clip-text text-transparent hover:from-aires-blueDark hover:to-aires-greenLight transition-all flex items-center gap-1"
                     >
                       <BarChart className="h-4 w-4" />
                       Market Overview

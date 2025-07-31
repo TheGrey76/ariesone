@@ -34,10 +34,11 @@
 
     --radius: 0.75rem;
     
-    /* Aires Brand Colors */
-    --aires-navy: 229 35% 15%;
-    --aires-emerald: 166 76% 37%;
-    --aires-purple: 270 91% 65%;
+    /* Aires Brand Colors - Updated to match new logo */
+    --aires-blue: 221 83% 53%;
+    --aires-blue-dark: 224 76% 48%;
+    --aires-green: 142 76% 36%;
+    --aires-green-light: 134 61% 41%;
     --aires-gray: 220 15% 70%;
     --aires-light: 210 40% 98%;
 
