@@ -15,8 +15,11 @@ serve(async (req) => {
   try {
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) {
+      console.error("STRIPE_SECRET_KEY is not configured");
       throw new Error("STRIPE_SECRET_KEY is not set");
     }
+    
+    console.log("Stripe key configured:", stripeKey ? "Yes" : "No");
 
     const { amount, currency = 'gbp', product_name, success_url, cancel_url } = await req.json();
 
