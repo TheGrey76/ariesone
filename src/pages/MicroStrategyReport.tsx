@@ -15,7 +15,7 @@ const MicroStrategyReport = () => {
     try {
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: { 
-          amount: 2900, // £29.00 in pence
+          amount: 1000, // £10.00 in pence
           currency: 'gbp',
           product_name: 'MicroStrategy Report – AIRES Edition',
           success_url: 'https://airescryptoreport.airesdata.net/thankyou',
@@ -133,7 +133,7 @@ const MicroStrategyReport = () => {
                 </CardHeader>
                 <CardContent className="text-center space-y-6">
                   <div>
-                    <div className="text-4xl font-bold text-aires-blue">£29.00</div>
+                    <div className="text-4xl font-bold text-aires-blue">£10.00</div>
                     <div className="text-sm text-muted-foreground">One-time payment</div>
                   </div>
                   
