@@ -60,7 +60,7 @@ const AiresLanding = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-aires-navy via-aires-blue to-aires-emerald">
             AI-powered Fundraising & Deal Placement
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-aires-gray">
             Reinvent capital raising with automation, investor intelligence, and global scale.
           </p>
           <Button 
@@ -87,8 +87,8 @@ const AiresLanding = () => {
                 <div className="w-16 h-16 rounded-full bg-aires-blue/10 flex items-center justify-center mb-4">
                   <Database className="w-8 h-8 text-aires-blue" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Fundraising made scalable with AI</h3>
-                <p className="text-white">
+                <h3 className="text-xl font-semibold mb-2 text-aires-navy">Fundraising made scalable with AI</h3>
+                <p className="text-aires-gray">
                   Leverage AI to streamline your fundraising process and reach more investors with less effort.
                 </p>
               </CardContent>
@@ -99,8 +99,8 @@ const AiresLanding = () => {
                 <div className="w-16 h-16 rounded-full bg-aires-blue/10 flex items-center justify-center mb-4">
                   <Search className="w-8 h-8 text-aires-blue" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Instant investor profiling and deal matching</h3>
-                <p className="text-white">
+                <h3 className="text-xl font-semibold mb-2 text-aires-navy">Instant investor profiling and deal matching</h3>
+                <p className="text-aires-gray">
                   Our AI matches your deals with the most suitable investors based on deep profiling and historical data.
                 </p>
               </CardContent>
@@ -111,8 +111,8 @@ const AiresLanding = () => {
                 <div className="w-16 h-16 rounded-full bg-aires-blue/10 flex items-center justify-center mb-4">
                   <Mail className="w-8 h-8 text-aires-blue" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Automated teaser, deck & investor communication</h3>
-                <p className="text-white">
+                <h3 className="text-xl font-semibold mb-2 text-aires-navy">Automated teaser, deck & investor communication</h3>
+                <p className="text-aires-gray">
                   Generate professional teasers, enhance your deck, and automate investor communications.
                 </p>
               </CardContent>
