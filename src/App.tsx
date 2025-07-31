@@ -21,6 +21,7 @@ import SingleStockPage from "./pages/SingleStockPage";
 import AiresLanding from "./pages/AiresLanding";
 import MarketOverview from "./pages/MarketOverview";
 import PortfolioAnalysis from "./pages/PortfolioAnalysis";
+import MicroStrategyReport from "./pages/MicroStrategyReport";
 
 import Pricing from "./pages/Pricing";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
@@ -61,6 +62,7 @@ function App() {
                       <Route path="/advisory" element={<Advisory />} />
                       <Route path="/sponsorship" element={<Sponsorship />} />
                       <Route path="/pricing" element={<Pricing />} />
+                      <Route path="/microstrategy-report" element={<MicroStrategyReport />} />
                       <Route path="/stock-report" element={<StockReport />} />
                       <Route path="/stock/:symbol" element={<SingleStockPage />} />
                       <Route 
