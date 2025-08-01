@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
 import { Textarea } from "@/components/ui/textarea";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -28,6 +28,7 @@ import {
 
 const AiresLanding = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -103,14 +104,16 @@ const AiresLanding = () => {
               <span>Investment Recommendations</span>
             </div>
           </div>
-          <Link to="/microstrategy-report" onClick={() => console.log("Clicked MicroStrategy Report link")}>
-            <Button 
-              size="lg"
-              className="bg-white text-aires-blue hover:bg-white/90 font-semibold px-8 py-6 text-lg shadow-xl"
-            >
-              Get the Report for £10 <ArrowRight className="ml-2" />
-            </Button>
-          </Link>
+          <Button 
+            size="lg"
+            className="bg-white text-aires-blue hover:bg-white/90 font-semibold px-8 py-6 text-lg shadow-xl"
+            onClick={() => {
+              console.log("Navigating to MicroStrategy Report");
+              navigate('/microstrategy-report');
+            }}
+          >
+            Get the Report for £10 <ArrowRight className="ml-2" />
+          </Button>
         </div>
       </section>
 
