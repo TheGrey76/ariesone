@@ -59,7 +59,7 @@ const MicroStrategyReport = () => {
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-gradient-to-b from-background to-secondary/20">
+    <div className="pt-32 min-h-screen bg-gradient-to-b from-background to-secondary/20">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -87,7 +87,6 @@ const MicroStrategyReport = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {[
-                    "50+ page comprehensive report",
                     "Bitcoin treasury strategy analysis",
                     "Financial performance deep dive",
                     "Market positioning insights",
@@ -141,7 +140,7 @@ const MicroStrategyReport = () => {
                     onClick={handlePurchase}
                     disabled={isLoading}
                     size="lg"
-                    className="w-full bg-aires-blue hover:bg-aires-blue/90"
+                    className="w-full bg-gradient-to-r from-aires-blue to-aires-blue/80 hover:from-aires-blue/90 hover:to-aires-blue/70 text-white font-semibold"
                   >
                     {isLoading ? "Processing..." : "Purchase Report"}
                   </Button>
