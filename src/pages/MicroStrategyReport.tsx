@@ -18,15 +18,15 @@ const MicroStrategyReport = () => {
           amount: 1000, // £10.00 in pence
           currency: 'gbp',
           product_name: 'MicroStrategy Report – AIRES Edition',
-          success_url: 'https://airescryptoreport.airesdata.net/thankyou',
+          success_url: `${window.location.origin}/thankyou.html`,
           cancel_url: window.location.href
         }
       });
 
       if (error) throw error;
       
-      // Open Stripe checkout in a new tab
-      window.open(data.url, '_blank');
+      // Redirect to Stripe checkout in the same window
+      window.location.href = data.url;
       
     } catch (error) {
       console.error('Error creating payment:', error);
