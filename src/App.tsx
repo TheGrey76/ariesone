@@ -46,6 +46,7 @@ function App() {
                   <Route path="/old" element={<Index />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />
                   <Route path="/terms" element={<Terms />} />
+                  <Route path="/microstrategy-report" element={<MicroStrategyReport />} />
                   
                   {isDevelopment && (
                     <>
@@ -62,7 +63,6 @@ function App() {
                       <Route path="/advisory" element={<Advisory />} />
                       <Route path="/sponsorship" element={<Sponsorship />} />
                       <Route path="/pricing" element={<Pricing />} />
-                      <Route path="/microstrategy-report" element={<MicroStrategyReport />} />
                       <Route path="/stock-report" element={<StockReport />} />
                       <Route path="/stock/:symbol" element={<SingleStockPage />} />
                       <Route 
