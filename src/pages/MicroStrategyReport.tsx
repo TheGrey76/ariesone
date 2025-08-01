@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,54 @@ import { useToast } from "@/hooks/use-toast";
 const MicroStrategyReport = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  // Update meta tags for social sharing
+  useEffect(() => {
+    // Update document title
+    document.title = "MicroStrategy Report - AIRES Edition | £10.00";
+    
+    // Create or update meta tags
+    const updateMetaTag = (property: string, content: string) => {
+      let meta = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('property', property);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    };
+
+    const updateNameTag = (name: string, content: string) => {
+      let meta = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', name);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    };
+
+    // Update Open Graph tags
+    updateMetaTag('og:title', 'MicroStrategy Report - AIRES Edition | £10.00');
+    updateMetaTag('og:description', 'Comprehensive analysis of MicroStrategy\'s revolutionary Bitcoin treasury strategy. Deep dive into Bitcoin holdings, financial performance, and market positioning. Download instantly for £10.00');
+    updateMetaTag('og:image', `${window.location.origin}/lovable-uploads/c29f8969-08d9-4165-8345-26b2c4066ce2.png`);
+    updateMetaTag('og:url', window.location.href);
+    updateMetaTag('og:type', 'product');
+
+    // Update Twitter Card tags
+    updateNameTag('twitter:card', 'summary_large_image');
+    updateNameTag('twitter:title', 'MicroStrategy Report - AIRES Edition | £10.00');
+    updateNameTag('twitter:description', 'Comprehensive analysis of MicroStrategy\'s Bitcoin treasury strategy. Download instantly for £10.00');
+    updateNameTag('twitter:image', `${window.location.origin}/lovable-uploads/c29f8969-08d9-4165-8345-26b2c4066ce2.png`);
+
+    // Update meta description
+    updateNameTag('description', 'Comprehensive analysis of MicroStrategy\'s revolutionary Bitcoin treasury strategy. Deep dive into Bitcoin holdings, financial performance, and market positioning. Download instantly for £10.00');
+
+    // Cleanup function to restore original meta tags when component unmounts
+    return () => {
+      document.title = "AIRES - Data-Driven Financial Solutions";
+    };
+  }, []);
 
   const handlePurchase = async () => {
     setIsLoading(true);
