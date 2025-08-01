@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,6 +29,12 @@ import {
 const AiresLanding = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  
+  // Redirect automaticamente alla pagina MicroStrategy Report
+  useEffect(() => {
+    navigate('/microstrategy-report', { replace: true });
+  }, [navigate]);
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
