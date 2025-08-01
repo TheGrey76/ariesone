@@ -42,7 +42,7 @@ serve(async (req) => {
         },
       ],
       mode: "payment",
-      success_url: success_url || "https://aires-cryptogrid.lovable.app/thankyou.html",
+      success_url: success_url || "https://dvwmyljnssspwfpwocof.supabase.co/storage/v1/object/public/reports/MicroStrategy_AIRES_Report.pdf",
       cancel_url: cancel_url,
     });
 
