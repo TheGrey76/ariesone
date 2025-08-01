@@ -79,39 +79,6 @@ const AiresLanding = () => {
         </div>
       </section>
 
-      {/* MicroStrategy Report CTA Banner */}
-      <section className="py-16 px-4 bg-gradient-to-r from-aires-blue to-aires-green relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-              <FileText className="w-8 h-8 text-white" />
-            </div>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-white">
-            MicroStrategy Report - AIRES Edition
-          </h2>
-          <p className="text-xl mb-6 text-white/90 max-w-2xl mx-auto">
-            Comprehensive analysis of MicroStrategy's revolutionary Bitcoin treasury strategy. Deep insights into financial performance, market positioning, and investment outlook.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-            <div className="flex items-center text-white/90">
-              <TrendingUp className="w-5 h-5 mr-2" />
-              <span>Bitcoin Treasury Analysis</span>
-            </div>
-            <div className="flex items-center text-white/90">
-              <Check className="w-5 h-5 mr-2" />
-              <span>Investment Recommendations</span>
-            </div>
-          </div>
-          <button 
-            onClick={() => window.location.href = '/microstrategy-report'}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-lg font-semibold bg-white text-aires-blue hover:bg-white/90 px-8 py-6 shadow-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer"
-          >
-            Get the Report for £10 <ArrowRight className="ml-2" />
-          </button>
-        </div>
-      </section>
 
       {/* Value Proposition */}
       <section className="py-20 px-4 bg-white">
