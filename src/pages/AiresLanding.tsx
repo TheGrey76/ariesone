@@ -103,7 +103,7 @@ const AiresLanding = () => {
               <span>Investment Recommendations</span>
             </div>
           </div>
-          <Link to="/microstrategy-report">
+          <Link to="/microstrategy-report" onClick={() => console.log("Clicked MicroStrategy Report link")}>
             <Button 
               size="lg"
               className="bg-white text-aires-blue hover:bg-white/90 font-semibold px-8 py-6 text-lg shadow-xl"
