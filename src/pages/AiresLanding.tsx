@@ -106,10 +106,19 @@ const AiresLanding = () => {
           </div>
           <Button 
             size="lg"
-            className="bg-white text-aires-blue hover:bg-white/90 font-semibold px-8 py-6 text-lg shadow-xl"
-            onClick={() => {
-              console.log("Navigating to MicroStrategy Report");
-              navigate('/microstrategy-report');
+            className="bg-white text-aires-blue hover:bg-white/90 font-semibold px-8 py-6 text-lg shadow-xl cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("Button clicked!");
+              console.log("Current location:", window.location.href);
+              try {
+                navigate('/microstrategy-report');
+                console.log("Navigation called");
+              } catch (error) {
+                console.error("Navigation error:", error);
+                // Fallback to window.location
+                window.location.href = '/microstrategy-report';
+              }
             }}
           >
             Get the Report for £10 <ArrowRight className="ml-2" />
