@@ -42,7 +42,7 @@ serve(async (req) => {
         },
       ],
       mode: "payment",
-      success_url: success_url,
+      success_url: success_url || "https://aires-cryptogrid.lovable.app/thankyou.html",
       cancel_url: cancel_url,
     });
 
