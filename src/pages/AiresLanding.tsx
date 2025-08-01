@@ -104,14 +104,12 @@ const AiresLanding = () => {
               <span>Investment Recommendations</span>
             </div>
           </div>
-           <a href="/microstrategy-report" className="inline-block">
-             <Button 
-               size="lg"
-               className="bg-white text-aires-blue hover:bg-white/90 font-semibold px-8 py-6 text-lg shadow-xl"
-             >
-               Get the Report for £10 <ArrowRight className="ml-2" />
-             </Button>
-           </a>
+          <button 
+            onClick={() => window.location.href = '/microstrategy-report'}
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-lg font-semibold bg-white text-aires-blue hover:bg-white/90 px-8 py-6 shadow-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer"
+          >
+            Get the Report for £10 <ArrowRight className="ml-2" />
+          </button>
         </div>
       </section>
 
