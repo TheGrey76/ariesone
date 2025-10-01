@@ -61,15 +61,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             </Link>
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={toggleMenu}
-          >
-            {isOpen ? <X /> : <Menu />}
-          </Button>
-
           <div className="hidden md:flex items-center space-x-8">
             {isDevelopment && (
               <>
@@ -102,45 +93,6 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
             )}
           </div>
         </div>
-
-        {isMobile && isOpen && (
-          <div className="md:hidden py-4">
-            <div className="flex flex-col space-y-4">
-              {isDevelopment && (
-                <>
-                  {user ? (
-                    <>
-                      <Link
-                        to="/market-overview"
-                        className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
-                        onClick={toggleMenu}
-                      >
-                        <BarChart className="h-4 w-4" />
-                        Market Overview
-                      </Link>
-                      <Link
-                        to="/portfolio-analysis"
-                        className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
-                        onClick={toggleMenu}
-                      >
-                        <LineChart className="h-4 w-4" />
-                        Portfolio Analysis
-                      </Link>
-                      <Link
-                        to="/dashboard"
-                        className="font-medium bg-gradient-to-r from-aires-navy to-aires-emerald bg-clip-text text-transparent flex items-center gap-1"
-                        onClick={toggleMenu}
-                      >
-                        <PieChart className="h-4 w-4" />
-                        Dashboard
-                      </Link>
-                    </>
-                  ) : null}
-                </>
-              )}
-            </div>
-          </div>
-        )}
       </div>
     </nav>
   );
