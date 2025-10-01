@@ -411,7 +411,7 @@ const AiresLanding = () => {
                   <Mail className="w-6 h-6 text-aires-teal" />
                 </div>
                 <div className="text-sm text-aires-blue font-semibold mb-2">BLOG</div>
-                <h3 className="text-xl font-semibold mb-3 text-aires-navy">Fat Cats & Starving Dogs</h3>
+                <h3 className="text-xl font-semibold mb-3 text-aires-navy">The Butler</h3>
                 <p className="text-aires-gray text-sm leading-relaxed mb-4">
                   Provocative commentary on market dynamics, fundraising strategies, and the future 
                   of capital allocation.
