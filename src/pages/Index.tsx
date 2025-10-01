@@ -17,7 +17,7 @@ const Index = () => {
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-48 md:pt-44 lg:pt-48">
       <HeroSection onExploreClick={scrollToServices} />
       <BrokenLandscapeSection />
       <VisionSection />
