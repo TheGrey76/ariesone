@@ -50,13 +50,13 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-36 md:h-48 lg:h-56">
+        <div className="flex items-center justify-between h-32 md:h-40 lg:h-48">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
                 src="/lovable-uploads/82f1920b-dea8-4596-900b-66cbcbe922d8.png" 
                 alt="Aires Logo" 
-                className="h-32 md:h-44 lg:h-52 w-auto"
+                className="h-28 md:h-36 lg:h-44 w-auto"
               />
             </Link>
           </div>
