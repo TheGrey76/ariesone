@@ -83,8 +83,7 @@ const AiresLanding = () => {
             </Button>
             <Button 
               size="lg"
-              variant="outline"
-              className="border-2 border-aires-white/30 text-aires-white hover:bg-aires-white/10 px-8 py-6 text-lg rounded-lg backdrop-blur-sm transition-all duration-300"
+              className="bg-aires-white text-aires-blue hover:bg-aires-light hover:text-aires-teal px-8 py-6 text-lg rounded-lg shadow-xl transition-all duration-300 hover:scale-105 font-semibold"
               onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
             >
               Book a Call
