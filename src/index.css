@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
 
-    --primary: 221 83% 53%;
+    --primary: 221 83% 38%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 98%;
@@ -22,7 +22,7 @@
     --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 142 76% 36%;
+    --accent: 142 85% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -30,17 +30,17 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
+    --ring: 221 83% 38%;
 
     --radius: 0.75rem;
     
     /* Aires Brand Colors - Logo Gradient */
-    --aires-navy: 221 83% 25%;
-    --aires-blue: 221 83% 53%;
+    --aires-navy: 221 83% 15%;
+    --aires-blue: 221 83% 38%;
     --aires-teal: 191 91% 36%;
     --aires-green-teal: 160 84% 39%;
-    --aires-green: 142 76% 36%;
-    --aires-green-light: 142 71% 45%;
+    --aires-green: 142 85% 45%;
+    --aires-green-light: 142 80% 52%;
     --aires-gray: 220 13% 50%;
     --aires-light: 210 40% 96%;
     --aires-white: 0 0% 100%;
