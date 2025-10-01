@@ -51,77 +51,79 @@ const AiresLanding = () => {
   return (
     <div className="antialiased bg-aires-white">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center px-4 overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center px-4 py-12 md:py-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-aires-navy via-aires-blue to-aires-teal opacity-95" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItMnptMC0yVjEwdjIyem0tMiAyaC0yIDJ6bTAtMmgtMjJoMjJ6Ci8+PC9nPjwvZz48L3N2Zz4=')] opacity-20" />
         
         <div className="max-w-6xl mx-auto text-center relative z-10 animate-fade-up">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-aires-white/10 backdrop-blur-sm border border-aires-light/20 mb-8">
-            <Zap className="w-4 h-4 text-aires-green" />
-            <span className="text-aires-light text-sm font-medium">AI-Native Infrastructure</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-aires-white/10 backdrop-blur-sm border border-aires-light/20 mb-6 md:mb-8">
+            <Zap className="w-3 h-3 md:w-4 md:h-4 text-aires-green" />
+            <span className="text-aires-light text-xs md:text-sm font-medium">AI-Native Infrastructure</span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-aires-white leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6 text-aires-white leading-tight px-2">
             AI-native Fundraising<br />Infrastructure
           </h1>
           
-          <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-aires-light leading-relaxed">
-            Institutional-grade capital raising powered by artificial intelligence.<br />
+          <p className="text-base md:text-xl lg:text-2xl mb-8 md:mb-10 max-w-3xl mx-auto text-aires-light leading-relaxed px-4">
+            Institutional-grade capital raising powered by artificial intelligence.<br className="hidden sm:block" />
             Data-driven investor targeting for GPs, funds, and sponsors.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-aires-teal to-aires-green hover:from-aires-blue hover:to-aires-greenTeal text-white px-8 py-6 text-lg rounded-lg shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
+              className="bg-gradient-to-r from-aires-teal to-aires-green hover:from-aires-blue hover:to-aires-greenTeal text-white px-4 py-4 md:px-8 md:py-6 text-sm md:text-lg rounded-lg shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
               onClick={() => {
                 const element = document.getElementById("contact");
                 element?.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              Discover How We Reinvent Capital Raising <ArrowRight className="ml-2" />
+              <span className="hidden sm:inline">Discover How We Reinvent Capital Raising</span>
+              <span className="sm:hidden">Discover More</span>
+              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
             </Button>
             <Button 
               size="lg"
-              className="bg-aires-white text-aires-blue hover:bg-aires-light hover:text-aires-teal px-8 py-6 text-lg rounded-lg shadow-xl transition-all duration-300 hover:scale-105 font-semibold"
+              className="bg-aires-white text-aires-blue hover:bg-aires-light hover:text-aires-teal px-4 py-4 md:px-8 md:py-6 text-sm md:text-lg rounded-lg shadow-xl transition-all duration-300 hover:scale-105 font-semibold"
               onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
             >
               Book a Call
             </Button>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
             <div className="text-center">
-              <div className="text-4xl font-bold text-aires-green mb-2">£500M+</div>
-              <div className="text-aires-light">Capital Raised</div>
+              <div className="text-3xl md:text-4xl font-bold text-aires-green mb-2">£500M+</div>
+              <div className="text-sm md:text-base text-aires-light">Capital Raised</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-aires-green mb-2">200+</div>
-              <div className="text-aires-light">Institutional Investors</div>
+              <div className="text-3xl md:text-4xl font-bold text-aires-green mb-2">200+</div>
+              <div className="text-sm md:text-base text-aires-light">Institutional Investors</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-aires-green mb-2">15+</div>
-              <div className="text-aires-light">Countries Reached</div>
+              <div className="text-3xl md:text-4xl font-bold text-aires-green mb-2">15+</div>
+              <div className="text-sm md:text-base text-aires-light">Countries Reached</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Us */}
-      <section className="py-24 px-4 bg-gradient-to-b from-aires-white to-aires-light/50">
+      <section className="py-12 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-aires-white to-aires-light/50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-aires-navy">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-4 md:mb-6 text-aires-navy">
               About Aires Data
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-8"></div>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-6 md:mb-8"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-aires-light/40">
-                <Building2 className="w-12 h-12 text-aires-teal mb-6" />
-                <h3 className="text-2xl font-semibold mb-4 text-aires-navy">UK-Based Advisory Excellence</h3>
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-aires-light/40">
+                <Building2 className="w-10 h-10 md:w-12 md:h-12 text-aires-teal mb-4 md:mb-6" />
+                <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-aires-navy">UK-Based Advisory Excellence</h3>
                 <p className="text-aires-gray leading-relaxed mb-4">
                   Aires Data is a premier UK-based advisory and data-driven fundraising company, 
                   supporting General Partners, fund managers, and sponsors in connecting with 
@@ -135,9 +137,9 @@ const AiresLanding = () => {
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300">
-                <CardContent className="p-6">
+                <CardContent className="p-4 md:p-6">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-aires-blue/10 flex items-center justify-center flex-shrink-0">
                       <Brain className="w-6 h-6 text-aires-blue" />
@@ -192,14 +194,14 @@ const AiresLanding = () => {
       </section>
 
       {/* Services */}
-      <section className="py-24 px-4 bg-aires-white">
+      <section className="py-12 md:py-20 lg:py-24 px-4 bg-aires-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-aires-navy">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-4 md:mb-6 text-aires-navy">
               Our Services
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-8"></div>
-            <p className="text-xl text-aires-gray max-w-3xl mx-auto">
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-6 md:mb-8"></div>
+            <p className="text-base md:text-xl text-aires-gray max-w-3xl mx-auto px-4">
               Comprehensive capital raising solutions powered by AI and institutional expertise
             </p>
           </div>
@@ -207,11 +209,11 @@ const AiresLanding = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Service 1 */}
             <Card className="border-2 border-aires-light/40 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-aires-blue/50 group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-aires-blue to-aires-teal flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Database className="w-8 h-8 text-white" />
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-aires-blue to-aires-teal flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Database className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-aires-navy">Fund Placement 2.0</h3>
+                <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-aires-navy">Fund Placement 2.0</h3>
                 <p className="text-aires-gray leading-relaxed mb-4">
                   Next-generation fund placement leveraging AI-powered investor profiling and 
                   sentiment analysis to dramatically improve GP-LP matching accuracy.
@@ -235,11 +237,11 @@ const AiresLanding = () => {
 
             {/* Service 2 */}
             <Card className="border-2 border-aires-light/40 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-aires-greenTeal/50 group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-aires-teal to-aires-greenTeal flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <LineChart className="w-8 h-8 text-white" />
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-aires-teal to-aires-greenTeal flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <LineChart className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-aires-navy">Fund Advisory</h3>
+                <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-aires-navy">Fund Advisory</h3>
                 <p className="text-aires-gray leading-relaxed mb-4">
                   Strategic advisory services covering fund structuring, capital solutions, 
                   and investor relations strategy for optimal fundraising outcomes.
@@ -263,11 +265,11 @@ const AiresLanding = () => {
 
             {/* Service 3 */}
             <Card className="border-2 border-aires-light/40 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-aires-green/50 group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-aires-greenTeal to-aires-green flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <TrendingUp className="w-8 h-8 text-white" />
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-aires-greenTeal to-aires-green flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-aires-navy">AI-Powered Secondary Advisory</h3>
+                <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-aires-navy">AI-Powered Secondary Advisory</h3>
                 <p className="text-aires-gray leading-relaxed mb-4">
                   Advanced market intelligence for secondary transactions, NAV financing, 
                   and GP-led deals using machine learning and alternative data sources.
@@ -291,11 +293,11 @@ const AiresLanding = () => {
 
             {/* Service 4 */}
             <Card className="border-2 border-aires-light/40 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-aires-greenLight/50 group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-aires-blue via-aires-teal to-aires-green flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Users className="w-8 h-8 text-white" />
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-aires-blue via-aires-teal to-aires-green flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-aires-navy">Sustainable Investing Advisory</h3>
+                <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-aires-navy">Sustainable Investing Advisory</h3>
                 <p className="text-aires-gray leading-relaxed mb-4">
                   ESG analytics and impact investing advisory to meet institutional mandates 
                   and attract sustainability-focused capital.
@@ -321,44 +323,44 @@ const AiresLanding = () => {
       </section>
 
       {/* Track Record / Case Studies */}
-      <section className="py-24 px-4 bg-gradient-to-b from-aires-light/50 to-aires-white">
+      <section className="py-12 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-aires-light/50 to-aires-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-aires-navy">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-4 md:mb-6 text-aires-navy">
               Track Record
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-8"></div>
-            <p className="text-xl text-aires-gray max-w-3xl mx-auto">
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-6 md:mb-8"></div>
+            <p className="text-base md:text-xl text-aires-gray max-w-3xl mx-auto px-4">
               Delivering exceptional results across Private Equity, Venture Capital, and Alternative Investments
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
             <Card className="border-none shadow-lg bg-gradient-to-br from-aires-white to-aires-light/50">
-              <CardContent className="p-8 text-center">
-                <div className="text-5xl font-bold text-aires-blue mb-2">£500M+</div>
+              <CardContent className="p-6 md:p-8 text-center">
+                <div className="text-3xl md:text-5xl font-bold text-aires-blue mb-2">£500M+</div>
                 <div className="text-aires-gray font-medium">Total Capital Raised</div>
               </CardContent>
             </Card>
 
             <Card className="border-none shadow-lg bg-gradient-to-br from-aires-white to-aires-light/50">
-              <CardContent className="p-8 text-center">
-                <div className="text-5xl font-bold text-aires-teal mb-2">50+</div>
+              <CardContent className="p-6 md:p-8 text-center">
+                <div className="text-3xl md:text-5xl font-bold text-aires-teal mb-2">50+</div>
                 <div className="text-aires-gray font-medium">Successful Closings</div>
               </CardContent>
             </Card>
 
             <Card className="border-none shadow-lg bg-gradient-to-br from-aires-white to-aires-light/50">
-              <CardContent className="p-8 text-center">
-                <div className="text-5xl font-bold text-aires-green mb-2">98%</div>
+              <CardContent className="p-6 md:p-8 text-center">
+                <div className="text-3xl md:text-5xl font-bold text-aires-green mb-2">98%</div>
                 <div className="text-aires-gray font-medium">Client Satisfaction</div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="bg-gradient-to-r from-aires-navy via-aires-blue to-aires-teal rounded-2xl p-12 text-center text-white">
-            <Award className="w-16 h-16 mx-auto mb-6 text-aires-green" />
-            <h3 className="text-2xl font-semibold mb-4">Selected Achievements</h3>
+          <div className="bg-gradient-to-r from-aires-navy via-aires-blue to-aires-teal rounded-2xl p-6 md:p-12 text-center text-white">
+            <Award className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6 text-aires-green" />
+            <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Selected Achievements</h3>
             <p className="text-aires-light/90 leading-relaxed max-w-3xl mx-auto mb-8">
               Our team has successfully advised on fundraising mandates for first-time fund managers, 
               established GPs seeking growth capital, and complex secondary transactions across Europe, 
@@ -372,14 +374,14 @@ const AiresLanding = () => {
       </section>
 
       {/* Insights / News */}
-      <section className="py-24 px-4 bg-aires-white">
+      <section className="py-12 md:py-20 lg:py-24 px-4 bg-aires-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-aires-navy">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-4 md:mb-6 text-aires-navy">
               Insights & Research
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-8"></div>
-            <p className="text-xl text-aires-gray max-w-3xl mx-auto">
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-aires-blue via-aires-teal to-aires-green mx-auto mb-6 md:mb-8"></div>
+            <p className="text-base md:text-xl text-aires-gray max-w-3xl mx-auto px-4">
               Industry-leading analysis and thought leadership on fundraising, AI, and capital markets
             </p>
           </div>
@@ -440,10 +442,10 @@ const AiresLanding = () => {
             </Card>
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-8 md:mt-12 text-center">
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-aires-blue to-aires-teal hover:from-aires-navy hover:to-aires-blue text-white px-8 py-6 text-lg rounded-lg shadow-lg transition-all duration-300"
+              className="bg-gradient-to-r from-aires-blue to-aires-teal hover:from-aires-navy hover:to-aires-blue text-white px-4 py-4 md:px-8 md:py-6 text-sm md:text-lg rounded-lg shadow-lg transition-all duration-300"
               onClick={() => {
                 const element = document.getElementById("contact");
                 element?.scrollIntoView({ behavior: "smooth" });
@@ -456,24 +458,24 @@ const AiresLanding = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-4 bg-gradient-to-br from-aires-navy via-aires-blue to-aires-teal relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItMnptMC0yVjEwdjIyem0tMiAyaC0yIDJ6bTAtMmgtMjJoMjJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20" />
+      <section id="contact" className="py-12 md:py-20 lg:py-24 px-4 bg-gradient-to-br from-aires-navy via-aires-blue to-aires-teal relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItMnptMC0yVjEwdjIyem0tMiAyaC0yIDJ6bTAtMmgtMjJoMjJ6Ci8+PC9nPjwvZz48L3N2Zz4=')] opacity-20" />
         
         <div className="max-w-5xl mx-auto relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-aires-white">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-4 md:mb-6 text-aires-white">
               Get in Touch
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-aires-teal to-aires-green mx-auto mb-8"></div>
-            <p className="text-xl text-aires-light max-w-3xl mx-auto">
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-aires-teal to-aires-green mx-auto mb-6 md:mb-8"></div>
+            <p className="text-base md:text-xl text-aires-light max-w-3xl mx-auto px-4">
               Ready to transform your fundraising strategy? Let's discuss how Aires Data can help you achieve your capital raising objectives.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            <div className="space-y-6 md:space-y-8">
               <div>
-                <h3 className="text-2xl font-semibold text-aires-white mb-6">Contact Information</h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-aires-white mb-4 md:mb-6">Contact Information</h3>
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -529,8 +531,8 @@ const AiresLanding = () => {
               </div>
             </div>
 
-            <div className="bg-aires-white/5 backdrop-blur-sm rounded-2xl p-8 border border-aires-white/10">
-              <h3 className="text-2xl font-semibold text-aires-white mb-6">Send us a Message</h3>
+            <div className="bg-aires-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-aires-white/10">
+              <h3 className="text-xl md:text-2xl font-semibold text-aires-white mb-4 md:mb-6">Send us a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -587,7 +589,7 @@ const AiresLanding = () => {
 
                 <Button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-aires-teal to-aires-green hover:from-aires-blue hover:to-aires-greenTeal text-white py-6 text-lg rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+                  className="w-full bg-gradient-to-r from-aires-teal to-aires-green hover:from-aires-blue hover:to-aires-greenTeal text-white py-4 md:py-6 text-base md:text-lg rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
                 >
                   Submit Request <ArrowRight className="ml-2" />
                 </Button>
@@ -598,9 +600,9 @@ const AiresLanding = () => {
       </section>
 
       {/* Call to Action Strip */}
-      <section className="py-12 px-4 bg-gradient-to-r from-aires-green to-aires-greenLight">
+      <section className="py-8 md:py-12 px-4 bg-gradient-to-r from-aires-green to-aires-greenLight">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-2xl font-semibold text-white mb-4">
+          <p className="text-lg md:text-2xl font-semibold text-white mb-3 md:mb-4 px-4">
             Ready to scale your fundraising with AI?
           </p>
           <Button 
