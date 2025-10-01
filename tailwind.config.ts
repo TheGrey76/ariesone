@@ -20,13 +20,15 @@ export default {
     extend: {
       colors: {
         aires: {
+          deepBlue: "hsl(var(--aires-deep-blue))",
           blue: "hsl(var(--aires-blue))",
-          blueDark: "hsl(var(--aires-blue-dark))",
-          green: "hsl(var(--aires-green))",
-          greenLight: "hsl(var(--aires-green-light))",
+          silver: "hsl(var(--aires-silver))",
+          silverLight: "hsl(var(--aires-silver-light))",
+          orange: "hsl(var(--aires-orange))",
+          orangeLight: "hsl(var(--aires-orange-light))",
           navy: "hsl(var(--aires-navy))",
           gray: "hsl(var(--aires-gray))",
-          light: "hsl(var(--aires-light))",
+          white: "hsl(var(--aires-white))",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
