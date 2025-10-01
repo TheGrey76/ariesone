@@ -49,14 +49,14 @@ const Navigation = ({ isDevelopment }: NavigationProps) => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b">
-      <div className="max-w-7xl mx-auto px-4 py-1">
-        <div className="flex items-center justify-between min-h-[8rem] md:min-h-[7rem] lg:min-h-[8rem]">
+      <div className="max-w-7xl mx-auto px-4 py-2">
+        <div className="flex items-center justify-between min-h-[10rem] md:min-h-[9rem] lg:min-h-[10rem]">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
                 src="/lovable-uploads/82f1920b-dea8-4596-900b-66cbcbe922d8.png" 
                 alt="Aires Logo" 
-                className="h-28 md:h-24 lg:h-28 w-auto object-contain"
+                className="h-36 md:h-32 lg:h-36 w-auto object-contain"
               />
             </Link>
           </div>
