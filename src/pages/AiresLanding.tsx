@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
 import {
   ArrowRight,
   Database,
@@ -23,6 +24,7 @@ import {
 
 const AiresLanding = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -30,18 +32,74 @@ const AiresLanding = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent",
-      description: "Thank you for your interest. We'll be in touch shortly.",
-    });
-    setFormData({
-      fullName: "",
-      email: "",
-      company: "",
-      message: "",
-    });
+    setIsSubmitting(true);
+
+    try {
+      // Client-side validation
+      if (!formData.fullName.trim() || formData.fullName.length > 100) {
+        toast({
+          title: "Invalid name",
+          description: "Please enter a valid name (max 100 characters)",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (!formData.email.trim() || formData.email.length > 255) {
+        toast({
+          title: "Invalid email",
+          description: "Please enter a valid email address",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (!formData.message.trim() || formData.message.length > 5000) {
+        toast({
+          title: "Invalid message",
+          description: "Please enter a message (max 5000 characters)",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      const { data, error } = await supabase.functions.invoke('send-email', {
+        body: {
+          name: formData.fullName,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your interest. We'll be in touch shortly.",
+      });
+      
+      setFormData({
+        fullName: "",
+        email: "",
+        company: "",
+        message: "",
+      });
+    } catch (error: any) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error sending message",
+        description: "Please try again or contact us directly at info@airesdata.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -589,9 +647,10 @@ const AiresLanding = () => {
 
                 <Button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-aires-teal to-aires-green hover:from-aires-blue hover:to-aires-greenTeal text-white py-4 md:py-6 text-base md:text-lg rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-aires-teal to-aires-green hover:from-aires-blue hover:to-aires-greenTeal text-white py-4 md:py-6 text-base md:text-lg rounded-lg shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  Submit Request <ArrowRight className="ml-2" />
+                  {isSubmitting ? "Sending..." : "Submit Request"} <ArrowRight className="ml-2" />
                 </Button>
               </form>
             </div>

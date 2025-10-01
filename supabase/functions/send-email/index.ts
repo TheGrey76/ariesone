@@ -11,6 +11,7 @@ const corsHeaders = {
 interface EmailRequest {
   name: string;
   email: string;
+  company?: string;
   message: string;
 }
 
@@ -23,8 +24,35 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const emailRequest: EmailRequest = await req.json();
     
-    // Log the incoming request
-    console.log("Received email request:", emailRequest);
+    // Input validation
+    if (!emailRequest.name?.trim() || emailRequest.name.length > 100) {
+      return new Response(
+        JSON.stringify({ error: "Invalid name" }), 
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    
+    if (!emailRequest.email?.trim() || emailRequest.email.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailRequest.email)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email" }), 
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    
+    if (!emailRequest.message?.trim() || emailRequest.message.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: "Invalid message" }), 
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    
+    // Sanitize inputs
+    const sanitizedName = emailRequest.name.trim().replace(/[<>]/g, '');
+    const sanitizedEmail = emailRequest.email.trim();
+    const sanitizedCompany = emailRequest.company?.trim().replace(/[<>]/g, '') || 'Not provided';
+    const sanitizedMessage = emailRequest.message.trim().replace(/[<>]/g, '');
+    
+    console.log("Processing email request from:", sanitizedEmail);
 
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -35,13 +63,14 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: "Aires <onboarding@resend.dev>",
         to: ["edoardo.grigione@aries76.com"],
-        subject: `New Contact Form Submission from ${emailRequest.name}`,
+        subject: `New Contact Form Submission from ${sanitizedName}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${emailRequest.name}</p>
-          <p><strong>Email:</strong> ${emailRequest.email}</p>
+          <p><strong>Name:</strong> ${sanitizedName}</p>
+          <p><strong>Email:</strong> ${sanitizedEmail}</p>
+          <p><strong>Company/Fund:</strong> ${sanitizedCompany}</p>
           <p><strong>Message:</strong></p>
-          <p>${emailRequest.message}</p>
+          <p>${sanitizedMessage}</p>
         `,
       }),
     });
