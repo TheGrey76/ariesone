@@ -600,7 +600,7 @@ const AiresLanding = () => {
       </section>
 
       {/* Call to Action Strip */}
-      <section className="py-8 md:py-12 px-4 bg-gradient-to-r from-aires-green to-aires-greenLight">
+      <section className="py-8 md:py-12 px-4 bg-gradient-to-r from-aires-navy to-aires-blue">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-lg md:text-2xl font-semibold text-white mb-3 md:mb-4 px-4">
             Ready to scale your fundraising with AI?
