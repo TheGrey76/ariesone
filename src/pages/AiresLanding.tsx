@@ -36,9 +36,12 @@ const AiresLanding = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    console.log('=== Form submission started ===');
+
     try {
       // Client-side validation
       if (!formData.fullName.trim() || formData.fullName.length > 100) {
+        console.error('Validation failed: Invalid name');
         toast({
           title: "Invalid name",
           description: "Please enter a valid name (max 100 characters)",
@@ -49,6 +52,7 @@ const AiresLanding = () => {
       }
 
       if (!formData.email.trim() || formData.email.length > 255) {
+        console.error('Validation failed: Invalid email');
         toast({
           title: "Invalid email",
           description: "Please enter a valid email address",
@@ -59,6 +63,7 @@ const AiresLanding = () => {
       }
 
       if (!formData.message.trim() || formData.message.length > 5000) {
+        console.error('Validation failed: Invalid message');
         toast({
           title: "Invalid message",
           description: "Please enter a message (max 5000 characters)",
@@ -67,6 +72,13 @@ const AiresLanding = () => {
         setIsSubmitting(false);
         return;
       }
+
+      console.log('Validation passed, calling edge function...');
+      console.log('Payload:', {
+        name: formData.fullName,
+        email: formData.email,
+        company: formData.company,
+      });
 
       const { data, error } = await supabase.functions.invoke('send-email', {
         body: {
@@ -77,8 +89,14 @@ const AiresLanding = () => {
         },
       });
 
-      if (error) throw error;
+      console.log('Edge function response:', { data, error });
 
+      if (error) {
+        console.error('Edge function error:', error);
+        throw error;
+      }
+
+      console.log('Email sent successfully!');
       toast({
         title: "Message sent successfully!",
         description: "Thank you for your interest. We'll be in touch shortly.",
@@ -91,14 +109,15 @@ const AiresLanding = () => {
         message: "",
       });
     } catch (error: any) {
-      console.error('Error sending message:', error);
+      console.error('=== Error sending message ===', error);
       toast({
         title: "Error sending message",
-        description: "Please try again or contact us directly at info@airesdata.com",
+        description: error.message || "Please try again or contact us directly at info@airesdata.com",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
+      console.log('=== Form submission ended ===');
     }
   };
 
