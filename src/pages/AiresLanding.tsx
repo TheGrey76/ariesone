@@ -86,7 +86,7 @@ const AiresLanding = () => {
             <Button 
               size="lg"
               className="bg-aires-white text-aires-blue hover:bg-aires-light hover:text-aires-teal px-4 py-4 md:px-8 md:py-6 text-sm md:text-lg rounded-lg shadow-xl transition-all duration-300 hover:scale-105 font-semibold"
-              onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
+              onClick={() => window.location.href = "mailto:quinley.martini@aries76.com?subject=Request for a Call"}
             >
               Book a Call
             </Button>
@@ -608,7 +608,7 @@ const AiresLanding = () => {
           <Button 
             size="lg"
             className="bg-aires-white text-aires-teal hover:bg-aires-light hover:text-aires-green transition-all duration-300"
-            onClick={() => window.open("https://www.linkedin.com/in/edoardogrigione/", "_blank")}
+            onClick={() => window.location.href = "mailto:quinley.martini@aries76.com?subject=Request for a Call"}
           >
             Book a Call Today <ArrowRight className="ml-2" />
           </Button>
