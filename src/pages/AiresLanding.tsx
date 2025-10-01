@@ -403,7 +403,10 @@ const AiresLanding = () => {
               </CardContent>
             </Card>
 
-            <Card className="border border-aires-silver/30 shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer">
+            <Card 
+              className="border border-aires-silver/30 shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer"
+              onClick={() => window.open("https://www.linkedin.com/newsletters/6957951771868585985/", "_blank")}
+            >
               <CardContent className="p-6">
                 <div className="w-12 h-12 rounded-lg bg-aires-orange/10 flex items-center justify-center mb-4 group-hover:bg-aires-orange/20 transition-colors">
                   <Mail className="w-6 h-6 text-aires-orange" />
